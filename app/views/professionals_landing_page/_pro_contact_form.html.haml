@@ -1,0 +1,46 @@
+%section.section.contact.is-paddingless-mobile.has-height-unset#contactUs
+  .container
+    .columns.is-marginless
+      .column.is-8-tablet.is-7-desktop.is-6-widescreen.is-5-fullhd.is-paddingless-mobile
+        .box.is-borderless.p-t-lg.p-b-lg{style: 'width: 500px;box-shadow: 0 0 16px 0 rgb(0 0 16 / 6%);'}
+          .columns.is-centered.is-marginless.is-multiline.is-vcentered{ 'data-controller': "recaptcha" }
+            = form_for(:contact_support, url: contact_supports_path, html: { 'data-action': 'submit->recaptcha#handleSubmit' } ) do |f|
+              .column-is-10{'data-controller': 'city-state-selecter'}
+                %h3.is-size-3.has-text-left.is-marginless.is-family-secondary
+                  = ('Find Your Next Client').capitalize
+                .field.has-text-left.m-t-md
+                  = f.label :name, 'I am', class: 'label'
+                  .control
+                    / = f.text_field :name, placeholder: t('placeholders.your_name_here'), class: 'input', required: true, minlength: 3, maxlength: 30, value: current_user&.full_name
+                    .select.is-normal
+                      %select.input{style:'margin-bottom: 18px;width: 366px;'}
+                        %option An Agent/Broker
+                        %option A Homebuyer
+                .field.has-text-left.m-t-md
+                  = f.label :name, t('Full Name'), class: 'label'
+                  .control{style:'margin-bottom: 18px;width: 366px;'}
+                    = f.text_field :name, class: 'input', required: true, minlength: 3, maxlength: 30, value: current_user&.full_name
+                .field.has-text-left
+                  = f.label :email, t('generic.email'), class: 'label'
+                  .control{style:'margin-bottom: 18px;width: 366px;'}
+                    = f.text_field :email, type: 'email', class: 'input', required: true, minlength: 10, maxlength: 50, value: current_user&.email
+                .field.has-text-left{ 'data-controller': 'calls' }
+                  = f.label :phone, t('labels.phone'), class: 'label'
+                  .control{style:'margin-bottom: 18px;width: 366px;'}
+                    = f.text_field :phone, id: 'phone1', class: 'input', required: true, minlength: 10, maxlength: 13, value: current_user&.phone_number, 'data-target': 'calls.phoneNumber'
+                    - if flash[:err_msg]
+                      %p.help.is-danger.is-bold
+                        = flash[:err_msg] + '. Please enter valid US Phone Number'
+                .field.has-text-left
+                  = f.label :city, t('generic.city'), class: 'label'
+                  .control{style:'margin-bottom: 18px;width: 366px;'}
+                    = f.text_field :city, class: "input field is-marginless", required: true, placeholder: " ", 'data-controller': 'google-auto-complete-input', 'data-target': 'google-auto-complete-input.searchInput city-state-selecter.searchInput', 'data-action': 'keydown->city-state-selecter#setCity change->city-state-selecter#setCity', type: 'text', onDrag: "return false", onDrop: "return false", onPaste: "return false"
+                    %p.help.is-danger{'data-target': 'city-state-selecter.errorMessage'}
+                    #locationMapContainer.map.m-b-lg.is-relative
+
+
+                %div.g-recaptcha{ 'data-sitekey': '6LfyMKUZAAAAAOQXGCDS96E6PUUrKRQ8BT9kLtni', 'data-callback': 'captchaCallback' }
+                .field.is-expanded.m-t-md
+                  = f.submit t('buttons.submit'), class: 'button is-primary is-fullwidth', 'data-target': 'city-state-selecter.submitButton process(event)', style:'width:126px;height:49px;'
+            / = render 'shared/contact_icons'
+            = render 'shared/phone_input'

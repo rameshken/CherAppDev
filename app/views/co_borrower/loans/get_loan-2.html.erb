@@ -1,0 +1,231 @@
+<div id="get-loan-page">
+  <!-- Loan form section Start -->
+    <section>
+        <div class="container">
+        <div class="row form-loan-sg">
+            <p class="form-loan-head">You are in our Get Loan process. Your<br> personal information is protected</p>
+            <p class="form-loan-sub-txt">We need the following information to perform credit verification.</p>
+        </div>
+        </div>
+    </section>
+    
+  <!-- Form Start -->
+        <section>
+          <%= form_for current_user, url: profile_path(current_user) do |f| %>
+        <div class="container">
+        <div class="row form-loan-input-sg">
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Full Name</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                    <div class="col">
+                    <p>First Name</p>
+                    <%= f.text_field :first_name, class: 'form-control', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.first_name')}", required: true, minlength: 3 %>
+                    </div>
+                    <div class="col">
+                    <p>Middle Name</p>
+                    <%= f.text_field :middle_name, class: 'form-control', placeholder: "Middle Name", minlength: 3 %>
+                    </div>
+                    <div class="col">
+                    <p>Last Name</p>
+                    <%= f.text_field :last_name, class: 'form-control', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.last_name')}", required: true, minlength: 3 %>
+                    </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="mb-3 row " data-controller="date-picker">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Date of Birth</label>
+                <div class="col-sm-8">
+                  <p>DOB</p>
+                  <%= f.date_field :date_of_birth, class: 'form-control', required: true, 'data-target': 'date-picker.picker', type: 'date' %>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Phone Number</label>
+                <div class="col-sm-8">
+                    <p>Phone Number</p>
+                  <%= f.text_field :phone_number, class: 'form-control form-input-box-sg', id:'phone', placeholder: "Enter Phone number", minlength: 10, maxlength: 16, required: true %>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Email</label>
+                <div class="col-sm-8">
+                    <p>Email</p>
+                  <%= f.text_field :email, class: 'form-control', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.email')}", required: true, minlength: 3, format: 'email' %>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Income</label>
+                <div class="col-sm-8">
+                    <p>How much do you earn monthly(Gross)?</p>
+                  <%= f.text_field :funding, class: 'form-control', :value=> "#{f.object.funding}", placeholder: "Enter Monthly earning", required: true, id: 'income' %>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Living Address</label>
+                <div class="col-sm-8">
+                    <p>Address 1</p>
+                  <%= f.text_field :address1, class: 'form-control', placeholder: "Enter Address 1", required: true %><br>
+                    <p>Address 2 (Optional)</p>
+                  <%= f.text_field :address2, class: 'form-control', placeholder: "Enter Address" %><br>
+                    
+                    <div class="row">
+                    <div class="col">
+                    <p>Zip</p>
+                    <%= f.text_field :zipcode, class: 'form-control', id:'zipcode', placeholder: "Enter zipcode", maxlength: 5, required: true %>
+                    </div>
+                    <div class="col">
+                    <p>City</p>
+                    <%= f.text_field :city, class: 'form-control', id:'city', placeholder: "Enter City" %>
+                    </div>
+                    <div class="col">
+                    <p>State</p>
+                    <%= f.text_field :state, class: 'form-control', id:'state', placeholder: "Enter State" %>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Social Security<br>Number<br>
+<span class="font-input-txt-sub">How do we use SSN<br>information?</span></label>
+                <div class="col-sm-8">
+                    <p>SSN</p>
+                  <%= f.text_field :ssn, class: 'form-control', id:'ssn', required: true, placeholder: "Enter your 9 digit SSN. e.g.111-22-3333", maxlength: 11 %>
+                    <p class="font-input-bold-sub">Enter your 9 digit SSN. e.g.111-22-3333</p>
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-3 col-form-label form-input-txt">Certification and<br>Authorization</label>
+                <div class="col-sm-8">
+                    <p>By clicking "I consent", you consent to a hard credit pull and attest that the above information is correct. <a href="" class="font-input-rd-mr">Read More</a></p>
+                  <input class="form-check-input" type="checkbox" value="" > <b class="font-input-bold">I consent</b>
+                    <p>If your scores are below average, we encourage you to use this <a href="">link</a> to complete the process.</p>
+                    
+                    <!-- <a href="suggest.html" type="button" class="btn btn-primary btn-sm loan-box-compl-bttn">Complete</a> -->
+                    <%= f.submit 'Complete', class: 'btn btn-primary btn-sm loan-box-compl-bttn is-half', type: 'submit' %>
+                    <% end %>
+                </div>
+            </div>
+            
+
+        </div>
+        </div>
+        </section>
+    <!-- Form End -->  
+</div>
+
+<script type="text/javascript">
+  
+  function is_int(value) {
+  if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+  $("#zipcode").keyup(function() {
+
+  // Cache
+  var el = $(this);
+
+  // Did they type five integers?
+  if ((el.val().length == 5) && (is_int(el.val()))) {
+
+    // Call Ziptastic for information
+    $.ajax({
+      url: "https://zip.getziptastic.com/v2/US/" + el.val(),
+      cache: false,
+      dataType: "json",
+      type: "GET",
+      success: function(result, success) {
+
+        $(".zip-error, .instructions").hide;
+
+        $("#city").val(result.city);
+
+        $("#state").val(result.state);
+
+        $(".fancy-form div > div").slideDown();
+
+        $("#zip").blur();
+        $("#address-line-1").show().focus();
+
+      },
+      error: function(result, success) {
+
+        $(".zip-error").slideDown(300);
+
+      }
+
+    });
+
+  } else if (el.val().length < 5) {
+
+    $(".zip-error").slideUp(200);
+
+  };
+
+});
+
+$("#ssn").keyup(function() {
+function formatSocialSecurity(val){
+  val = val.replace(/\D/g, '');
+  val = val.replace(/^(\d{3})/, '$1-');
+  val = val.replace(/-(\d{2})/, '-$1-');
+  val = val.replace(/(\d)-(\d{4}).*/, '$1-$2');
+  return val;
+}   
+  var ssn = $(this).val();
+  const ssn_data = formatSocialSecurity(ssn);//"135-71-1458" 
+  $('#ssn').val(ssn_data);
+});
+
+  
+  $(document).ready(function () {
+  const phoneInputFields = document.querySelector("#phone");
+     const phoneInputs = window.intlTelInput(phoneInputFields, {
+       onlyCountries: ["us"],
+       separateDialCode: true,
+       utilsScript:
+         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+     });
+      
+    $("form").submit(function() {
+      $('#phone').val(phoneInputs.getNumber());
+    });
+
+    
+      $('#phone').usPhoneFormat({
+        format: '(xxx) xxx-xxxx',
+      });
+    });
+
+$(document).ready(function(){
+  $('#income').keyup(function(event){
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40){
+          event.preventDefault();
+      }
+      var $this = $(this);
+      var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
+      var sym = "$"
+      $this.val(sym.concat(num));
+      
+      var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join(""));
+     
+      // the following line has been simplified. Revision history contains original.
+      $this.val(num2);
+    });
+});
+
+function RemoveRougeChar(convertString){
+    if(convertString.substring(0,1) == ","){
+    return convertString.substring(1, convertString.length)
+    }
+    return convertString;
+}
+</script>

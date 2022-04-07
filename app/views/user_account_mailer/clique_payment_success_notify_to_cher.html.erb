@@ -1,0 +1,59 @@
+<% user = params[:user] %>
+<body style="margin:0;padding:0;word-spacing:normal;background-color:#f6f9fc;">
+  <div role="article" aria-roledescription="email" lang="en" style="text-size-adjust:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:#f6f9fc;">
+    <table role="presentation" style="width:100%;border:none;border-spacing:0;">
+      <tr>
+        <td align="center" style="padding:0;">
+          <table role="presentation" style="width:94%;max-width:600px;border:none;border-spacing:0;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#525f7f; border: 15px solid #FFF;     border-top: 0px">
+            <tr>
+              <td style="padding:30px; background-color:#ffffff; ">
+                    <p style="margin-top:0;margin-bottom:16px;font-size:24px;line-height:32px;">Congratulations Cher!</p>
+                    <p style="margin:0;">You've just received a payment through Stripe.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:30px; padding-top:0px;background-color:#ffffff;">
+                    <table bgcolor="#f6f9fc" style="border-radius: 4px; width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="padding-left:10px; padding-bottom: 10px; padding-top: 10px; border-bottom: 1px solid #FFF; ">
+                                    <p style="margin: 0px; font-size: 12px; color:#8898aa; font-weight: bold;">PAYMENT</p>
+                                    <p style="margin: 0px;"><a href="https://dashboard.stripe.com/login?redirect=%2Fb%2Facct_1DtP5EB3tLHS97Mg%3Fdestination%3D%252Fpayments%252Fpi_3JSmv7B3tLHS97Mg0c2Oevnb&force_login=true" style="color:#556cd6; text-decoration: none;">$199.00</a> — Subscription creation</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:10px; padding-bottom: 10px; padding-top: 10px; border-bottom: 1px solid #FFF; ">
+                                    <p style="margin: 0px; font-size: 12px; color:#8898aa; font-weight: bold;">CUSTOMER</p>
+                                    <p style="margin: 0px;">Clique agent — <%= user.first_name %>-<%= user.email %> </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+              </td>
+            </tr>
+              <tr>
+              <td style="padding:30px;background-color:#ffffff; ">
+                    <table bgcolor="#fff" style="border-top:1px solid #cacdd1; border-bottom:1px solid #cacdd1; width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="padding-left:10px; padding-bottom: 10px; padding-top: 10px; ">
+                                    
+                                    <p style="margin: 0px; padding-bottom: 20px; padding-top: 20px;">We’ll be here to help you with any step along the way. You can find answers to most questions and get in touch with us through our <a href="https://support.stripe.com/" target="_blank" style="color:#556cd6; text-decoration: none;">support website.</a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                  </table>
+              </td>
+            </tr>
+            
+            <tr>
+              <td style="padding:30px;font-size:12px;background-color:#FFF;color:#525f7f; padding-top: 0px;">
+                    <p style="margin:0;font-size:12px;line-height:24px; ">Stripe, <a href="https://www.google.com/maps/place/510+Townsend+St,+San+Francisco,+CA+94103,+USA/@37.7735873,-122.4005342,17z/data=!3m1!4b1!4m5!3m4!1s0x808f7fd4a4d0d12b:0x4fa121002bd40014!8m2!3d37.7735873!4d-122.4005342" style="color:#15c;" target="_blank">510 Townsend Street, San Francisco, CA 94103</a></p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>

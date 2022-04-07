@@ -1,0 +1,40 @@
+%hr.m-t-md
+.columns.custom-history-wrap
+  .column.container-header
+    %h3.is-bold.is-marginless Property History
+  .column.pl-0
+    .columns.is-marginless
+      .column.is-12.is-marginless
+        .timeline{ 'data-controller': 'collapsible' }
+          .history
+            %h4.is-size-5.is-marginless.p-l-lg.has-text-link	
+              Today
+            .description.p-l-lg
+              .columns.p-b-lg.is-mobile
+                .column.is-4-mobile.is-4-tablet.p-l-none
+                  %p.is-marginless.is-caption= t('property_overview.date')
+                  %p.is-size-5.is-bold.is-size-7-mobile= l(@property['listDate'].to_date, format: :long)
+                .column.is-4-mobile.is-4-tablet
+                  %p.is-marginless.is-caption= "Action"
+                  %p.is-size-5.is-bold.is-size-7-mobile= "Listed (active)"
+                .column.is-4-mobile.is-4-tablet
+                  %p.is-marginless.is-caption= t('property_overview.price_label')
+                  %p.is-size-5.is-bold.is-size-7-mobile= number_to_currency(@property['listPrice'], locale: :en, precision: 0)
+          - if @property_frankeinstein[:property_profile]&.dig('deeds')
+            - @property_frankeinstein[:property_profile]&.dig('deeds').each do |deed| 
+              .history
+                %h4.is-size-5.is-marginless.p-l-lg.has-text-link
+                  = format_date(deed&.dig('recording_date'), "%Y-%m")
+                .description.p-l-lg
+                  .columns.p-b-lg.is-mobile
+                    .column.is-4-mobile.is-4-tablet.p-l-none
+                      %p.is-marginless.is-caption= t('property_overview.date')
+                      %p.is-size-5.is-bold.is-size-7-mobile= format_date(deed&.dig('recording_date'), "%b %d, %Y")
+                    .column.is-4-mobile.is-4-tablet
+                      %p.is-marginless.is-caption= "Action"
+                      %p.is-size-5.is-bold.is-size-7-mobile= "Sold (Public Records)"
+                    .column.is-4-mobile.is-4-tablet
+                      %p.is-marginless.is-caption= t('property_overview.price_label')
+                      %p.is-size-5.is-bold.is-size-7-mobile= number_to_currency(deed&.dig('sale_price'))
+%hr.m-t-md
+

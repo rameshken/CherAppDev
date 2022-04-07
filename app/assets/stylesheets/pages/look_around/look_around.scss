@@ -1,0 +1,679 @@
+:root {
+  --nav-height: 100px;
+  --nav-height-mobile: 90px;
+  --search-property-height: 90px;
+  --search-property-height-mobile: 200px;
+}
+
+.signup-container {
+  position: absolute;
+  top: 20vh;
+  z-index: 100;
+  max-width: 280px;
+  left: calc(50% - 130px);
+  & ul {
+    text-align: center;
+    & li {
+      display: inline-block;
+    }
+  }
+}
+
+.look-around.full-width-container {
+  padding: 0;
+  position: relative;
+
+  .search-property {
+    display: flex;
+    align-items: center;
+    background: $white;
+    font-weight: bold;
+    padding: $regular-padding 0;
+    width: 100%;
+
+    @media (max-width: 1024px) {
+      .container {
+        height: 100%;
+        padding-top: $regular-padding / 2;
+      }
+    }
+  }
+
+  .look-map {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    position: absolute;
+
+    &:after {
+      position: absolute;
+      content: 'Getting properties...';
+      font-weight: bold;
+      color: $white;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background: $black;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(rgba($violet, 0.4), rgba($violet, 0.4)), image-url('cherapp-ownership-coborrowing-spinner.svg');
+      background-repeat: no-repeat;
+      background-position: center, center calc(50vh  - 265px);
+      opacity: 0;
+      transition: .5s;
+    }
+
+    &.loading {
+      position: relative;
+      &:after {
+        opacity: 1;
+        transition: .5s;
+      }
+    }
+
+    button[title="Zoom in"],
+    button[title="Zoom out"] {
+      filter: invert(10%) sepia(95%) saturate(6941%) hue-rotate(252deg) brightness(89%) contrast(143%); 
+    }
+  }
+
+  .searched-properties {
+    .property-preview {
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 0 0 15px 0;
+      position: relative;
+
+      .property-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .property-content {
+        padding: 0 $regular-padding;
+        .table {
+          margin: 0;
+          width: 100%;
+        }
+      }
+
+      .property-content .people-who-also-flagged {
+        align-items: center;
+        background-color: $white;
+        bottom: 0;
+        border-radius: 100%;
+        display: flex;
+        font-size: .74rem;
+        height: 20px;
+        justify-content: center;
+        position: absolute;
+        right: -10px;
+        width: 20px;
+      }
+
+      .property-links {
+        display: flex;
+        justify-content: space-around;
+
+        img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          margin-right: 5px;
+        }
+
+        a,
+        button {
+          color: $violet;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .button.is-delete {
+      background-color: #feecf0 !important;
+      border-radius: 0 3px 3px 0;
+      color: #f14668;
+      height: 100%;
+      padding: 15px;
+    }
+  }
+}
+
+.look-around {
+  background: #fafafa;
+  background-color: $white;
+
+  .panel {
+    margin: 50px 0 50px;
+  }
+
+  label {
+    font-size: 16px;
+    margin-right: 15px;
+    margin-bottom: 4px;
+  }
+
+  .has-focus {
+    border: solid 1px $helper-blue;
+    box-shadow: $darker-shadow;
+  }
+
+  .living-options {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+
+    .multiple-buttons {
+      --range-buttons-width: 125px;
+      --home-type-button-width: 100px;
+      --more-button-width: 75px;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+
+      .button {
+        &.is-light {
+          background-color: $white;
+          border: solid 1px $helper-blue;
+          color: $primary;
+          font-weight: normal;
+          width: var(--range-buttons-width);
+
+          &:hover {
+            background-color: $primary;
+            color: $white;
+          }
+        }
+
+        &.is-home-type {
+          margin: 0;
+          width: var(--home-type-button-width);
+        }
+
+        &.more {
+          width: var(--more-button-width);
+        }
+
+        &.has-no-style {
+          border: 0;
+          font-size: .75rem;
+          font-weight: normal;
+          margin: $regular-margin / 2 0;
+          width: auto;
+          padding: 0;
+
+          &:active,
+          &:focus {
+            box-shadow: none;
+          }
+        }
+
+        &.is-completed {
+          border: solid 1px $primary;
+          color: $primary;
+          width: var(--range-buttons-width);
+        }
+
+        &.is-ligth-purple {
+          background: $light-purple;
+          color: $primary;
+        }
+      }
+
+      .actions-container {
+        margin-right: .25rem;
+        position: relative;
+
+        &:hover {
+          .hover-container {
+            display: block;
+          }
+        }
+
+        .hover-container {
+          background-color: $white;
+          box-shadow: $darker-shadow;
+          display: none;
+          flex-direction: column;
+          margin-top: 35px;
+          padding: 1rem;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: calc(var(--range-buttons-width) * 2);
+          z-index: 5;
+
+          &:after {
+            --border-width: 5px;
+            content: '';
+            border-style: solid;
+            border-color: transparent transparent $white transparent;
+            border-width: var(--border-width);
+            right: calc(var(--range-buttons-width) / 2 - var(--border-width));
+            position: absolute;
+            top: calc(var(--border-width) * 2 * -1);
+          }
+
+          &.is-home-type:after {
+            right: calc(var(--home-type-button-width) / 2 - var(--border-width));
+          }
+
+          &.is-aligned-left {
+            left: 0;
+
+            &:after {
+              right: calc(var(--range-buttons-width) * 2 - var(--more-button-width) / 2 - var(--border-width));
+            }
+          }
+
+          &.is-centered {
+            --container-width: 320px;
+            right: calc(var(--container-width) / -2 + var(--range-buttons-width) / 2);
+            width: var(--container-width);
+
+            &:after {
+              right: calc(var(--container-width) / 2 - var(--border-width));
+            }
+          }
+
+
+          .price-range {
+            .input {
+              padding: $regular-padding 5px;
+            }
+          }
+
+          @media (max-width: 1024px) {
+            &.is-aligned-right-desktop {
+              left: 0;
+              &:after{
+                left: calc(var(--range-buttons-width) / 2 - var(--border-width));
+                right: auto;
+              }
+            }
+
+            &.is-aligned-left-desktop {
+              left: auto;
+
+              &:after{
+                right: calc(var(--more-button-width) / 2 - var(--border-width));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .segment {
+      margin: 0 .5rem;
+
+      .field:last-child {
+        margin-left: $regular-margin;
+      }
+    }
+
+    input[type='text'] {
+      background: $white;
+      border: 1px solid $helper-blue;
+      box-shadow: none;
+      color: $grey-dark;
+      margin: 0;
+
+      &.has-border-blue {
+        border: 1px solid $primary;
+      }
+
+      &.width-350{
+        width: 350px;
+      }
+    }
+
+    @media (max-width: 769px) {
+      flex-direction: column;
+      .multiple-buttons .actions-container {
+        margin: 0;
+        position: initial;
+        .hover-container {
+          width: 100%;
+          &.is-home-type:after{
+            right: calc(50% - (var(--range-buttons-width) / 2) + (var(--more-button-width) / 2) - (15px /2));
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1024px) {
+      flex-wrap: wrap;
+      padding: 0 $regular-padding;
+
+      .segment {
+        justify-content: space-between;
+        margin: 0;
+        padding: 0 0 .5rem;
+        width: 100%;
+
+        .field {
+          input {
+            width: 100%;
+
+            &.width-350{
+              width: 350px;
+            }
+          }
+
+          &:first-of-type {
+            .select {
+              min-width: 50%;
+            }
+          }
+        }
+
+        &:last-of-type {
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .engaged-people {
+    align-items: center;
+    display: flex;
+    border-radius: 5px;
+    width: 100%;
+    bottom: 0;
+    justify-content: center;
+    background: $white;
+    margin-top: 15px;
+    .fieldset {
+      border-radius: 6px;
+      margin-right: 15px;
+      width: auto;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    .user-card {
+      float: left;
+      padding: 5px;
+
+      .user-image {
+        height: 32px;
+        width: 32px;
+      }
+    }
+
+    span {
+      top: 10px;
+    }
+  }
+
+  // Override default Bulma style
+  .field.is-horizontal {
+    .field-body {
+      display: flex;
+      flex-basis: 0;
+      flex-grow: 5;
+      flex-shrink: 1;
+    }
+  }
+
+  //Override default Google Maps style
+  .gm-style-iw-t{
+    &:after {
+      display: none;
+    }
+  }
+
+  .gm-style-iw {
+    --container-size: 200px;
+    background: none;
+    box-shadow: none;
+    width: 200px;
+    height: auto;
+    max-height: 1602px !important;
+    padding: 0;
+    .gm-style-iw-d {
+      overflow: scroll;
+      max-width: 636px;
+      max-height: 1602px !important;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden !important;
+      > div {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        .property-popup {
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          .property-image {
+            border: 5px solid $violet;
+            top: 0;
+            left: 0;
+            border-radius: 100%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+          }
+
+        }
+      }
+
+      .property-info {
+        position: absolute;
+        background-color: rgba($black, 0.3);
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        z-index: 2;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        flex-direction: column;
+        top: 0;
+        font-weight: bold;
+        &.no-image {
+          padding-top: 65px;
+        }
+      }
+    }
+
+    .gm-ui-hover-effect {
+      img {
+        width: 25px !important;
+        height: 25px !important;
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
+#lookAroundBody {
+  @media (max-width: 769px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.modal-backdrop {
+  z-index: 0 !important;
+}
+
+#loan-property {
+  /* Model popup Start */
+.pop-sg-top {
+    margin-top: 150px;
+}
+.pop-head-bdr {
+    border:0px;
+}
+.pop-head-txt {
+    font-size: 20px;
+    color: #1600FF;
+}
+.pop-head-txt-sub {
+    font-size: 14px;
+}
+.pop-sm-txt-lg {
+    font-size: 16px;
+}
+.pop-thb-img {
+    border-radius: 100%;
+    width:30px;
+    height: 30px;
+    margin-right: 15px;
+}
+.popup-social-icon {
+    padding-right: 15px;
+}
+.cong-pop-txt-agn {
+    text-align: center;
+}
+.cong-pop-txt-hf {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.modal-backdrop {
+  z-index: 0 !important;
+}
+
+/* Model popup End */
+
+/* Properite Map Page Start */
+
+.mp-head-sgm {
+    margin-top: 30px;
+}
+.mp-search-icon {
+    padding-top: 13px;
+    margin-left: -30px;
+}
+.mp-form-select {
+    border:2px solid #1600FF;
+}
+.mp-left-bttn-sg {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+.mp-left-bttn-mre {
+    background-color: #DAE0FF;
+    color: #1600FF;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+.mp-left-bttn-srch {
+    background-color: #1600FF;
+    color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+.mp-left-head {
+    font-weight: 600;
+    padding-top: 20px;
+    font-size: 24px;
+}
+.mp-left-sec-scrl {
+    height: 530px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+/*    width: 100%;*/
+    float: left;
+    position: absolute;
+    display: inline-block;
+}
+.mp-left-col {
+    width: 41%;
+}
+.map-bx {
+    width: 98%;
+    height: auto;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 0.195rem 0.45rem rgba(0, 0, 0, 0.10);
+    display:inline-block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin: 20px 10px;
+    margin-left: 2px;
+}
+.map-bx-img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.map-bx-sgm {
+    text-align: left;
+    padding: 10px;
+}
+.map-bx-head {
+    font-size: 15px;
+    font-weight: bold;
+}
+tr.noBorder td {
+  border: 0;
+    padding-left: 0px;
+}
+.map-user-icon {
+    padding-right: 10px;
+}
+.map-user-txt {
+    font-size: 14px;
+}
+/* Properite Map Page End */
+
+/* media querie css  Start */
+@media (max-width: 576px) {
+        .header-top-logo-sg img {
+            width: 100px;
+        }
+
+        .loan-hl-sg {
+            width: 100%;
+        }
+
+        .loan-box-compl-head {
+            padding-top: 30px;
+        }
+        .loan-sg-algn {
+            padding-top: 30px;
+        }
+    .mp-left-col {
+    width: 70%;
+}
+    .map-bx { margin-left: 60px; }
+    .mp-form-select { margin-bottom: 15px; }
+    .mp-left-bttn-sg, .mp-left-bttn-mre,.mp-left-bttn-srch { margin-bottom: 15px; margin-left: 10px;}
+    .mp-left-head { font-size: 18px; padding-left: 30px; padding-bottom: 15px;}
+}
+/* media querie css End */
+}

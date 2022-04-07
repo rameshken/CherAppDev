@@ -1,0 +1,1742 @@
+<div id="get-loan-con-page">
+<div id="scroll-top"></div>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-3 d-none d-md-block">
+					<div class="row">
+						<div class="col-12">
+							<div class="progress-bar mn-loan-sgm">
+								<div class="step">
+									<p>Personal
+										<br>Information</p>
+									<div class="bullet first-bullet" id="b1">
+                    <span><%= image_tag("loan/select-icon.png", style: 'padding-top: 4px;') %></span></div>
+									<div class="check fas fa-check"></div>
+								</div>
+								<div class="step">
+									<p>Address</p>
+									<div class="bullet" id="b2">
+                    <span><%= image_tag("loan/select-icon.png", style: 'padding-top: 4px;') %></span></div>
+									<div class="check fas fa-check"></div>
+								</div>
+								<div class="step">
+									<p>Employment</p>
+									<div class="bullet" id="b3">
+                    <span><%= image_tag("loan/select-icon.png", style: 'padding-top: 4px;') %></span></div>
+									<div class="check fas fa-check"></div>
+								</div>
+								<div class="step">
+									<p>Income & Expense</p>
+									<div class="bullet" id="b4">
+                    <span><%= image_tag("loan/select-icon.png", style: 'padding-top: 4px;') %></span></div>
+									<div class="check fas fa-check"></div>
+								</div>
+								<div class="step">
+									<p>Assets</p>
+									<div class="bullet" id="b5">
+                    <span><%= image_tag("loan/select-icon.png", style: 'padding-top: 4px;') %></span></div>
+									<div class="check fas fa-check"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12"  onclick="scrollToTop()">
+							<div class="prev d-none" id="a1"><span>
+								<%= image_tag("loan/back-arrow.png", style:"display:inline", class:'backme') %>
+							</span></div>
+							<div class="prev d-none" id="a2"><span>
+								<%= image_tag("loan/back-arrow.png", style:"display:inline", class:'backme') %>
+							</span></div>
+							<div class="prev d-none" id="a3"><span>
+								<%= image_tag("loan/back-arrow.png", style:"display:inline", class:'backme') %></span></div>
+							<div class="prev d-none" id="a4"><span><%= image_tag("loan/back-arrow.png", style:"display:inline", class:'backme') %></span></div>
+							<div class="prev d-none" id="a5"><span><%= image_tag("loan/back-arrow.png", style:"display:inline", class:'backme') %></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="form-outer">
+						<%= form_for current_user, url: profile_path(current_user) do |f| %>
+                     <% if current_user.errors.any? %>
+                     <div id="error_explanation">
+                        <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this current_user from being saved:</h2>
+                        <ul>
+                           <% current_user.errors.each do |error| %>
+                           <li><%= error.full_message %></li>
+                           <% end %>
+                        </ul>
+                     </div>
+                     <% end %>
+						<!-- <form action="#"> -->
+							<div class="page slide-page" style="width:72%">
+								<div class="title">First, tell us a little bit about you!
+									<p>This information is required for your loan.</p>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label for="exampleFormControlInput1" class="form-label prg-inp-txt">What is your highest education level?</label>
+	<%#= f.select :high_edu_level, options_for_select([["Select One", ""], 'High School Graduate', 'Associate Degree Graduate', 'Undergraduate', 'Graduate', 'Doctorial Graduate']), {}, :class => 'form-select form-control',required: true %>
+	<%= f.select :high_edu_level, options_for_select([["Select One", ""], 'High School Graduate', 'Associate Degree Graduate', 'Undergraduate', 'Graduate', 'Doctorial Graduate']), {}, :class => 'form-select form-control' %>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="col prgs-right-sec">
+												<div class="mb-3">
+													<h4 class="prgs-right-mm">Graduated in</h4>
+													<label for="exampleFormControlInput1" class="form-label"> </label>
+<!--													<input class="datepicker form-control" placeholder="MM">-->
+  <%= f.date_field :graduated_in, class: 'form-control', required: true, 'data-target': 'date-picker.picker', type: 'month' %>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+								<div class="col">
+									<div class="label prgs-txt-al">What is your marital status?</div>
+									<div class="row">
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option1" name="option1" type="radio"/>
+												<label for="option1">Married</label>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option2" name="option1" type="radio"/>
+												<label for="option2">Single</label>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="label prgs-txt-al">Do you have children?</div>
+									<!-- <button type="button" class="btn btn-outline-light prgs-mg-btn">Yes</button>
+									<button type="button" class="btn btn-outline-light prgs-mg-btn">No</button> -->
+									<div class="row">
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option3" name="option2" type="radio"/>
+												<label for="option3">Yes</label>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option4" name="option2" type="radio"/>
+												<label for="option4">No</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								<div class="row">
+								<div class="col">
+									<div class="label prgs-txt-al">Are they dependent?</div>
+									<!-- <button type="button" class="btn btn-outline-light prgs-mg-btn">Yes</button>
+									<button type="button" class="btn btn-outline-light prgs-mg-btn">No</button> -->
+									<div class="row">
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option5" name="option3" type="radio"/>
+												<label for="option5">Yes</label>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option6" name="option3" type="radio"/>
+												<label for="option6">No</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								<div class="field">
+									<button class="firstNext next prg-svs-bttn" onclick="scrollToTop()">Save</button>
+								</div>
+							</div>
+							<div class="page">
+								<div class="title">Thanks! Off to a great start.</div>
+								<p class="prgs-curr-pg">Currently, you...</p>
+								<div class="row">
+									<div class="col">
+										<div class="prgs-hs-icon" id="ownhouse">
+  <%= image_tag("loan/own-HS.png", style:"width: 70px;display: inline;") %>
+
+											<p>Own a house</p>
+											<input type="radio" name="house" class="d-none" id="ohouse">
+										</div>
+										<div class="prgs-hs-icon" id="renthouse">
+   <%= image_tag("loan/rent-HS.png", style:"width: 70px;display: inline;") %>
+											<p>Rent a house</p>
+											<input type="radio" name="house" class="d-none" id="rhouse">
+                                            
+										</div>
+									</div>
+								</div>
+									<div class="col fprm-prgs-sg">
+									<p class="prg-hus-prg-sg">Where do you live now?</p>
+									<div class="mb-3 address-np">
+										<label for="exampleFormControlInput1" class="form-label">Adresss 1</label>
+    <%= f.text_field :address1, id: 'address1', class: 'form-control', placeholder: "Enter Address 1"%>
+									</div>
+									<div class="mb-3 address-np">
+										<label for="exampleFormControlInput1" class="form-label">Address 2 (Optional)</label>
+										
+    <%= f.text_field :address2, id: 'address2', class: 'form-control', placeholder: "Enter Address 2"%>
+									</div>
+									<div class="row">
+										
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">City</p>
+                                            <!--<input id="city" class="form-control form-input-box-sg">-->
+    <%= f.text_field :city, class: 'form-control form-input-box-sg', id:'city', placeholder: "Enter City" %>
+										</div>
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">State</p>
+                                            <!--<input id="state" class="form-control form-input-box-sg">-->
+    <%= f.text_field :state, class: 'form-control form-input-box-sg', id:'state', placeholder: "Enter State" %>
+										</div>
+                                        <div class="col-sm-4 col-12">
+											<p class="cit-np">Zip</p>
+                                            <!--<input type="txt" id="zip" class="form-control form-input-box-sg">-->
+                                            <%= f.text_field :zipcode, class: 'form-control form-input-box-sg', id:'zipcode', placeholder: "Enter Zip" %>
+										</div>
+									</div>
+								</div>
+								<div class="col fprm-prgs-sg">
+									<p class="prg-hus-prg-sg">Where is your mailing address?</p>
+									<div class="mb-3">
+                                        <!--<input class="form-check-input" id="copyme" type="checkbox">-->
+                                        <%= f.check_box :res_com, class: 'form-check-input', id:"myCheck", :onclick=>'myFunction()' %>
+                                        <%#= f.check_box :res_com, class: 'form-check-input', id:"copyme" %> 
+                                        <span class="slt-rds">Same as my resident address</span></div>
+                           <div id="text" style="display:block">
+									<div class="mb-3 address-np">
+										<label for="exampleFormControlInput1" class="form-label">Adresss 1</label>
+                                        <!--<input id="caddress1" class="form-control" placeholder="">-->
+                                        <%= f.text_field :com_addr_1, id: 'caddress1', class: 'form-control', placeholder: "Enter Address 1"%>
+									</div>
+									<div class="mb-3 address-np">
+										<label for="exampleFormControlInput1" class="form-label">Address 2 (Optional)</label>
+                                        <!--<input id:"caddress2" class="form-control" placeholder="">-->
+                                        <%= f.text_field :com_addr_2,id: 'caddress2', class: 'form-control', placeholder: "Enter Address 1"%>
+									</div>
+									<div class="row">
+										
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">City</p>
+											<!--<input id:"ccity" class="form-control form-input-box-sg">-->
+         <%= f.text_field :com_city, id:'ccity', class: 'form-control form-input-box-sg', id:'com_city', placeholder: "Enter City" %>
+										</div>
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">State</p>
+											<!--<input id:"cstate" class="form-control form-input-box-sg">-->
+                                            <%= f.text_field :com_state,id: 'cstate', class: 'form-control form-input-box-sg', id:'com_state', placeholder: "Enter State" %>
+										</div>
+                                        <div class="col-sm-4 col-12">
+											<p class="cit-np">Zip</p>
+                                            <!--<input id:"czip" class="form-control form-input-box-sg">-->
+                                            <%= f.text_field :com_zip,id: 'czip', class: 'form-control form-input-box-sg', id:'com_zipcode', placeholder: "Enter Zip" %>
+										</div>
+									</div>
+								</div>
+								</div>
+								<div class="field btns">
+									<button class="prev-1 prev d-block d-md-none">Prev</button>
+									<button class="next-1 next"  onclick="scrollToTop()">Save</button>
+								</div>
+							</div>
+							<div class="page">
+								<div class="title">Tell us a little bit about your employment history.</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="label prgs-txt-al">Are you currently employed?</div>
+										<!-- <button type="button" class="btn btn-outline-light prgs-mg-btn">Yes</button>
+										<button type="button" class="btn btn-outline-light prgs-mg-btn">No</button> -->
+									</div>
+								</div>
+								<div class="row">
+										<div class="col-md-2">
+											<div class="inputGroup">
+												<input id="option7" name="option4" type="radio"/>
+												<label for="option7">Yes</label>
+											</div>
+										</div>
+										<div class="col-md-2 no-bt">
+											<div class="inputGroup">
+												<input id="option8" name="option4" type="radio"/>
+												<label for="option8">No</label>
+											</div>
+										</div>
+									</div>
+								<div class="row mrd-rw col-mg">
+									<div class="col-md-6">
+										<p>Current employment type</p>
+										<!--<select class="form-select" aria-label="Default select example">
+											<option selected>Select One</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>-->
+       <%= f.select :employment_type, options_for_select([["Select One", ""], 'Part time', 'Full time', 'Self-Employed', 'Intern', 'Co-founder']), {}, :class => 'form-select form-control' %>
+									</div>
+									<div class="col">
+										<p>Position</p>
+										<!--<input class="form-control form-input-box-sg">-->
+                    <%= f.text_field :postion, class: 'form-control form-input-box-sg', placeholder: "Enter your Designation" %>
+									</div>
+								</div>
+								<div class="row mrd-rw col-mg">
+									<div class="col">
+										<p>Employed from</p>
+										<!--<input class="datepicker form-control" placeholder="MM/DD/YYYY">-->
+                  <%= f.date_field :emp_from, class: 'form-control form-input-box-sg', 'data-target': 'date-picker.picker', type: 'month' %>
+									</div>
+									<div class="col">
+										<p>To</p>
+										<!--<input class="datepicker form-control" placeholder="MM/DD/YYYY">-->
+                  <%= f.date_field :emp_to, class: 'form-control form-input-box-sg', 'data-target': 'date-picker.picker', type: 'month' %>
+									</div>
+								</div>
+								<div class="col fprm-prgs-sg2 col-addr-sg">
+									<p class="prg-hus-prg-sg">Company Address</p>
+									<div class="mb-3 address-np">
+										<label for="exampleFormControlInput1" class="form-label">Adresss 1</label>
+										<!--<input class="form-control" placeholder="">-->
+      <%= f.text_field :org_addr_1, class: 'form-control', placeholder: "Enter Address 1"%>
+									</div>
+									<div class="mb-3 address-np">
+										<label for="exampleFormControlInput1" class="form-label">Address 2 (Optional)</label>
+										<!--<input class="form-control" placeholder="">-->
+      <%= f.text_field :org_addr_2, class: 'form-control', placeholder: "Enter Address 1"%>
+									</div>
+									<div class="row">
+										
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">City</p>
+											<!--<input class="form-control form-input-box-sg">-->
+      <%= f.text_field :org_city, class: 'form-control form-input-box-sg', id:'org_city', placeholder: "Enter City" %>
+										</div>
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">State</p>
+											<!--<input class="form-control form-input-box-sg">-->
+      <%= f.text_field :org_state, class: 'form-control form-input-box-sg', id:'org_state', placeholder: "Enter State" %>
+										</div>
+                                        <div class="col-sm-4 col-12">
+											<p class="cit-np">Zip</p>
+											<!--<input class="form-control form-input-box-sg">-->
+      <%= f.text_field :org_zip, class: 'form-control form-input-box-sg', id:'org_zipcode', placeholder: "Enter Zip" %>
+										</div>
+									</div>
+                                    <div class="row">
+                                          <div class="col">
+                                          <div class="label prgs-txt-al" style="padding-top: 25px;">Feel free to add other jobs as it may help us in increasing your chances of getting prequalified.</div>
+                                        </div>
+                                    </div>
+						<div class="field btns">
+	<a class="btn btn-primary all-save-bttn" style="
+    background: #1600FF;">Save</a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="label prgs-txt-al">If you haven’t been at your current position for at least 2 years,
+											<br>please add all the jobs you’ve had over the past 2 years.</div>
+									</div>
+								</div>
+								<div class="row mrd-rw col-mg">
+									<div class="col">
+										<p>Current employment type</p>
+										<!--<select class="form-select" aria-label="Default select example">
+											<option selected>Select One</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>-->
+      <%= f.select :past_employment_type, options_for_select([["Select One", ""], 'Part time', 'Full time', 'Self-Employed', 'Intern', 'Co-founder']), {}, :class => 'form-select form-control' %>
+
+									</div>
+									<div class="col">
+										<p>Position</p>
+										<!--<input class="form-control form-input-box-sg">-->
+			<%= f.text_field :past_postion, class: 'form-control form-input-box-sg', placeholder: "Enter your Designation" %>
+									</div>
+								</div>
+								<div class="row mrd-rw col-mg">
+									<div class="col">
+										<p>Employed from</p>
+										<!--<input class="datepicker form-control" placeholder="MM/DD/YYYY">-->
+                    <%= f.date_field :past_emp_from, class: 'form-control form-input-box-sg', 'data-target': 'date-picker.picker', type: 'month' %>
+									</div>
+									<div class="col">
+										<p>To</p>
+										<!--<input class="datepicker form-control" placeholder="MM/DD/YYYY">-->
+                    <%= f.date_field :past_emp_from, class: 'form-control form-input-box-sg', 'data-target': 'date-picker.picker', type: 'month' %>
+									</div>
+								</div>
+								<div class="col fprm-prgs-sg2 col-addr-sg">
+									<p class="prg-hus-prg-sg">Compnay Address</p>
+									<div class="mb-3">
+										<label for="exampleFormControlInput1" class="form-label">Adresss 1</label>
+										<!--<input class="form-control" placeholder="">-->
+      <%= f.text_field :past_org_addr_1, class: 'form-control', placeholder: "Enter Address 1"%>
+									</div>
+									<div class="mb-3">
+										<label for="exampleFormControlInput1" class="form-label">Address 2 (Optional)</label>
+										<!--<input class="form-control" placeholder="">-->
+      <%= f.text_field :past_org_addr_2, class: 'form-control', placeholder: "Enter Address 2"%>
+									</div>
+									<div class="row">
+										
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">City</p>
+											<!--<input class="form-control form-input-box-sg">-->
+      <%= f.text_field :past_org_city, class: 'form-control form-input-box-sg', id:'past_org_city', placeholder: "Enter City" %>
+										</div>
+										<div class="col-sm-4 col-12">
+											<p class="cit-np">State</p>
+											<!--<input class="form-control form-input-box-sg">-->
+      <%= f.text_field :past_org_state, class: 'form-control form-input-box-sg', id:'past_org_state', placeholder: "Enter State" %>
+										</div>
+        <div class="col-sm-4 col-12">
+											<p class="cit-np">Zip</p>
+											<!--<input class="form-control form-input-box-sg">-->
+      <%= f.text_field :past_org_zip, class: 'form-control form-input-box-sg', id:'past_org_zipcode', placeholder: "Enter Zip" %>
+										</div>
+									</div>
+								</div>
+								<div id="add-box" class="d-none">
+									<p class="prg-hus-prg-sg">Previous Employment</p>
+								</div>
+								<div class="field btns">
+									<button class="prev-2 d-none prev">Previous</button>
+									<button class="next-2 next all-save-bttn"  onclick="scrollToTop()">Save</button>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="label prgs-txt-al">Feel free to add other jobs as it may help your chances of getting prequalified.</div>
+									</div>
+									<div class="col-12">
+										<div><a href="" class="abtn" id="addmore"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add another employment</a></div>
+									</div>
+								</div>
+							</div>
+							<div class="page">
+								<div class="title">Awesome! Let’s talk about your Income & Expenses.</div>
+								<p class="mrd-rw">We need this information to help you complete the application.</p>
+								<p></p>
+								<div class="row mrd-rw">
+									<div class="col"><a class="btn btn-primary colsp-bttn-sg cols-head-til" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">My Income 
+          <%= image_tag("loan/close-bttn.png", style:"float: right;") %></a>
+										<div class="collapse multi-collapse mrd-rw-3" id="multiCollapseExample1">
+											<div class="card card-body cols-card-sgm">
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Base Employment Income</b> <a href="javascript:void(0)" class="loan-tool-tip-sg" id="lm1">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+        <%= f.text_field :base_income, class: 'form-control', placeholder: "$", type:"number", min:"0", min:"0" %>
+														</div>
+														<div class="col-12 d-none" id="ic-1"><i class="fa fa-times close1" id="close1"></i>
+															<div class="bei"><b>What Is Base Pay?</b>
+																<br>
+																<p>Base pay refers to regular compensation received by an employee for effectively just showing up. Employers may pay base pay as a salary, an hourly wage or for piece work. All of these are base pay. Base pay, in more specific terms, refers to what an employee makes per hour, week or completed project.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Overtime Income</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm2" id="lm2">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+        <%= f.text_field :overtime_income, class: 'form-control', placeholder: "$", type:"number", min:"0", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-2" id="ic-2"><i class="fa fa-times close1 close2" id="close2"></i>
+															<div class="bei"><b>What Is Overtime Income?</b>
+																<br>
+																<p>Overtime refers to any hours worked by an employee that exceed their normally scheduled working hours. While a generalized overtime definition refers simply to those hours worked outside of the standard working schedule, overtime commonly refers concurrently to the employee’s remunerations of such work. The overtime rate of pay varies between companies and by specifics of the overtime, such as the number of overtime hours worked. Standard overtime rates include time and a half and double time.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>What Is Bonuses Paid?</b> <a href="javascript:void(0)" class="loan-tool-tip-sg" id="lm3">Learn more</a></div>
+									<!--<input type="number" class="form-control" placeholder="$"-->
+                                    <%= f.text_field :bonuses, class: 'form-control', placeholder: "$", type:"number", min:"0", min:"0" %>
+														</div>
+														<div class="col-12 d-none" id="ic-3"><i class="fa fa-times close1" id="close3"></i>
+															<div class="bei"><b>What Is Overtime Income?</b>
+																<br>
+																<p>A bonus payment is additional pay on top of an employee's regular earnings. A bonus payment can be discretionary or nondiscretionary, depending on whether it meets certain criteria. Bosses hand out bonus payments for a variety of reasons, including as a reward for meeting individual or company goals.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>What Is Commission Income?</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm4">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+        <%= f.text_field :commissions, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-4"><i class="fa fa-times close1 close4" id="close4"></i>
+															<div class="bei"><b>What Is Overtime Income?</b>
+																<br>
+																<p>Commission income refers to fees earned by brokers and agents in making a sale or closing a deal. It is the primary revenue account of real estate brokers, stock brokers, insurance agencies, etc</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>What Is Dividends/Interest Income?</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm5">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+   <%= f.text_field :divident_interest_income, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-5"><i class="fa fa-times close1 close4" id="close5"></i>
+															<div class="bei"><b>Did you have Dividends/Interest Income?</b>
+																<br>
+																<p>Common examples of interest and dividend income include interest earned on a savings account and dividend earnings from stock and mutual funds. Interest income is typically reported to you on Form 1099-INT (Interest) or Form 1099-OID (Original Issue Discount). Dividend income is typically reported on Form 1099-DIV (Dividend). You should receive one of these forms once your earnings have reached $10. However, all interest and dividend income is taxable on your return even if you don't receive one of these forms.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Net Rental Income</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm6">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+        <%= f.text_field :net_rental_income, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-6"><i class="fa fa-times close1 close4" id="close6"></i>
+															<div class="bei"><b>Did you have Dividends/Interest Income?</b>
+																<br>
+																<p>The amount someone pays you to use your property, after you subtract the expenses you have for the property.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Other Income</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm7">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+      <%= f.text_field :other_income, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-7"><i class="fa fa-times close1 close4" id="close7"></i>
+															<div class="bei"><b>What Is Base Pay?</b>
+																<br>
+																<p>Base pay refers to regular compensation received by an employee for effectively just showing up. Employers may pay base pay as a salary, an hourly wage or for piece work. All of these are base pay. Base pay, in more specific terms, refers to what an employee makes per hour, week or completed project.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field btns">
+													<!-- <button class="btn btn-primary all-save-bttn" style="width:60%">Save</button> -->
+	<a class="btn btn-primary" style="
+    background: #1600FF;">Save</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mrd-rw">
+									<div class="col"><a class="btn btn-primary colsp-bttn-sg cols-head-til" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2">My Expenses
+                                        <%= image_tag("loan/close-bttn.png", style:"float: right;") %></a>
+										<div class="collapse multi-collapse mrd-rw-3" id="multiCollapseExample2">
+											<div class="card card-body cols-card-sgm">
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Housing Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm8">Learn more</a></div>
+<!--															<input type="number" class="form-control" placeholder="$">-->
+           <%= f.text_field :housing_expense, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-8"><i class="fa fa-times close1" id="close8"></i>
+															<div class="bei"><b>What Is Base Pay?</b>
+																<br>
+																<p>Base pay refers to regular compensation received by an employee for effectively just showing up. Employers may pay base pay as a salary, an hourly wage or for piece work. All of these are base pay. Base pay, in more specific terms, refers to what an employee makes per hour, week or completed project. Various labor laws and agencies reference base pay for the purpose of calculating overtime.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Rent Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm9">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+                                                            <%= f.text_field :rent_expense, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-9"><i class="fa fa-times close1" id="close9"></i>
+															<div class="bei"><b>What Is First Mortgage (P&I) Expense?</b>
+																<br>
+																<p>A first mortgage is a primary lien on a property. As a primary loan that pays for the property, the loan has priority over all other liens or claims on a property in the event of default. A first mortgage is not the mortgage on a borrower’s first home; it is the original mortgage taken on any one property. It is also called First Lien. If the home is refinanced, the refinanced mortgage assumes the first mortgage position.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>First Mortgage (P&I) Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm10">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+                                                            <%= f.text_field :first_mortgage, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-10"><i class="fa fa-times close1" id="close10"></i>
+															<div class="bei"><b>What Is First Mortgage (P&I) Expense?</b>
+																<br>
+																<p>What Is Base Pay? Base pay refers to regular compensation received by an employee for effectively just showing up. Employers may pay base pay as a salary, an hourly wage or for piece work. All of these are base pay. Base pay, in more specific terms, refers to what an employee makes per hour, week or completed project.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Other Financing (P&I) Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm11">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+      <%= f.text_field :other_fin_expense, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-11"><i class="fa fa-times close1" id="close11"></i>
+															<div class="bei"><b>What Is First Mortgage (P&I) Expense?</b>
+																<br>
+																<p>Base pay refers to regular compensation received by an employee for effectively just showing up. Employers may pay base pay as a salary, an hourly wage or for piece work. All of these are base pay. Base pay, in more specific terms, refers to what an employee makes per hour, week or completed project.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Hazard Insurance Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm12">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+      <%= f.text_field :hazard_insur_exp, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+			<div class="col-12 d-none ic-4" id="ic-12"><i class="fa fa-times close1" id="close12"></i>
+			<div class="bei"><b>What Is First Mortgage (P&I) Expense?</b>
+																<br>What Is First Mortgage (P&I) Expense?
+																<p>Hazard insurance is an oft-used term to describe the part of your homeowners insurance policy that protects the actual structure of the home from damage caused by hazards or perils covered by your homeowners policy. You’re most likely to see this term when you’re closing on a mortgage for a home; your mortgage lender will typically require you to get “hazard insurance” to cover the property from expensive damage and to protect their investment. Your lender may also require that you pay for hazard insurance through an escrow account as part of your monthly mortgage payment—when your homeowners insurance bill is due, your lender pays the [insurance premiums] from your escrow account. It’s important to understand that the lender’s priority, from an insurance standpoint, is seeing that the structure of the home is adequately insured. There are policies available that satisfy the lender’s bare-minimum coverage requirements—like a dwelling fire policy (DP1). But as the homeowner, you’ll want a robust home insurance policy with comprehensive coverage for your personal property and personal liability in addition to coverage for the home itself.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Real Estate Taxes Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm13">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :real_estate_tax_exp, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-13"><i class="fa fa-times close1" id="close13"></i>
+															<div class="bei"><b>What Is First Mortgage (P&I) Expense?</b>
+																<br>
+																<p>Property tax is a tax paid on property owned by an individual or other legal entity, such as a corporation. Most commonly, property tax is a real estate ad-valorem tax, which can be considered a regressive tax. It is calculated by a local government where the property is located and paid by the owner of the property. The tax is usually based on the value of the owned property, including land. However, many jurisdictions also tax tangible personal property, such as cars and boats. The local governing body will use the assessed taxes to fund water and sewer improvements, and provide law enforcement, fire protection, education, road and highway construction, libraries, and other services that benefit the community.1﻿ Deeds of reconveyance do not interact with property taxes.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>Mortgage Insurance Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm14">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :mort_ins_exp, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-14"><i class="fa fa-times close1" id="close14"></i>
+															<div class="bei"><b>What Is Mortgage Insurance Expense?</b>
+																<br>
+																<p>Mortgage insurance is an insurance policy that protects a mortgage lender or titleholder if the borrower defaults on payments, passes away, or is otherwise unable to meet the contractual obligations of the mortgage. Mortgage insurance can refer to private mortgage insurance (PMI), qualified mortgage insurance premium (MIP) insurance, or mortgage title insurance. What these have in common is an obligation to make the lender or property holder whole in the event of specific cases of loss. Mortgage life insurance, on the other hand, which sounds similar, is designed to protect heirs if the borrower dies while owing mortgage payments. It may pay off either the lender or the heirs, depending on the terms of the policy.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="field">
+													<div class="row">
+														<div class="col-12">
+															<div class="label"><b>HOA Expense</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm29">Learn more</a></div>
+															<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :hoa, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+														</div>
+														<div class="col-12 d-none ic-4" id="ic-29"><i class="fa fa-times close1" id="close29"></i>
+															<div class="bei"><b>What Is HOA Expense?</b>
+																<br>
+																<p>A homeowners association fee (HOA fee) is an amount of money that must be paid monthly by owners of certain types of residential properties, and HOAs collect these fees to assist with maintaining and improving properties in the association. HOA fees are almost always levied on condominium owners, but they may also apply in some neighborhoods of single-family homes.</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="field">
+													<div class="label"><b>Union Due Expense</b></div>
+													<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :union_due_exp, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+												</div>
+												<div class="field">
+													<div class="label"><b>Other Expense</b></div>
+													<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :other_exp, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+                                                    
+												</div>
+												<div class="field btns">
+													<button class="prev-3 d-none prev">Previous</button>
+													<button class="next-3 next all-save-bttn"  onclick="scrollToTop()">Save</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="page">
+								<div class="title">Finally, tell us about your assets</div>
+								<p class="mrd-rw col-addr-sg">Helping us know your assets is very important for us in getting you pre-qualified.</p>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Bank Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm15">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :bank_assets, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-15"><i class="fa fa-times close1" id="close15"></i>
+											<div class="bei"><b>What Is Bank Assets?</b>
+												<br>
+												<p>Banks have general assets and liabilities just like individuals. There are asset accounts that make money for the bank. For example, cash, government securities, and interest-earning loan accounts are all a part of bank assets.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Credit Union Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm16">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :credit_uni_assets, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-16"><i class="fa fa-times close1" id="close16"></i>
+											<div class="bei"><b>What Is Bank Assets?</b>
+												<br>
+												<p>A credit union is a type of financial cooperative that provides traditional banking services. Ranging in size from small, volunteer-only operations to large entities with thousands of participants spanning the country, credit unions can be formed by large corporations, organizations, and other entities for their employees and members. Credit unions are created, owned, and operated by their participants. As such, they are not-for-profit enterprises that enjoy tax-exempt status.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Stocks Value</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm17">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :stock_value, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-17"><i class="fa fa-times close1" id="close17"></i>
+											<div class="bei"><b>What Is Stocks Value?</b>
+												<br>
+												<p>A value stock refers to shares of a company that appears to trade at a lower price relative to its fundamentals, such as dividends, earnings, or sales, making it appealing to value investors. A value stock can generally be contrasted with a growth stock.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Bonds Value</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm18">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+     <%= f.text_field :bonds_value, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-18"><i class="fa fa-times close1" id="close18"></i>
+											<div class="bei"><b>What Is Bonds Value?</b>
+												<br>
+												<p>A bond is a fixed income instrument that represents a loan made by an investor to a borrower (typically corporate or governmental). A bond could be thought of as an I.O.U. between the lender and borrower that includes the details of the loan and its payments. Bonds are used by companies, municipalities, states, and sovereign governments to finance projects and operations. Owners of bonds are debtholders, or creditors, of the issuer. Bond details include the end date when the principal of the loan is due to be paid to the bond owner and usually include the terms for variable or fixed interest payments made by the borrower.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Life insurance net cash value</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm19">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :lic, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-19"><i class="fa fa-times close1" id="close19"></i>
+											<div class="bei"><b>What Is Life insurance net cash value?</b>
+												<br>
+												<p>Life Insurance Net Cash Value (the change here is just to capitalize the first letter of each word to keep it in style with the rest)</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Other Non-Liquid Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm20">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+    <%= f.text_field :other_liquid, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-20"><i class="fa fa-times close1" id="close20"></i>
+											<div class="bei"><b>What Are Non-Liquid Assets?</b>
+												<br>
+												<p>A liquid asset is an asset that can easily be converted into cash in a short amount of time. Liquid assets include things like cash, money market instruments, and marketable securities. Both individuals and businesses can be concerned with tracking liquid assets as a portion of their net worth. For the purposes of financial accounting, a company’s liquid assets are reported on its balance sheet as current assets.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Real Estate Owned Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm21">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+      <%= f.text_field :real_estate_owned, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-21"><i class="fa fa-times close1" id="close21"></i>
+											<div class="bei"><b>What Is Real Estate Owned?</b>
+												<br>
+												<p>Real Estate Owned Assets (REO) is property owned by a lender, such as a bank, that has not been successfully sold at a foreclosure auction. A lender—often a bank or quasi-governmental entity such as Fannie Mae or Freddie Mac—takes ownership of a foreclosed property when it fails to sell at the amount sought to cover the loan.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Vested Interest Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm22">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+      <%= f.text_field :vested_int_assests, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-22"><i class="fa fa-times close1" id="close22"></i>
+											<div class="bei"><b>What Is Vested Interest Assets?</b>
+												<br>
+												<p>Vesting interest refers to the process where an interest in or right to a piece of property becomes the topic of entitlement for someone. If the interest vests in possession, the property's holder is now entitled to immediate possession. If it vests in interest, it will signify the existence of an earlier interest that must be satisfied before possession can be presumed.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Retirement fund Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm23">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+      <%= f.text_field :retirement_fund, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-23"><i class="fa fa-times close1" id="close23"></i>
+											<div class="bei"><b>What Is Retirement fund Assets?</b>
+												<br>
+												<p>Definition of 'Retirement assets' Includes annuities, IRA's, 401ks, and the taxable portion of survivor benefits from defined benefit plans, such as traditional employer pension plans.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Net Worth of Business Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm24">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+        <%= f.text_field :networth_of_business, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-24"><i class="fa fa-times close1" id="close24"></i>
+											<div class="bei"><b>What Is Net Worth?</b>
+												<br>
+												<p>Net worth is the value of the assets a person or corporation owns, minus the liabilities they owe. It is an important metric to gauge a company's health, providing a useful snapshot of its current financial position.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Other Liquid Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm30">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+            <%= f.text_field :other_liquid, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-30"><i class="fa fa-times close1" id="close30"></i>
+											<div class="bei"><b>What Is Liquid Assets?</b>
+												<br>
+												<p>A liquid asset is an asset that can easily be converted into cash in a short amount of time. Liquid assets include things like cash, money market instruments, and marketable securities. Both individuals and businesses can be concerned with tracking liquid assets as a portion of their net worth. For the purposes of financial accounting, a company’s liquid assets are reported on its balance sheet as current assets.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Other non-Liquid Assets</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm31">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+            <%= f.text_field :other_nonliquid, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-31"><i class="fa fa-times close1" id="close31"></i>
+											<div class="bei"><b>What Is non-Liquid Assets?</b>
+												<br>
+												<p>Assets are classified as either liquid or non-liquid. A liquid asset can fairly quickly and easily be turned into cash, while a non-liquid asset cannot. A home is a non-liquid asset because it might take several months to find a buyer for it and several more weeks before you receive the money from the transaction.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="row">
+										<div class="col-12 main-dg-sg">
+											<div class="label"><b>Alimony Liability</b> <a href="javascript:void(0)" class="loan-tool-tip-sg lm4" id="lm32">Learn more</a></div>
+											<!--<input type="number" class="form-control" placeholder="$">-->
+              <%= f.text_field :alimony_liability, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+										</div>
+										<div class="col-12 d-none ic-4" id="ic-32"><i class="fa fa-times close1" id="close32"></i>
+											<div class="bei"><b>What Is Alimony Liability?</b>
+												<br>
+												<p>What does spousal maintenance or alimony include and how it is calculated? Spousal maintenance may be paid from one spouse to another and should provide for the reasonable monthly expenses of the obligee spouse so that spouse may maintain the same marital standard of living he or she enjoyed during the marriage.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<div class="label"><b>Child Support Liability</b></div>
+									<!--<input type="number" class="form-control" placeholder="$">-->
+            <%= f.text_field :child_support_liability, class: 'form-control', placeholder: "$", type:"number", min:"0" %>
+								</div>
+								<div class="field btns">
+									<button class="prev-4 d-none prev">Previous</button>
+									<button class="next-4 next all-save-bttn" style="display:none">Save</button>
+									<button class="submit">Complete</button>
+								</div>
+								<% end %>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Chat Section New  Start -->
+            
+
+    <button class="open-button" onclick="openForm()">
+    	<!-- <img src="img/chat-bttn.png" width="40px;" /> -->
+    <%= image_tag("loan/chat-bttn.png", style:"width: 40px;") %>
+    </button>
+
+        <div class="chat-popup" id="myForm">
+          <form  class="form-container">
+              <button type="button" class="btn cancel chat-clos-bttn" onclick="closeForm()">X</button>
+              <div class="row chat-top-sgm-colr">
+              <table>
+                  <tr>
+                      <td style="width: 90px;">
+                      	<!-- <img src="img/icon02.png" class="chat-icon-img" /> -->
+          <%= image_tag("loan/icon02.png", class:"chat-icon-img") %>
+                      </td>
+                      <td>
+                          <h1 class="chat-img-head">Welcome!</h1>
+                          <p class="chat-img-head-p">What can I help you?</p>
+                          
+                      </td>
+                  </tr>
+              </table>
+              </div>
+              <div class="chat-emp-box">
+              
+              </div>
+              <div class="input-segment-chat">
+
+            <input type="text" class="chat-input-box" placeholder="Your Name">
+            <input type="mail" class="chat-input-box" placeholder="Your Email">
+            <textarea placeholder="Type message.." name="msg" required></textarea>
+
+            <button type="submit" class="btn">
+            	<!-- <img src="img/send-bttn.png" /> -->
+    <%= image_tag("loan/Vector.png", style: 'display: inline-block;') %>
+            </button>
+            
+                  </div>
+          </form>
+        </div>
+                        
+     <!-- Chat Section New  End -->
+</div>
+
+<script>
+	function Openform()
+{
+  document.getElementById('AddForm').style.display = '';
+}  
+ 
+ function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+//  $('#button1').click(function(e){
+// 		alert('a')
+// 	e.preventDefault();
+// })       
+        
+// // Add active class to the marital status button (highlight it)
+// var header = document.getElementById("myDIV");
+// var btns = header.getElementsByClassName("prgs-mg-btn");
+// for (var i = 0; i < btns.length; i++) {
+//   btns[i].addEventListener("click", function() {
+//   var current = document.getElementsByClassName("sgactive");
+//   current[0].className = current[0].className.replace("sgactive", "");
+//   this.className += " sgactive";
+//   });
+// }
+    
+// // Add active class to the Do you have children button (highlight it)
+// var header = document.getElementById("childID");
+// var btns = header.getElementsByClassName("prgs-mg-btn-y");
+// for (var i = 0; i < btns.length; i++) {
+//   btns[i].addEventListener("click", function() {
+//   var current = document.getElementsByClassName("active1");
+//   current[0].className = current[0].className.replace(" active1", "");
+//   this.className += " active1";
+//   });
+// }
+    
+// // Add active class to the dependent button (highlight it)
+// var header = document.getElementById("DeptID");
+// var btns = header.getElementsByClassName("prgs-mg-btn-dep");
+// for (var i = 0; i < btns.length; i++) {
+//   btns[i].addEventListener("click", function() {
+//   var current = document.getElementsByClassName("depactive");
+//   current[0].className = current[0].className.replace(" depactive", "");
+//   this.className += " depactive";
+//   });
+// }
+
+// // Add active class to the House button (highlight it)
+// var header = document.getElementById("HouseID");
+// var btns = header.getElementsByClassName("prgs-hs-icon");
+// for (var i = 0; i < btns.length; i++) {
+//   btns[i].addEventListener("click", function() {
+//   var current = document.getElementsByClassName("homeactive");
+//   current[0].className = current[0].className.replace(" homeactive", "");
+//   this.className += " homeactive";
+//   });
+// }
+
+function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text.style.display = "none";
+  } else {
+    text.style.display = "block";
+  }
+}
+
+// Scroll to Top 
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
+const slidePage = document.querySelector(".slide-page");
+const nextBtnFirst = document.querySelector(".firstNext");
+const prevBtnSec = document.querySelector(".prev-1");
+const nextBtnSec = document.querySelector(".next-1");
+const prevBtnThird = document.querySelector(".prev-2");
+const nextBtnThird = document.querySelector(".next-2");
+const prevBtnFourth = document.querySelector(".prev-3");
+const nextBtnFourth = document.querySelector(".next-3");
+const prevBtnFiveth = document.querySelector(".prev-4");
+const nextBtnFiveth = document.querySelector(".next-4");
+const submitBtn = document.querySelector(".submit");
+const progressText = document.querySelectorAll(".step p");
+const progressCheck = document.querySelectorAll(".step .check");
+const bullet = document.querySelectorAll(".step .bullet");
+let current = 1;
+
+
+
+nextBtnFirst.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-33%";
+	bullet[current - 1].classList.add("active");
+	bullet[current - 1].classList.remove("first-bullet");
+	bullet[current].classList.add("first-bullet");
+	progressCheck[current - 1].classList.add("active");
+	progressText[current - 1].classList.add("active");
+	current += 1;
+	$('#a1').removeClass("d-none");
+
+});
+
+
+
+$('#a1').click(function(){
+	$('.prev-1').click();
+	$('#a1').addClass("d-none");
+	$('#b2').removeClass("first-bullet");
+	
+
+});
+
+
+$('#a2').click(function(){
+	$('#a1').removeClass("d-none");
+	$('.prev-2').click();
+	$('#a2').addClass("d-none");
+	$('#b2').addClass("first-bullet");
+	$('#b3').removeClass("first-bullet");
+
+});
+
+
+$('#a3').click(function(){
+	
+	$('#a2').removeClass("d-none");
+	$('.prev-3').click();
+	$('#a3').addClass("d-none");
+	$('#b3').addClass("first-bullet");
+	$('#b4').removeClass("first-bullet");
+
+});
+
+
+$('#a4').click(function(){
+	
+	$('#a3').removeClass("d-none");
+	$('.prev-4').click();
+	$('#a4').addClass("d-none");
+	$('#b4').addClass("first-bullet");
+	$('#b5').removeClass("first-bullet");
+
+});
+
+
+$('#a5').click(function(){
+	
+	$('#a4').removeClass("d-none");
+	$('.prev-5').click();
+	$('#a5').addClass("d-none");
+
+});
+
+
+
+nextBtnSec.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-77%";
+	bullet[current - 1].classList.add("active");
+	bullet[current - 1].classList.remove("first-bullet");
+	bullet[current].classList.add("first-bullet");
+	progressCheck[current - 1].classList.add("active");
+	progressText[current - 1].classList.add("active");
+	current += 1;
+	$('#a1').addClass("d-none");
+	$('#a2').removeClass("d-none");
+	$('html, body').animate({
+        scrollTop: $("#scroll-top").offset().top
+    }, 200);
+	
+});
+nextBtnThird.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-166%";
+	bullet[current - 1].classList.add("active");
+	bullet[current - 1].classList.remove("first-bullet");
+	bullet[current].classList.add("first-bullet");
+	progressCheck[current - 1].classList.add("active");
+	progressText[current - 1].classList.add("active");
+	current += 1;
+	$('#a2').addClass("d-none");
+	$('#a3').removeClass("d-none");
+	$('html, body').animate({
+        scrollTop: $("#scroll-top").offset().top
+    }, 200);
+});
+nextBtnFourth.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-237%";
+	bullet[current - 1].classList.add("active");
+	bullet[current - 1].classList.remove("first-bullet");
+	bullet[current].classList.add("first-bullet");
+	progressCheck[current - 1].classList.add("active");
+	progressText[current - 1].classList.add("active");
+	current += 1;
+	$('#a3').addClass("d-none");
+	$('#a4').removeClass("d-none");
+	$('html, body').animate({
+        scrollTop: $("#scroll-top").offset().top
+    }, 200);
+});
+nextBtnFiveth.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-500%";
+	bullet[current - 1].classList.add("active");
+	bullet[current - 1].classList.remove("first-bullet");
+	bullet[current].classList.add("first-bullet");
+	progressCheck[current - 1].classList.add("active");
+	progressText[current - 1].classList.add("active");
+	current += 1;
+	$('#a4').addClass("d-none");
+	$('#a5').removeClass("d-none");
+	$('html, body').animate({
+        scrollTop: $("#scroll-top").offset().top
+    }, 200);
+});
+submitBtn.addEventListener("click", function() {
+	bullet[current - 1].classList.add("active");
+	progressCheck[current - 1].classList.add("active");
+	progressText[current - 1].classList.add("active");
+	current += 1;
+	// setTimeout(function() {
+	// 	alert("Your Form Successfully Submitted");
+	// 	location.reload();
+	// }, 800);
+});
+prevBtnSec.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "0%";
+	bullet[current - 2].classList.remove("active");
+	progressCheck[current - 2].classList.remove("active");
+	bullet[current - 2].classList.add("first-bullet");
+	progressText[current - 2].classList.remove("active");
+	current -= 1;
+	
+});
+
+
+prevBtnThird.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-33%";
+	bullet[current - 2].classList.remove("active");
+	progressCheck[current - 2].classList.remove("active");
+	progressText[current - 2].classList.remove("active");
+	current -= 1;
+});
+prevBtnFourth.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-78%";
+	bullet[current - 2].classList.remove("active");
+	progressCheck[current - 2].classList.remove("active");
+	progressText[current - 2].classList.remove("active");
+	current -= 1;
+});
+prevBtnFiveth.addEventListener("click", function(event) {
+	event.preventDefault();
+	slidePage.style.marginLeft = "-165%";
+	bullet[current - 2].classList.remove("active");
+	progressCheck[current - 2].classList.remove("active");
+	progressText[current - 2].classList.remove("active");
+	current -= 1;
+});
+</script>
+<script>
+var collapseElementList = [].slice.call(document.querySelectorAll(".collapse")),
+	collapseList = collapseElementList.map(function(c) {
+		return new bootstrap.Collapse(c)
+	}),
+	tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')),
+	tooltipList = tooltipTriggerList.map(function(c) {
+		return new bootstrap.Tooltip(c)
+	});
+</script>
+
+<script>
+	$('#ownhouse').click(function(){
+		$('#ohouse').prop("checked", true);
+		$('#ownhouse').addClass('border-fill');
+		$('#renthouse').removeClass('border-fill');
+	});
+	$('#renthouse').click(function(){
+		$('#rhouse').prop("checked", true);
+		$('#ownhouse').removeClass('border-fill');
+		$('#renthouse').addClass('border-fill');
+	});
+$(function() {
+	$(".datepicker").datepicker({
+		dateFormat: "dd-mm-yy",
+		duration: "fast"
+	})
+});
+</script>
+<script>
+$("#copyme").click(function() {
+	var c = $(this).prop("checked");
+	if(1 == c) {
+		var l = $("#address1").val(),
+			n = $("#address2").val(),
+			o = $("#zip").val(),
+			i = $("#city").val(),
+			e = $("#state").val();
+		$("#caddress1").val(l), $("#caddress2").val(n), $("#czip").val(o), $("#ccity").val(i), $("#cstate").val(e)
+	} else $("#caddress1").val(""), $("#caddress2").val(""), $("#czip").val(""), $("#ccity").val(""), $("#cstate").val("")
+});
+</script>
+<script>
+$("#lm1").click(function() {
+	$("#ic-1").toggleClass("d-none")
+}), $("#close1").click(function() {
+	$("#ic-1").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm2").click(function() {
+	$("#ic-2").toggleClass("d-none")
+}), $("#close2").click(function() {
+	$("#ic-2").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm3").click(function() {
+	$("#ic-3").toggleClass("d-none")
+}), $("#close3").click(function() {
+	$("#ic-3").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm4").click(function() {
+	$("#ic-4").toggleClass("d-none")
+}), $("#close4").click(function() {
+	$("#ic-4").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm5").click(function() {
+	$("#ic-5").toggleClass("d-none")
+}), $("#close5").click(function() {
+	$("#ic-5").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm6").click(function() {
+	$("#ic-6").toggleClass("d-none")
+}), $("#close6").click(function() {
+	$("#ic-6").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm7").click(function() {
+	$("#ic-7").toggleClass("d-none")
+}), $("#close7").click(function() {
+	$("#ic-7").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm8").click(function() {
+	$("#ic-8").toggleClass("d-none")
+}), $("#close8").click(function() {
+	$("#ic-8").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm9").click(function() {
+	$("#ic-9").toggleClass("d-none")
+}), $("#close9").click(function() {
+	$("#ic-9").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm10").click(function() {
+	$("#ic-10").toggleClass("d-none")
+}), $("#close10").click(function() {
+	$("#ic-10").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm11").click(function() {
+	$("#ic-11").toggleClass("d-none")
+}), $("#close11").click(function() {
+	$("#ic-11").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm12").click(function() {
+	$("#ic-12").toggleClass("d-none")
+}), $("#close12").click(function() {
+	$("#ic-12").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm13").click(function() {
+	$("#ic-13").toggleClass("d-none")
+}), $("#close13").click(function() {
+	$("#ic-13").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm14").click(function() {
+	$("#ic-14").toggleClass("d-none")
+}), $("#close14").click(function() {
+	$("#ic-14").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm15").click(function() {
+	$("#ic-15").toggleClass("d-none")
+}), $("#close15").click(function() {
+	$("#ic-15").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm16").click(function() {
+	$("#ic-16").toggleClass("d-none")
+}), $("#close16").click(function() {
+	$("#ic-16").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm17").click(function() {
+	$("#ic-17").toggleClass("d-none")
+}), $("#close17").click(function() {
+	$("#ic-17").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm18").click(function() {
+	$("#ic-18").toggleClass("d-none")
+}), $("#close18").click(function() {
+	$("#ic-18").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm19").click(function() {
+	$("#ic-19").toggleClass("d-none")
+}), $("#close19").click(function() {
+	$("#ic-19").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm20").click(function() {
+	$("#ic-20").toggleClass("d-none")
+}), $("#close20").click(function() {
+	$("#ic-20").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm21").click(function() {
+	$("#ic-21").toggleClass("d-none")
+}), $("#close21").click(function() {
+	$("#ic-21").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm22").click(function() {
+	$("#ic-22").toggleClass("d-none")
+}), $("#close22").click(function() {
+	$("#ic-22").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm23").click(function() {
+	$("#ic-23").toggleClass("d-none")
+}), $("#close23").click(function() {
+	$("#ic-23").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm24").click(function() {
+	$("#ic-24").toggleClass("d-none")
+}), $("#close24").click(function() {
+	$("#ic-24").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm25").click(function() {
+	$("#ic-25").toggleClass("d-none")
+}), $("#close25").click(function() {
+	$("#ic-25").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm26").click(function() {
+	$("#ic-26").toggleClass("d-none")
+}), $("#close26").click(function() {
+	$("#ic-26").toggleClass("d-none")
+});
+</script>
+<script>
+$("#lm27").click(function() {
+	$("#ic-27").toggleClass("d-none")
+}), $("#close27").click(function() {
+	$("#ic-27").toggleClass("d-none")
+});
+</script>
+<script>
+  $("#lm29").click(function() {
+    $("#ic-29").toggleClass("d-none")
+  }), $("#close29").click(function() {
+    $("#ic-29").toggleClass("d-none")
+  });
+  </script>
+  <script>
+    $("#lm31").click(function() {
+      $("#ic-31").toggleClass("d-none")
+    }), $("#close31").click(function() {
+      $("#ic-31").toggleClass("d-none")
+    });
+    </script>
+    <script>
+      $("#lm32").click(function() {
+        $("#ic-32").toggleClass("d-none")
+      }), $("#close32").click(function() {
+        $("#ic-32").toggleClass("d-none")
+      });
+      </script>
+      <script>
+        $("#lm27").click(function() {
+          $("#ic-27").toggleClass("d-none")
+        }), $("#close27").click(function() {
+          $("#ic-27").toggleClass("d-none")
+        });
+        </script>
+<script>
+$('#addmore').click(function(event) {
+	event.preventDefault();
+	$('#add-box').removeClass('d-none');
+	$('#add-box').append(`
+    <hr>
+    <div class="row mrd-rw col-mg">
+              <div class="col">
+                    <p>Employment type</p>
+                    <select class="form-select" aria-label="Default select example">
+                  <option selected>Select One</option>
+                  <option value="1">Part time</option>
+                  <option value="2">Full time</option>
+                  <option value="3">Self-Employed</option>
+                  <option value="3">Intern</option>
+                  <option value="3">Co-founder</option>
+                </select>
+                    </div>
+                    <div class="col">
+                    <p>Position</p>
+                    <input type="text" class="form-control form-input-box-sg" value="">
+                    </div>
+              </div>
+              <div class="row mrd-rw col-mg">
+              <div class="col">
+                    <p>Employed from</p>
+                    <input type="text" class="form-control"  placeholder="MM/DD/YYYY"></div>
+                    <div class="col">
+                    <p>To</p>
+                    <input type="text" class="form-control"  placeholder="MM/DD/YYYY"></div>
+              </div>
+              <div class="col fprm-prgs-sg2 col-addr-sg">
+              <p class="prg-hus-prg-sg">Company Address</p>
+                    
+                    
+                    <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Adresss 1</label>
+                      <input type="text" class="form-control"  placeholder="">
+                    </div>
+                  <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Address 2 (Optional)</label>
+                      <input type="text" class="form-control"  placeholder="">
+                    </div>
+                  
+                  <div class="row">
+                    <div class="col">
+                    <p>Zip</p>
+                    <input type="text" class="form-control form-input-box-sg" value="" >
+                    </div>
+                    <div class="col">
+                    <p>City</p>
+                    <input type="text" class="form-control form-input-box-sg" value="">
+                    </div>
+                    <div class="col">
+                    <p>State</p>
+                    <input type="text" class="form-control form-input-box-sg" value="">
+                    </div>
+                      
+                      
+                    </div>
+                  
+              </div>
+
+    `);
+})
+
+function is_int(value) {
+  if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+$("#zipcode").keyup(function() {
+
+  // Cache
+  var el = $(this);
+
+  // Did they type five integers?
+  if ((el.val().length == 5) && (is_int(el.val()))) {
+
+    // Call Ziptastic for information
+    $.ajax({
+      url: "https://zip.getziptastic.com/v2/US/" + el.val(),
+      cache: false,
+      dataType: "json",
+      type: "GET",
+      success: function(result, success) {
+
+        $(".zip-error, .instructions").hide;
+
+        $("#city").val(result.city);
+
+        $("#state").val(result.state);
+
+        $(".fancy-form div > div").slideDown();
+
+        $("#zip").blur();
+        $("#address-line-1").show().focus();
+
+      },
+      error: function(result, success) {
+
+        $(".zip-error").slideDown(300);
+
+      }
+
+    });
+
+  } else if (el.val().length < 5) {
+
+    $(".zip-error").slideUp(200);
+
+  };
+
+});
+
+$("#com_zipcode").keyup(function() {
+
+  // Cache
+  var el = $(this);
+
+  // Did they type five integers?
+  if ((el.val().length == 5) && (is_int(el.val()))) {
+
+    // Call Ziptastic for information
+    $.ajax({
+      url: "https://zip.getziptastic.com/v2/US/" + el.val(),
+      cache: false,
+      dataType: "json",
+      type: "GET",
+      success: function(result, success) {
+
+        $(".zip-error, .instructions").hide;
+
+        $("#com_city").val(result.city);
+
+        $("#com_state").val(result.state);
+
+        $(".fancy-form div > div").slideDown();
+
+        $("#zip").blur();
+        $("#address-line-1").show().focus();
+
+      },
+      error: function(result, success) {
+
+        $(".zip-error").slideDown(300);
+
+      }
+
+    });
+
+  } else if (el.val().length < 5) {
+
+    $(".zip-error").slideUp(200);
+
+  };
+
+});
+
+$("#org_zipcode").keyup(function() {
+
+  // Cache
+  var el = $(this);
+
+  // Did they type five integers?
+  if ((el.val().length == 5) && (is_int(el.val()))) {
+
+    // Call Ziptastic for information
+    $.ajax({
+      url: "https://zip.getziptastic.com/v2/US/" + el.val(),
+      cache: false,
+      dataType: "json",
+      type: "GET",
+      success: function(result, success) {
+
+        $(".zip-error, .instructions").hide;
+
+        $("#org_city").val(result.city);
+
+        $("#org_state").val(result.state);
+
+        $(".fancy-form div > div").slideDown();
+
+        $("#zip").blur();
+        $("#address-line-1").show().focus();
+
+      },
+      error: function(result, success) {
+
+        $(".zip-error").slideDown(300);
+
+      }
+
+    });
+
+  } else if (el.val().length < 5) {
+
+    $(".zip-error").slideUp(200);
+
+  };
+
+});
+
+$("#past_org_zipcode").keyup(function() {
+
+  // Cache
+  var el = $(this);
+
+  // Did they type five integers?
+  if ((el.val().length == 5) && (is_int(el.val()))) {
+
+    // Call Ziptastic for information
+    $.ajax({
+      url: "https://zip.getziptastic.com/v2/US/" + el.val(),
+      cache: false,
+      dataType: "json",
+      type: "GET",
+      success: function(result, success) {
+
+        $(".zip-error, .instructions").hide;
+
+        $("#past_org_city").val(result.city);
+
+        $("#past_org_state").val(result.state);
+
+        $(".fancy-form div > div").slideDown();
+
+        $("#zip").blur();
+        $("#address-line-1").show().focus();
+
+      },
+      error: function(result, success) {
+
+        $(".zip-error").slideDown(300);
+
+      }
+
+    });
+
+  } else if (el.val().length < 5) {
+
+    $(".zip-error").slideUp(200);
+
+  };
+
+});
+</script>

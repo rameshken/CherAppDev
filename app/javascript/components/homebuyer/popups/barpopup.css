@@ -1,0 +1,131 @@
+.h1-head-txts {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  color: #080e2d;
+  width: 60%;
+}
+.loc-head-p-txt {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: center;
+  color: #4d4e51;
+}
+.sel-area select {
+  height: 47px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4d4e51;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.12));
+  border-radius: 12px;
+  margin: 0px 10%;
+  padding: 10px 12px;
+}
+
+.location-box {
+  overflow: hidden;
+}
+.row {
+  margin: 0%;
+}
+
+.amount-sel-area select {
+  border: 2px solid #3154f5;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 50px;
+  padding: 10px 12px;
+}
+.phone-input {
+  border: 2px solid #d3d3d3;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.ph-label {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #333333;
+}
+.ph1-label {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  color: #4d4e51;
+}
+#textreview {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #afb1b9;
+  border: 2px solid #d3d3d3;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.copy-p-txt {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #080e2d;
+  text-decoration: none;
+}
+.loc-des-add {
+  cursor: pointer;
+}
+.cont-opt {
+  background: #3154f5;
+  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2), 0px 1px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold !important;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin: 1rem;
+}
+.city-box {
+  background: #eff3f8;
+  border: 1px solid #dcdcdc;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.city-box-p {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #4d4e51;
+}
+.main-cards-p-txt {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  color: #000000;
+}
+.form-select {
+  border: 2px solid #3154f5 !important;
+  box-sizing: border-box;
+  border-radius: 4px !important;
+}

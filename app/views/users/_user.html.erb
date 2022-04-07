@@ -1,0 +1,17 @@
+<div id='friendmessage'>
+	        <div class="d-flex">
+              <div class="card-profile">
+                <%#= image_tag("myfriends/messages/card_profile_image_1.png", style:'display: inline-block;', class: 'main-profileimg') %>
+                <%= image_tag(user.profile_image, style:"height: 48px;width: 48px;border-radius: 50%;", alt: t('img_alts.user_profile'), class: 'main-profileimg', 'data-action': 'error->users-profile-picture#setDefaultPicture') %>
+              </div>
+              <div class="card-txt">
+                <p class="card-protxt"><%= link_to user.full_name, user %></p>
+                <!-- <p class="cardpro-msg mt-2">You shared a house with Alam</p> -->
+              </div>
+              <div class="card-time">
+                <!-- <small class="text-muted">18:06</small> -->
+                <%#= image_tag("myfriends/messages/notification.png", style:'display: inline-block;') %>
+              </div>
+            </div>
+          
+</div>

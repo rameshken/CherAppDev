@@ -1,0 +1,85 @@
+%input{ type: 'hidden', value: 'professionals landing page', id: 'currentPageInput' }
+#professional-landing-page
+  %section.is-grey-with-gradiant.is-family-secondary.p-t-lg.section.p-b-xxln.p-b-none-mobile
+    .container{style: 'max-width: 1440px;'}
+      .is-agent-signup.is-8-tablet.is-7-desktop.is-6-widescreen
+        %span.is-agent-left-font
+          Claim your 
+          %span{:style => "color:#3154F5"} exclusive pre-qualified
+          leads in your market now!
+        %p.is-agent-p
+          Access exclusive pre-qualified leads in your area and reach out to them directly.
+        %span.is-agent-right
+        %span.is-signup-agent.is-shadowless-mobile.m-t-xl.m-b-xxl.m-b-md-none.m-t-md-mobile.m-b-none-mobile{ 'data-controller': 'landing-page-registration' }
+          = form_with(model: @new_user, url: simpler_registration_path, local: true, class: 'm-b-md') do |f|
+            .field
+              / = f.label :phone_number, 'Phone Number', class: 'label has-text-left'
+            .control
+              = f.text_field :phone_number, placeholder: 'Phone Number', 'data-target': 'landing-page-registration.input', id: 'phone_prof', class: 'input is-marginless is-primary', style: 'border: 1px solid #B8B9BC;box-sizing: border-box;border-radius: 8px;height: 50px;'
+              - if @new_user.errors[:phone_number]
+                %p.help.is-danger.is-bold
+                  = @new_user.errors[:phone_number].first #+ '. Please enter valid US Phone Number'
+            %button.button.is-signup-btn-agent{ type: 'button', 'data-action': 'landing-page-registration#validateEmail' }
+              = t('generic.sign_up')
+    
+
+    .embed-container
+      %iframe{:allow => "autoplay", :height => "402", :src => "https://drive.google.com/file/d/1of9ECEKUsuV_jeWGhGY98qtqqArbcmFM/preview", :width => "596"}
+
+    .achieve.is-centered
+      .is-achieve
+        %span.is-achieve-img
+        %span.is-achieve-1
+          A New Blue Ocean
+        %p.is-achieve-2
+          Access a unique pool of homebuyers that you can’t find anywhere else.
+      .is-achieve-3
+        %span.is-achieve-img-1
+        %span.is-achieve-4
+          Pre-qualified Buyers
+        %p.is-achieve-2
+          With our in-house MLO’s, we pre-qualify buyers so you don’t have to.
+      .is-achieve-5
+        %span.is-achieve-img-2
+        %span.is-achieve-4-1
+          Exclusive Leads
+        %p.is-achieve-2
+          If we send you a lead, it’s only being sent to YOU.
+
+    .trusted-by.is-centered
+      %span.is-trusted-by
+        Trusted by
+      %span.is-trust-1
+      %span.is-trust-2
+      %span.is-trust-3
+      %span.is-trust-4
+      %span.is-trust-5
+      %span.is-trust-6
+      %span.is-trust-7
+    
+    .lead-gen.is-centered
+      %span.is-lead-icon
+      %span.is-lead-gen
+      %button.button.is-lead-btn{ type: 'button', 'data-action': 'landing-page-registration#validateEmail' }
+        = 'Get Started'
+
+    .lead-feature
+      %span.is-feature-pay
+      %span.is-feature-target
+      %span.is-feature-target-1
+      %span.is-feature-key
+      %span.is-more-deals
+      %span.is-to-success
+      %span.is-lead-chat
+
+    / .prospect-contact
+    /   %span
+    
+  / = render 'co_owning_model'
+  = render 'competitive_edge'
+  / = render 'shared/landing_page/trusted_by'
+  = render 'ticker'
+  = render 'pro-testimonial'
+  / = render 'subscribe'
+  = render 'pro_contact'
+

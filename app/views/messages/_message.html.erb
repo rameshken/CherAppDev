@@ -1,0 +1,22 @@
+<style type="text/css">
+  .message-box {
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px !important;
+  background-color: #e9eaf0 ;
+  padding: 10px;
+  text-align: left;
+  word-break: break-all;
+
+}
+
+</style>
+<div class="cont-<%= message.user.id %>">
+  <div class="message-box msg-<%= message.user.id %>" >
+    <% unless message.room.is_private %>
+      <h6 class="name"> <%= message.user.first_name %> </h6>
+    <% end %>
+  <%= message.content %>
+  </div>
+</div>

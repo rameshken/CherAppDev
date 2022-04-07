@@ -1,0 +1,366 @@
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+    />
+
+<div id='homebuyers'>
+	<section class="row mt-1">
+      <nav class="col-md-1 sidebar p-0 nav-column">
+        <ul class="p-0 mt-1  feed-top-sgm">
+          <li class="side_li side_li_active feed ">
+            <a class="side-nav sidenav-txt f16 f-pcolor f400" href="/social_networks">
+              <i class="bi bi-columns-gap"></i>
+              Feed</a
+            >
+          </li>
+
+          <li class="side_li message">
+            <!-- <a class="side-nav ful-active sidenav-txt f16" href="/social_networks/messages"> -->
+              <a
+              class="side-nav ful-active sidenav-txt f16"
+              href="/rooms/index"
+            >
+              <i class="bi bi-chat-dots"></i>
+              Message</a
+            >
+          </li>
+          <li class="side_li network ful-active">
+            <a class="side-nav sidenav-txt f16" href="/social_networks/network">
+              <i class="bi bi-people"></i>
+              Community</a
+            >
+          </li>
+        </ul>
+      </nav>
+    
+
+      <!-- left section nav ends -->
+     
+        
+      
+
+
+        <div class="col p-0 m-0">
+        <div>
+          <h1 class="ps-5 m-3" style="font-size: 18px;font-weight: 700;">My Community</h1>
+        </div>
+        <div>
+          <ul class="nav border-bottom px-3">
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/network"
+                >Invite Requests</a
+              >
+            </li>
+            <li class="nav-item-active">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/homebuyers">My Friends</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/suggestedbuyers"
+                >Suggested Homebuyers</a
+              >
+            </li> -->
+            <% if current_user.co_borrower? %>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/agents">My Agents</a>
+            </li>
+            <% end %>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/groups">My Groups</a>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-5 left-column">
+            <% if @friends.any? %>
+            <!-- <div class="search-section d-flex justify-content-between p-3">
+              <div class="search-txt">
+                <h3>Search</h3>
+              </div>
+              <div class="invite-btn">
+                <button type="button" class="btn btn-primary btn-txt invite-btn">Invite</button>
+              </div>
+            </div> -->
+            <% @friends.each_with_index do |friend, index| %>
+           <div class="tab">
+            <button class="tablinks" onclick="openinfo(event, <%= index %>)" id="defaultOpen" style="width: 100%;background-color: white;"> 
+           <div class="card card-description mb-2 p-2">
+            <div class="card-profile-image">
+              <%#= image_tag("myfriends/mynetwork-myhomebuyer/card-profile.png", style:'display: inline-block;') %>
+              <%= image_tag(friend.profile_image, style:"height: 15vh;border-radius: 50%;",  alt: t('img_alts.user_profile'), 'data-action': 'error->users-profile-picture#setDefaultPicture') %>
+            </div>
+            <div class="card-des-area-active ml-3">
+              <h4 class="mb-0 h4-text"><%= friend.full_name%></h4>
+              <div class="location d-flex">
+                <div class="loc-img mr-2">
+                  <%= image_tag("myfriends/mynetwork-myhomebuyer/location-img.png", style:'display: inline-block;') %>
+                </div>
+                <div class="loc-txt mt-2">
+                  <p class="card-p-txt"><%= friend.city%></p>
+                </div>
+                
+              </div>
+              <% accepted_at = FriendRequest.find_by(requestee_id: current_user.id).updated_at if FriendRequest.find_by(requestee_id: current_user.id).updated_at %>
+              <p class="mb-0 card-p-txt"><%= distance_of_time_in_words(accepted_at, Time.now) if accepted_at %> ago</p>
+            </div>
+          </div>
+        </button>
+      </div>
+    <% end %>
+    <% else %>
+    <!-- <div id="no-homebuyers"> -->
+    <div class="container m-0 p-0">
+          <div class="p-0 ">
+            <div class="card">
+              <div class="card-body pb-1">
+                <h5 class="card-top m-3">My Friends</h5>
+
+                <!-- <span class="input-group-text">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-search"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                    ></path>
+                  </svg>
+                  &nbsp; Search friends
+                </span> -->
+                <div
+            class="input-box d-flex br-6 ml-2 mr-2 align-items-center border"
+          >
+            <%= image_tag("myfriends/messages/search_image.png", style:'display: inline-block;', class: 'ml-2 search-img') %>
+            <input
+              type="text"
+              name="user[identifier]"
+              class="form-control"
+              id="inlineFormInputGroupUsername"
+              placeholder="Search"
+            />
+          </div>
+                <h5 class="card-top m-3">
+                  You haven’t had friends yet. Add friends now to share homes
+                  with them.
+                </h5>
+                <div class="mt-3 d-flex">
+                  <!-- <img src="./images/Group/contact.png" class="p-2" alt="" /> -->
+                  <%= image_tag("myfriends/Group/contact.png", style:'display: inline-block;width: 52px;height: 52px;', class:'p-2') %>
+                  <div class="border-bottom">
+                    <h5 class="card-top">From your phone contacts</h5>
+                    <p style="font-size: 13px">
+                      Invite and share
+                    </p>
+                  </div>
+                  <div class="border-bottom">
+                    <button class="btn btn-primary ml-3" style="padding: 12px 16px;width: 121px;height: 43px;">
+                      Add Friends
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mt-3 d-flex">
+                  <!-- <img src="./images/Group/email.png" class="p-2" alt="" /> -->
+                  <%= image_tag("myfriends/Group/email.png", style:'display: inline-block;width: 52px;height: 52px;', class:'p-2') %>
+                  <div class="border-bottom">
+                    <h5 class="card-top">From your email contacts</h5>
+                    <p style="font-size: 13px">
+                      Invite and share
+                    </p>
+                  </div>
+                  <div class="border-bottom">
+                    <button class="btn btn-primary ml-3" style="padding: 12px 16px;width: 121px;height: 43px;">
+                      Add Friends
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mt-3 d-flex">
+                  <!-- <img src="./images/Group/invite.png" class="p-2" alt="" /> -->
+                  <%= image_tag("myfriends/Group/invite.png", style:'display: inline-block;width: 52px;height: 52px;', class:'p-2') %>
+                  <div class="border-bottom w-75 mt-1 d-flex justify-content-between">
+                    <h5 class="card-top">Invite via link</h5>
+                    <a href="#">Invite</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </div>   -->
+    <% end %>
+            <!-- <div class="card card-description p-2">
+            <div class="card-profile-image">
+              <%#= image_tag("myfriends/mynetwork-myhomebuyer/card-profile.png", style:'display: inline-block;') %>
+
+            </div>
+            <div class="card-des-area ml-3">
+              <h4 class="mb-0 h4-text">Emily</h4>
+              <div class="location d-flex">
+                <div class="loc-img mr-2">
+                  <%#= image_tag("myfriends/mynetwork-myhomebuyer/location-img.png", style:'display: inline-block;') %>
+
+                </div>
+                <div class="loc-txt mt-2">
+                  <p class="card-p-txt">Santa Monica</p>
+                </div>
+                
+              </div>
+              <p class="mb-0 card-p-txt">Connected 3 days ago</p>
+            </div>
+            
+
+            </div> -->
+            <!-- <div class= "card-description p-2">
+            <div class="card-profile-image">
+              <%#= image_tag("myfriends/mynetwork-myhomebuyer/card-profile.png", style:'display: inline-block;') %>
+            </div>
+            <div class="card-des-area ml-3">
+              <h4 class="mb-0 h4-text">Emily</h4>
+              <div class="location d-flex">
+                <div class="loc-img mr-2">
+                  <%#= image_tag("myfriends/mynetwork-myhomebuyer/location-img.png", style:'display: inline-block;') %>
+
+                </div>
+                <div class="loc-txt mt-2">
+                  <p class="card-p-txt">Santa Monica</p>
+                </div>
+                
+              </div>
+              <p class="mb-0 card-p-txt">Connected 3 days ago</p>
+            </div>
+            
+
+            </div> -->
+            <!-- <div class="card card-description p-2">
+            <div class="card-profile-image">
+              <%#= image_tag("myfriends/mynetwork-myhomebuyer/card-profile.png", style:'display: inline-block;') %>
+            </div>
+            <div class="card-des-area ml-3">
+              <h4 class="mb-0 h4-text">Emily</h4>
+              <div class="location d-flex">
+                <div class="loc-img mr-2">
+                  <%#= image_tag("myfriends/mynetwork-myhomebuyer/location-img.png", style:'display: inline-block;') %>
+
+                </div>
+                <div class="loc-txt mt-2">
+                  <p class="card-p-txt">Santa Monica</p>
+                </div>
+                
+              </div>
+              <p class="mb-0 card-p-txt">Connected 3 days ago</p>
+            </div>
+            
+
+            </div> -->
+            <!-- <div class="card card-description p-2">
+            <div class="card-profile-image">
+              <%#= image_tag("myfriends/mynetwork-myhomebuyer/card-profile.png", style:'display: inline-block;') %>
+            </div>
+            <div class="card-des-area ml-3">
+              <h4 class="mb-0 h4-text">Emily</h4>
+              <div class="location d-flex">
+                <div class="loc-img mr-2">
+                  <%#= image_tag("myfriends/mynetwork-myhomebuyer/location-img.png", style:'display: inline-block;') %>
+
+                </div>
+                <div class="loc-txt mt-2">
+                  <p class="card-p-txt">Santa Monica</p>
+                </div>
+                
+              </div>
+              <p class="mb-0 card-p-txt">Connected 3 days ago</p>
+            </div>
+            
+
+            </div> -->
+          </div>
+          <% if @friends.any? %>
+          <% @friends.each_with_index do |friend, index| %>
+          <div id='<%= index %>' class="tabcontent col-md-7">
+          <div class="right-column" style="font-size: 1.5rem;">
+            <div class="search-sec d-flex justify-content-between p-3">
+              <div class="search-txt">
+                 <%#= image_tag("myfriends/mynetwork-myhomebuyer/card-profile.png", style:'display: inline-block;') %>
+                 <%= image_tag(friend.profile_image, style:"height: 12vh;border-radius: 50%;", alt: t('img_alts.user_profile'), 'data-action': 'error->users-profile-picture#setDefaultPicture') %>
+              </div>
+              <div class="right-text">
+                <h3 class=><%= friend.full_name%></h3>
+                <%= link_to(edit_profile_path(current_user), class: 'gtm-navbar-settings has-text-primary') do %>
+              <%= t('navbar.menu.settings') %>
+              <% end %>
+              </div>
+            </div>
+            <div class="service-list pt-2 pl-2">
+              <ul>
+                <li>
+                  Job: <%= friend.professional_role %>
+                </li>
+                 <li>
+                  Budget: <%= friend.budget_from %>
+                </li>
+                 <li>
+                  Location: <%= friend.city %>
+                </li>
+                 <li>
+                  Description: <%= friend.description %>
+                </li>
+              </ul>
+
+            </div>
+            <div class="activities-sec p-3">
+              <h4 class="act-txt">Activities</h4>
+              
+                  <% @flagged_properties = friend.flagged_properties_data %>
+                    <% if @flagged_properties.any? %>
+              <div class="act-img d-flex pt-2">
+                <% @flagged_properties.each_with_index do |prop, i| %>
+                <div class="act-img1 mr-4">
+                  <%= image_tag(sanitize_image(prop.dig("photos")[i]), style:'display: inline-block;') %>
+                  <%#= image_tag("myfriends/mynetwork-myhomebuyer/activity-img.png", style:'display: inline-block;') %>
+                </div>
+                <% end %>
+                <div class="act-img1 mr-4">
+                  <img src="images/mynetwork-myhomebuyer/activity-img.png" alt="">
+                </div>
+                <div class="act-img1 mr-4">
+                  <img src="images/mynetwork-myhomebuyer/activity-img.png" alt="">
+                </div>
+              </div>
+              <% end %>
+              <button type="button" class="btn btn-primary btn-txt msg-btn pl-3 pr-3 mt-4">Message</button>
+            </div>
+
+          </div>
+        </div>
+          <% end %>
+          <% end %>
+        </div>
+</div>   
+</section>
+</div> 
+
+<script type="text/javascript">
+  function openinfo(evt, infoName) {
+    console.log('hi');
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      console.log(tabcontent.length);
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(infoName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>

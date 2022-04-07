@@ -1,0 +1,46 @@
+- title("Cher - Salesforce CRM")
+.container
+  %h2.has-text-centered
+    = "Salesforce Leads"
+  .columns.is-marginless
+    .column
+      .columns.is-marginless
+        .column.is-paddingless
+          .buttons.is-justified-end.is-marginless
+            = link_to "Lead From Kixie", admin_salesforce_path(filter: 'from_kixie'), class: 'button is-info'
+            = link_to "Lead From Cher App", admin_salesforce_path(filter: 'from_cher'), class: 'button is-primary'
+            = link_to "With Email", admin_salesforce_path(filter: 'with_email', subfilter: params[:subfilter]), class: 'button is-success'
+            = link_to t("admin.contacts.others"), admin_salesforce_path(filter: 'others', subfilter: params[:subfilter]), class: 'button is-warning'
+      .buttons.is-justified-end.is-marginless
+        = link_to "Open Leads", admin_salesforce_path(filter: params[:filter], subfilter: 'New'), class: 'button is-success'
+        = link_to "Prospect", admin_salesforce_path(filter: params[:filter], subfilter: 'Prospect'), class: 'button is-success'
+        = link_to "Potential", admin_salesforce_path(filter: params[:filter], subfilter: 'Potential'), class: 'button is-success'
+        = link_to "Working", admin_salesforce_path(filter: params[:filter], subfilter: 'Working'), class: 'button is-success'
+        = link_to "Contacted", admin_salesforce_path(filter: params[:filter], subfilter: 'Contacted'), class: 'button is-success'
+      .column
+        .has-text-right
+          = "Total Records: #{@sf_contacts.count}"
+      .columns
+        %table.table.has-full-width
+          %thead
+            %tr
+              %th
+                = "Name"
+              %th
+                = "Contact Number"
+              %th
+                = "Provider"
+              %th
+                = "Email" if params[:filter] == 'with_email' || params[:filter] == 'from_cher'
+          
+          %tbody
+            - @sf_contacts.each do |contact|
+              %tr
+                %td
+                  = contact.name 
+                %td
+                  = contact.phone_number
+                %td
+                  = contact.provider
+                %td
+                  = contact.email if params[:filter] == 'with_email' || params[:filter] == 'from_cher'

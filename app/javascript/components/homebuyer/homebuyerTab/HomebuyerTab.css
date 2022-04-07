@@ -1,0 +1,30 @@
+.nav-link {
+  width: 111px;
+  height: 35px;
+  background: #dae0ff !important;
+  border-radius: 4px;
+  margin: 1rem;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #1c3360;
+  padding: 0;
+}
+.nav-link:hover {
+  background: #3154f5 !important;
+  color: #ffffff;
+}
+.nav-link.active {
+  background: #3154f5 !important;
+  color: #ffffff !important;
+}
+.nav-tabs {
+  border-bottom: 0px !important;
+}
+.tab-content {
+  height: 60vh;
+  overflow-y: scroll;
+}

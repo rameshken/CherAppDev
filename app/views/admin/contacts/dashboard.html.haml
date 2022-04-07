@@ -1,0 +1,22 @@
+.container
+  %h2.has-text-centered.is-bold{:style => "color: blue;"}
+    = "Admin Dashboard - #{current_user.first_name}(#{current_user.email})"
+  %br
+  %br
+  .columns.is-marginless
+    .column
+      .columns.is-marginless
+        .column.is-paddingless
+          .buttons.is-left-end.is-marginless{:style => "justify-content: space-evenly;"}
+            %p
+            %span.badge.rounded-pill.is-primary{:style => "width: 300px;background-color: #007bff;font-size: 1.25rem;height: 4rem;border-radius: 25px;"}Active Premium Agents: #{@active_agents.count}
+            %span.badge.rounded-pill.is-primary{:style => "width: 300px;background-color: #1f1db5;font-size: 1.25rem;height: 4rem;border-radius: 25px;"}Homebuyers: #{@homebuyers.count}
+            %span.badge.rounded-pill.is-primary{:style => "width: 300px;background-color: #0fa930;font-size: 1.25rem;height: 4rem;border-radius: 25px;"}Online Users: #{@active_users.count}
+            / = "Active Premium Agents: #{@active_agents.count}", class: 'button is-info'
+            / = "Active Premium Agents: #{@active_agents.count}", class: 'button is-info' 
+            / %button.is-info{:type => "button"}
+            /   Notifications #{@active_agents.count}
+            /   %span.badge.bg-secondary 4
+            / = "Homebuyers #{@homebuyers.count}", class: 'button is-primary'
+            / = link_to "Online Users", @active_users.count, class: 'button is-success'
+            / = link_to t("admin.contacts.others"), admin_salesforce_path(filter: 'others', subfilter: params[:subfilter]), class: 'button is-warning'

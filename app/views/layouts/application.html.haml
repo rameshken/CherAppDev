@@ -1,0 +1,77 @@
+!!!
+%html{ lang: 'en-US' }
+  %head
+    = render "layouts/meta_tags"
+    = csrf_meta_tags
+    = csp_meta_tag
+    %link{:crossorigin => "anonymous", :href => "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css", :integrity => "sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l", :rel => "stylesheet"}/
+    %link{:crossorigin => "anonymous", :href => "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css", :integrity => "sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC", :rel => "stylesheet"}/
+    %link{:href => "https://unpkg.com/swiper/swiper-bundle.min.css", :rel => "stylesheet"}/
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag asset_path('favicon.ico')
+    - if Rails.env.production?
+      = render "layouts/analytics"
+    %meta{:content => "tdiwqdio2o7ufie5ta9202ieyamadd", :name => "facebook-domain-verification"}/
+    %link{ rel:"canonical", href: 'https://www.cher.app'}
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css", :rel => "stylesheet"}/
+    %link{:href => "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css", :rel => "stylesheet"}/
+    %link{:href => "https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://unpkg.com/swiper/swiper-bundle.min.js"}
+    %script{ src: "https://static.vouched.id/widget/vouched.js" }
+    %script{ src: "https://media.twiliocdn.com/sdk/js/chat/v3.3/twilio-chat.min.js" }
+    %script{:crossorigin => "anonymous", :integrity => "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM", :src => "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"}
+    %script{ crossorigin: "anonymous", src: "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.8/lottie.js", type: "text/javascript" }
+    %script{src: "https://apis.google.com/js/api.js"}
+    %script{ async: "", defer: "defer", src: "https://connect.facebook.net/en_US/sdk.js"}
+    %script{ src: "https://www.google.com/recaptcha/api.js", async: "async", defer: "defer" }
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"}
+    %script{:src => "https://unpkg.com/jquery-input-mask-phone-number@1.0.15/dist/jquery-input-mask-phone-number.js"}
+    %script{:src => "https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"}
+    :javascript
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="ACLCOYiWTjTg64BvEOSYM9DkPlxzAq0M";analytics.SNIPPET_VERSION="4.13.2";
+      analytics.load("ACLCOYiWTjTg64BvEOSYM9DkPlxzAq0M");
+      analytics.page();
+      }}();
+
+    / %script{:src => "https://res.cloudinary.com/sai-group/raw/upload/v1629692076/Css/jsCarousel-2.0.1_k3hulr.js", :type => "text/javascript"}
+    / %script{:src => "http://nicesnippets.com/demo/jsCarousel-2.0.0.js", :type => "text/javascript"}
+    
+
+  %body{ 'data-environment': Rails.env,
+         'stripe_key': ENV['STRIPE_PUBLIC_KEY'],
+         'google_key': ENV['GOOGLE_MAPS_KEY'],
+         'twilio-account-sid': ENV['TWILIO_ACCOUNT_SID'],
+         'google-client-id': ENV['GOOGLE_CLIENT_ID'],
+         'google_places_key': ENV['GOOGLE_PLACES_API'],
+         'facebook-app-id': ENV['FACEBOOK_CLIENT_ID'],
+         'data-controller': 'mixpanel',
+         'data-mixpanel-token': ENV['MIXPANEL_TOKEN'],
+         class: user_is_in_conversation? ? 'is-paddingless-mobile' : '' }
+    - if user_signed_in?
+      %input{ type: 'hidden', value: current_user.email, id: 'currentUserEmailInput' }
+      = hidden_field_tag :concierge_sms_message_link, conversation_url(current_user)
+
+    - if current_user != User.concierge_contact
+      = react_component('chat/ConciergeChat', userEmail: current_user&.email,
+                                              isHidden: false,
+                                              userProfilePicture: url_for(current_user&.profile_image),
+                                              conciergeSlug: '',
+                                              signedIn: user_signed_in?)
+    - else
+      = react_component('chat/ConciergeSideChat', userEmail: current_user&.email,
+                                                  userProfilePicture: url_for(current_user&.profile_image),
+                                                  conciergeSlug: '',
+                                                  signedIn: user_signed_in?)
+
+    = render 'shared/navbar_regular'
+    = render 'shared/notification'
+    = yield
+    = render 'shared/footer'
+
+    %noscript
+      %iframe{ height: "0", src: "https://www.googletagmanager.com/ns.html?id=GTM-5MD5SHF", style: "display:none;visibility:hidden", width: "0"}
+

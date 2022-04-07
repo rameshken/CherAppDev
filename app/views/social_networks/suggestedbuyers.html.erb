@@ -1,0 +1,494 @@
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+    />
+<div id='network'>
+    <section class="row m-0">
+      <nav class="col-md-1 sidebar p-0 nav-column">
+        <ul class="p-0 mt-1 feed-top-sgm">
+          <li class="side_li side_li_active feed">
+            <a
+              class="side-nav sidenav-txt f16 f-pcolor f400"
+              href="/social_networks"
+            >
+              <i class="bi bi-columns-gap"></i>
+              Feed</a
+            >
+          </li>
+
+          <li class="side_li message">
+            <a class="side-nav sidenav-txt f16" href="/social_networks/messages">
+              <i class="bi bi-chat-dots"></i>
+              Message</a
+            >
+          </li>
+          <li class="side_li network">
+            <a
+              class="side-nav sidenav-txt ful-active f16"
+              href="/rooms/index"
+            >
+              <i class="bi bi-people"></i>
+              Community</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- left navbar end-->
+      <!-- second navbar start -->
+      <div class="col p-0 m-0">
+        <div>
+          <h1 class="ps-5 m-3" style="font-size: 18px;font-weight: 700;">My Community</h1>
+        </div>
+        <div>
+          <ul class="nav border-bottom m-3">
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/network"
+                >Invite Requests</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/homebuyers">My Friends</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link fs-5 fw-bold text-dark" href="/social_networks/suggestedbuyers"
+                >Suggested Homebuyers</a
+              >
+            </li> -->
+            <% if current_user.co_borrower? %>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/agents">My Agents</a>
+            </li>
+            <% end %>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-dark" href="/social_networks/groups">My Groups</a>
+            </li>
+          </ul>
+        </div>
+        <!--second navbar end-->
+
+        <!--Friends you might want to know start-->
+        <h3 class="m-3" style="font-size: 18px;font-weight: 700;">Friends you might want to know</h3>
+        <div class="row m-0 pl-3">
+          <div class="row m-0 pl-3">
+          <% if @suggested_matches.any? %>
+          <% @suggested_matches.each do |suggest| %>
+          <div class="card col-md-2 p-0 mr-4">
+            <div class="frnd-req-img">
+            <%= image_tag(suggest.profile_image, class: 'card-img-top img-fluid', style:'display: inline-block;height: 17vh') %>
+            <a href=""><i class="fas fa-times-circle close-btn-img m-1"></i>
+            </a>
+          </div>
+            <div class="card-body text-center">
+              <h5 class="card-title"><%= suggest.full_name %></h5>
+              <p class="card-text">Actively looking for a new home</p>
+              <div class="group d-flex">
+                <%= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                <p><%= @properties.count(true) %> same saved house</p>
+              </div>
+              <div class="group d-flex">
+                <%= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                <p><%= @mutual_friends.count(true) %> mutual friends</p>
+              </div>
+              <% @friends = FriendRequest.find_by(requester_id: current_user.id, requestee_id: suggest.id, status: :pending) %>
+              <% if @friends %>
+              <button type="button" class="btn btn-primary select_one" disabled>Request Sent</button>
+              <% else %>
+              <%= link_to 'Add', friend_requests_path(friend_request: { requester_id: current_user.id, requestee_id: suggest.id, status: :pending }), method: :post, class: 'btn btn-primary select_one' %>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+
+          <!-- <div class="card col-md-2 p-0 mr-4">
+            <%#= image_tag("myfriends/friendrequests/Wilson Fernsby.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+            <div
+              class="
+                card-img-overlay
+                d-flex
+                justify-content-end
+                algin-items-start
+                p-1
+              "
+            >
+              <a class="p-0 text-dark" href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="card-body text-center">
+              <h5 class="card-title">William Relish</h5>
+              <p class="card-text">Actively looking for a new home</p>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                <p>1 same saved house</p>
+              </div>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                <p>2 mutual friends</p>
+              </div>
+              <div class="text-center m-3">
+                <a href="#" class="btn btn-primary select_one">Add</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card col-md-2 p-0 mr-4">
+            <%#= image_tag("myfriends/friendrequests/Evelyn Dankworth.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+            <div
+              class="
+                card-img-overlay
+                d-flex
+                justify-content-end
+                algin-items-start
+                p-1
+              "
+            >
+              <a class="p-0 text-dark" href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="card-body text-center">
+              <h5 class="card-title">Evelyn Dankworth</h5>
+              <p class="card-text">Actively looking for a new home</p>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                <p>1 same saved house</p>
+              </div>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                <p>2 mutual friends</p>
+              </div>
+              <div class="text-center m-3">
+                <a href="#" class="btn btn-primary select_one">Add</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card col-md-2 p-0 mr-4">
+            <%#= image_tag("myfriends/friendrequests/Harper Harris.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+            <div
+              class="
+                card-img-overlay
+                d-flex
+                justify-content-end
+                algin-items-start
+                p-1
+              "
+            >
+              <a class="p-0 text-dark" href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="card-body text-center">
+              <h5 class="card-title">Harper Harris</h5>
+              <p class="card-text">Actively looking for a new home</p>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                <p>1 same saved house</p>
+              </div>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                <p>2 mutual friends</p>
+              </div>
+              <div class="text-center m-3">
+                <a href="#" class="btn btn-primary select_one">Add</a>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <div class="card col p-0 mr-4">
+            <%#= image_tag("myfriends/friendrequests/Stephen Burton.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+            <div
+              class="
+                card-img-overlay
+                d-flex
+                justify-content-end
+                algin-items-start
+                p-1
+              "
+            >
+              <a class="p-0 text-dark" href="#"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="card-body text-center">
+              <h5 class="card-title">Stephen Burton</h5>
+              <p class="card-text">Actively looking for a new home</p>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                <p>1 same saved house</p>
+              </div>
+              <div class="group d-flex">
+                <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                <p>2 mutual friends</p>
+              </div>
+              <div class="text-center m-3">
+                <a href="#" class="btn btn-primary">Add</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="row m-0 pl-3">
+            <div class="card col p-0 mr-4">
+              <%#= image_tag("myfriends/friendrequests/Bethany Baab.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+              <div
+                class="
+                  card-img-overlay
+                  d-flex
+                  justify-content-end
+                  algin-items-start
+                  p-1
+                "
+              >
+                <a class="p-0 text-dark" href="#"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-x-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                    /></svg
+                ></a>
+              </div>
+
+              <div class="card-body text-center">
+                <h5 class="card-title">Bethany Baab</h5>
+                <p class="card-text">Actively looking for a new home</p>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>1 same saved house</p>
+                </div>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>2 mutual friends</p>
+                </div>
+                <div class="text-center m-3">
+                <a href="#" class="btn btn-primary">Add</a>
+              </div>
+              </div>
+            </div>
+
+            <div class="card col p-0 mr-4">
+              <%#= image_tag("myfriends/friendrequests/Charmaine Bacci.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+              <div
+                class="
+                  card-img-overlay
+                  d-flex
+                  justify-content-end
+                  algin-items-start
+                  p-1
+                "
+              >
+                <a class="p-0 text-dark" href="#"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-x-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                    /></svg
+                ></a>
+              </div>
+
+              <div class="card-body text-center">
+                <h5 class="card-title">Charmaine Bacci</h5>
+                <p class="card-text">Actively looking for a new home</p>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>1 same saved house</p>
+                </div>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>2 mutual friends</p>
+                </div>
+                <div class="text-center m-3">
+                <a href="#" class="btn btn-primary">Add</a>
+              </div>
+              </div>
+            </div>
+            <div class="card col p-0 mr-4">
+              <%#= image_tag("myfriends/friendrequests/Felicity Price.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+              <div
+                class="
+                  card-img-overlay
+                  d-flex
+                  justify-content-end
+                  algin-items-start
+                  p-1
+                "
+              >
+                <a class="p-0 text-dark" href="#"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-x-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                    /></svg
+                ></a>
+              </div>
+
+              <div class="card-body text-center">
+                <h5 class="card-title">Felicity Price</h5>
+                <p class="card-text">Actively looking for a new home</p>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>1 same saved house</p>
+                </div>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>2 mutual friends</p>
+                </div>
+                <div class="text-center m-3">
+                <a href="#" class="btn btn-primary">Add</a>
+              </div>
+              </div>
+            </div>
+            <div class="card col p-0 mr-4">
+              <%#= image_tag("myfriends/friendrequests/Elvina Sanchez.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+              <div
+                class="
+                  card-img-overlay
+                  d-flex
+                  justify-content-end
+                  algin-items-start
+                  p-1
+                "
+              >
+                <a class="p-0 text-dark" href="#"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-x-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                    /></svg
+                ></a>
+              </div>
+
+              <div class="card-body text-center">
+                <h5 class="card-title">Elvina Sanchez</h5>
+                <p class="card-text">Actively looking for a new home</p>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>1 same saved house</p>
+                </div>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>2 mutual friends</p>
+                </div>
+                <div class="text-center m-3">
+                <a href="#" class="btn btn-primary">Add</a>
+              </div>
+              </div>
+            </div>
+            <div class="card col p-0 mr-4">
+              <%#= image_tag("myfriends/friendrequests/Georgia Hall.png", style:'display: inline-block;', class: 'card-img-top img-fluid') %>
+              <div
+                class="
+                  card-img-overlay
+                  d-flex
+                  justify-content-end
+                  algin-items-start
+                  p-1
+                "
+              >
+                <a class="p-0 text-dark" href="#"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-x-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                    /></svg
+                ></a>
+              </div>
+
+              <div class="card-body text-center">
+                <h5 class="card-title">Georgia Hall</h5>
+                <p class="card-text">Actively looking for a new home</p>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/Group.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>1 same saved house</p>
+                </div>
+                <div class="group d-flex">
+                  <%#= image_tag("myfriends/friendrequests/group2.png", style:'display: inline-block;', class: 'icon') %>
+                  <p>2 mutual friends</p>
+                </div>
+                <div class="text-center m-3">
+                <a href="#" class="btn btn-primary">Add</a>
+              </div>
+              </div>
+            </div>
+          </div> -->
+          <!--Friends you might want to know end-->
+        </div>
+      </div>
+    </section>
+</div>    

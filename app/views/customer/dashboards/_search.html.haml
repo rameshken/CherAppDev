@@ -1,0 +1,25 @@
+.search-property.is-relative
+  .container
+    = form_for(:search, url: customer_dashboard_path, method: :get, html: { "data-target": "leads-search.form", "data-action": "ajax:success->leads-search#processPropertiesResponse submit->leads-search#mapOnLoading"}) do |f|
+      .living-options
+        %br
+        .columns
+          - if user_signed_in? && current_user.agent?
+            .column.is-one-quarter
+              .field
+                .control.select{ :style => "width: 100%"}
+                  = f.select :search_by, [ [t('dashboard.search.by_name'), 'name'], [t('dashboard.search.by_city'), 'city'], [t('dashboard.search.by_email'), 'email'] ],{} , name: 'search[search_by]', class: 'is-marginless is-primary'
+            .column.is-half
+              .field
+                .control.has-icons-right
+                  = f.text_field :keyword, class: "input has-border-blue width-350", placeholder: "Search Keyword", 
+                    "data-target": "leads-search.keyword", "data-controller": "leads-search", 
+                    value: params[:keyword], 
+                    id: 'searchFor', required: true
+                  %span.icon.is-small.is-right
+                    = fa_icon('search')
+            .column.is-one-quarter
+              .field
+                = f.submit t('look_around.search.search'), class: "button is-primary is-marginless", 'data-target': 'leads-search.formSubmit'
+      .has-text-centered.is-size-5.has-full-width.m-t-xs{"data-target": "leads-search.requestResponse"}
+      = @response_message

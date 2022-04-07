@@ -1,0 +1,163 @@
+<style type="text/css">
+body {
+    padding-top: 10px !important;
+}
+</style>
+<link crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css' integrity='sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l' rel='stylesheet'>
+<!-- /* navigation bar */ -->
+	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+		<a class="navbar-brand ml-8" href="#">
+			<img src="img/logo.svg" class="img-responsive">
+		</a>
+	
+		
+	</nav> -->
+	<!-- /* end navigation bar */ -->
+<div id="professional-landing-signup-page">
+<input id="currentPageInput" type="hidden" value="sign up page"></input>
+<% title(t("meta.sign_up.title")) %>
+<div class="rebrand full-width-container" data-controller="registrations">  
+	<section>
+		  <div class="row py">
+			  <div class="col-md-4 d-none d-md-block"></div>
+			  <div class="col-md-4"  data-controller="password">
+				  <!-- <form action="sign_up" method="POST"> -->
+					  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { 'data-action': 'registrations#handleSubmit', 'data-target': 'registrations.form' }) do |f| %>
+				    <%= f.hidden_field :role, value: params.dig(:user, :role), id: 'newUserRoleInput' %>
+            <%= f.hidden_field :professional_role, value: params.dig(:user, :professional_role), id: 'newUserProfessionalRoleInput' %>
+            <%= f.hidden_field :accept_referral_agreement, value: params.dig(:user, :accept_referral_agreement), id: 'newUserProfessionalAcceptReferralAgreement' %>
+						<%= f.hidden_field :clique, value: @clique %>
+						<%= f.hidden_field :plan, value: @plan %>
+					<div class="row">
+						<div class="col-md-12 ">
+							<% if params[:role] || params[:phone_number] %>
+				    		<%= f.hidden_field :role, value: 'agent' %>
+				    		<h4 class="singup">Sign up as an Agent</h4>
+							<p class="mt-3 f-18"> Become a partner with CHER </p>
+				    	<% else %>
+				    		<%= f.hidden_field :role, value: 'co_borrower' %>
+				    		<h4 class="singup">Sign up as a Homebuyer</h4>
+				    	<% end %>
+							
+						</div>
+						<div class="col-6 mb-4">
+							<label for="">First Name</label>
+							<!-- <input type="text" class="form-control" autofocus="true" placeholder="First Name"> -->
+							<%= f.text_field :first_name, placeholder: 'First Name', autofocus: true, class: 'form-control', autofocus: 'true' %>
+						</div>
+						
+						<div class="col-6 mb-4">
+							<label for="">Last Name</label>
+							<!-- <input type="text" class="form-control" placeholder="Last Name"> -->
+							<%= f.text_field :last_name, placeholder: 'Last Name', class: 'form-control' %>
+						</div>
+
+						
+						<div class="col-12 mb-4">
+							<%= f.label :email, class: "label" %>
+				      <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder: "Email", type: 'email', class: 'email input field form-control', required: true, 'data-target'=> 'registrations.emailInput', value: resource.email.blank? ? params[:email] : resource.email %>
+				      <p class="is-caption is-danger" data-target="registrations.emailErrorMessage"></p>
+						</div>
+						
+						<div class="col-12 mb-4 fix-flag">
+							<label for="">Phone Number</label>
+							<input type="text" value='<%= params[:phone_number] %>' class="form-control" placeholder="Phone Number" id="phone_pros">
+
+							<%#= f.text_field :phone_number, placeholder: 'Phone Number', id: 'phone_pros', class: 'form-control', value: params[:phone_number]  %>
+						</div>
+
+						<div class="col-12 mb-4">
+							<%= f.label :password, class: "label" %>
+				      <div class="control has-icons-right">
+				        <%= f.password_field :password, autocomplete: "off", placeholder: t("placeholders.password"), type: 'password', class: 'password input field form-control',"data-target"=> "password.password registrations.passwordInput", required: true %>
+				        <span class="icon is-right is-clickable" data-action="click->password#seePassword">
+				          <%= fa_icon('eye-slash') %>
+				        </span>
+				      </div>
+				      <p class="is-caption is-danger" data-target="registrations.passwordErrorMessage"></p>
+						</div>
+
+						<div class="col-12 mb-4">
+							<%= f.label :password_confirmation, class: "label" %>
+				      <div class="control has-icons-right">
+				        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input field password form-control", placeholder: t("placeholders.password_confirmation"),"data-target"=> "password.passwordConfirmation registrations.passwordConfirmationInput", required: true %>
+				        <span class="icon is-right is-clickable" data-action="click->password#seePasswordConfirmation">
+				          <%= fa_icon('eye-slash') %>
+				        </span>
+				      </div>
+				      <p class="is-caption is-danger" data-target="registrations.passwordConfirmationErrorMessage"></p>
+						</div>
+						
+						<div class="col-12 mb-2 pt-4 text-center">
+						   <!-- <input type="submit" class="btn btn-primary w-100" value="Sing Up"> -->
+						   <%= f.submit t("buttons.sign_up"), class: "button is-primary is-fullwidth is-marginless", id: "signUpButton", method: :get %>
+					      <span class="is-caption">
+					        <%= t('generic.by_sign_up') %>
+					        <%= link_to t('sell.terms_and_conditions'), "#{root_url}/docs/Terms_Of_Service.pdf", { target: '_blank', class: 'has-text-essential-blue'} %>
+					      </span>
+						   <p class="links"> Already have an account? <a href="/users/sign_in">Log in </a> </p>
+						</div>
+					</div>
+					<% end %>
+				  <!-- </form> -->
+			  </div>  
+		  </div>  
+	</section>   
+
+  
+
+	<!-- Trusted By -->
+	<section class="py">
+		<div class="conatiner">
+			<div class="row text-center">
+				<div class="col-12">
+					<h4 class="theme-title mb-4">Trusted by </h4>
+				</div>
+				<div class="col-12">
+					<div class="container">
+						<div class="row text-center shift-left">
+							
+								 <span class="col p-0 m-0">
+									<!-- <img class="trusted-by" src="img/Vouched-8f752e5987f936e5d3d10743aef36e9af5959f1c6cc0bf0f4c537556bd29bd47.svg" alt=""> -->
+									<%= image_tag("professional_landing/Vouched.svg", class: 'trusted-by') %>
+								</span>
+							
+									<span class="col p-0 m-0">
+								   
+									<!-- <img class="trusted-by" src="img/equifax-logo-a54b98782d5e532fc9891d0b9753d2608ff500389b5e20bdd647d23043b372b0.svg" alt=""> -->
+									<%= image_tag("professional_landing/equifax-logo.svg", class: 'trusted-by') %>
+								 </span>
+								 <span class="col p-0 m-0">
+									 <!-- <img class="trusted-by" src="img/UWM_logo-cc44051644143c09400b51e72abb121b4c528ebe75c461aadb0da9912b6d2de0.svg" alt=""> -->
+									 <%= image_tag("professional_landing/UWM_logo.svg", class: 'trusted-by') %>
+									</span>
+							
+									 <span class="col p-0 m-0">
+								
+									 <!-- <img class="trusted-by" src="img/Experian-31fb780fe2c2dd3ce066e9e4fbbabce4e5ddcaaffffadf4b93dd4df8e3da35d6.svg" alt=""> -->
+									 <%= image_tag("professional_landing/Experian.svg", class: 'trusted-by') %>
+								 </span>
+								 <span class="col p-0 m-0">
+									 <!-- <img class="trusted-by" src="img/quicken-loans-75fabe8af8e4bb1e1738eaccff357117e845d2d9af16d421f5f6c0b3f6b1ecc5.jpg" alt=""> -->
+									 <%= image_tag("professional_landing/quicken-loans.svg", class: 'trusted-by') %>
+									</span>
+							
+									 <span class="col p-0 m-0">
+									 <!-- <img class="trusted-by" src="img/mucker-lab-4491723c5fb18a45d0df9549b42733a3cc3cb9c92e78360e4cda040fe18969db.svg" alt=""> -->
+									 <%= image_tag("professional_landing/mucker-lab.svg", class: 'trusted-by') %>
+								</span>
+								<span class="col text-left p-0 m-0">
+									<!-- <img class="trusted-by" src="img/barada-eb178b7b6dfa3a0b6cc26f7a3442d9b8e8d775f1c1d4ab5773f1c99b5498c70f.svg" alt=""> -->
+									<%= image_tag("professional_landing/barada.svg", class: 'trusted-by') %>
+								</span>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end trusted by -->
+	<%= render 'shared/phone_input' %>
+</div>
+</div>

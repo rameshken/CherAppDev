@@ -1,0 +1,65 @@
+<input id="currentPageInput" type="hidden" value="notification settings page"></input>
+<div class="container m-t-md">
+  <div class="container is-family-secondary">
+    <div class="columns is-marginless has-content-centered">
+      <div class="column is-12-mobile is-10-tablet is-7-fullhd">
+        <div class="panel">
+          <h2 class="is-size-4 has-text-left is-bold" >
+            <%= 'Email Subscription Settings' %>
+          </h2>
+          <br>
+          <%= form_for @notification_settings, url: notification_settings_path(current_user), class: 'has-full-width' do |f| %>
+            <div class="columns is-marginless">
+              <div class="column is-fully-centered is-paddingless">
+                <table class="table is-primary has-full-width">
+                  <thead style="background-color: #FDCE6A;">
+                    <tr>
+                      <th>
+                        <%= t('notifications.name') %>
+                      </th>
+                      <th>
+                        <%#= 'Preference' %>
+                      </th>
+                      <th>
+                        <%#= 'Preference' %>
+                      </th>
+                      <th>
+                        <%= 'Preference' %>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= render 'new_general_options', f: f %>
+                    <% if current_user.agent? %>
+                      <%#= render 'professional_options', f: f %>
+                    <% end %>
+                    <% if current_user.co_borrower? %>
+                      <%#= render 'coborrower_options', f: f %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="has-text-right">
+              <%= f.button t('profile.edit.save_profile'), class: 'button is-primary', type: 'submit' %>
+            </div>
+          <% end %>
+          <%= 'To change you SMS and in-app notifications settings, go to' %> <%= link_to 'Notification Settings', new_notification_settings_path(current_user), {style: 'color: blue;'} %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    function disableall(){
+       let a = document.getElementById("notification_settings_subscription_unemail");
+       let b = document.getElementsByTagName("INPUT");
+       for(let i=0; i<b.length; i++)
+       if(a.checked == true){
+           b[i].checked = false;
+       }
+    }
+
+</script>

@@ -1,0 +1,145 @@
+.row {
+  padding: 0px;
+  margin: 0px;
+}
+.css-1okebmr-indicatorSeparator {
+  display: none !important;
+}
+.css-1rhbuit-multiValue {
+  background: #dae0ff !important;
+}
+.cst-white-btn {
+  background: #ffffff;
+  border-radius: 4px;
+}
+.bg-blueish {
+  background: #f4f8fc !important;
+}
+.ico {
+  height: 40px;
+}
+
+.dflex {
+  display: flex;
+  align-items: center;
+}
+.pm0 {
+  padding: 0px;
+  margin: 0px;
+}
+.normal-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #4d4e51;
+}
+.heading-new-text {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 39px;
+  /* identical to box height */
+  color: #1c3360;
+}
+.subheading-new-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #1c3360;
+}
+.pt5 {
+  padding-top: 15px !important;
+}
+.pl1 {
+  padding-left: 15px !important;
+}
+.pl2 {
+  padding-left: 30px !important;
+}
+.img-cards-homebuyer {
+  width: 100%;
+  min-height: 34vh;
+}
+.card-h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1c3360;
+}
+.f27 {
+  font-size: 27px;
+}
+.h-0 {
+  height: 0px;
+}
+.bed-section {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  color: #4d4e51;
+}
+.bed-h5 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #4d4e51;
+}
+.bed-p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #4d4e51;
+}
+.btn-text-dark {
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  color: #ffffff;
+}
+.btn-text-light {
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  color: #1c3360;
+}
+.float-right {
+  float: right;
+  position: relative;
+  left: -25px;
+  width: 80%;
+}
+.wid-hr {
+  width: 14%;
+  border: solid 2px #c7c8d0;
+}
+.buyerbox-active {
+  border: 1px solid #1c3360;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+.buyerbox:hover {
+  border: 1px solid #1c3360;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+.buyerbox {
+  cursor: pointer;
+  height: 255px !important;
+  overflow: hidden;
+}
+
+
+@media only screen and (max-width: 720px){
+.buyerbox {
+  height: auto!important;
+}
+
+}

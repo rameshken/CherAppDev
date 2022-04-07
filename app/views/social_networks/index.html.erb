@@ -1,0 +1,359 @@
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+    />
+<div id='myfriends'>
+<!-- nav in left  section -->
+    <section class="row mt-1">
+      <!-- <nav class="col-md-1 sidebar p-0 nav-column">
+        <ul class="p-0 mt-1 feed-top-sgm">
+          <li class="side_li feed ful-active">
+            <a
+              class="side-nav sidenav-txt f16 f-pcolor f400"
+              href="/social_networks"
+            >
+              <i class="bi bi-columns-gap"></i>
+              Feed</a
+            >
+          </li>
+
+          <li class="side_li message">
+            <a
+              class="side-nav sidenav-txt f16"
+              href="/social_networks/messages"
+            >
+            <a
+              class="side-nav sidenav-txt f16"
+              href="/conversations"
+            >
+              <i class="bi bi-chat-dots"></i>
+              Message</a
+            >
+          </li>
+          <li class="side_li network">
+            <a class="side-nav sidenav-txt f16" href="/social_networks/network">
+              <i class="bi bi-people"></i>
+              Network</a
+            >
+          </li>
+        </ul>
+      </nav> -->
+
+      <!-- // -->
+
+      <nav class="col-md-1 sidebar p-0 nav-column">
+        <ul class="p-0 mt-1 feed-top-sgm">
+          <li class="side_li feed ful-active">
+            <a
+              class="side-nav sidenav-txt f16 f-pcolor f400"
+              href="/social_networks"
+            >
+              <i class="bi bi-columns-gap"></i>
+              Feed</a
+            >
+          </li>
+
+          <li class="side_li">
+            <a
+              class="side-nav sidenav-txt f16"
+              href="/rooms/index"
+            >
+            <!-- <a
+              class="side-nav sidenav-txt f16"
+              href="/conversations"
+            > -->
+              <i class="bi bi-chat-dots"></i>
+              Message</a
+            >
+          </li>
+          <li class="side_li network">
+            <a class="side-nav sidenav-txt f16" href="/social_networks/network">
+              <i class="bi bi-people"></i>
+              Community</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- left section nav ends -->
+
+      <!-- center section with swipers -->
+      <div class="col-md-7 main-cards feed-top-sgm">
+        <div class="head-txt">
+          <p class="head-txt head-txt1 pt-3 mb-0 justify-content-start friends-mid-seg">
+            Friends activities
+          </p>
+        </div>
+        <% if @friends.any? %>
+        <% @friends.each do |friend| %>
+        <% @flagged_properties = friend.flagged_properties_data %>
+        <% if @flagged_properties.any? %>
+        <div class="feed-card mt-2">
+         
+          <div class="card tp-card-sgm">
+            <div class="card-body">
+              <div class="profile-details d-flex">
+                <div class="profile-img">
+                  <%= image_tag(friend.profile_image, style: 'border-radius: 50%;', alt: t('img_alts.user_profile'), 'data-action': 'error->users-profile-picture#setDefaultPicture') %>
+                </div>
+                <div class="profile-txt ml-2">
+                  <p class="card-protxt mb-0 mt-2"><%= friend.first_name%></p>
+                  <% @flagged_properties.each do |prop| %>
+                  <% flag_created_at = FlaggedProperty.find_by(property_id: prop.dig("listingId")).created_at %>
+                  <small class="text-muted mute-txt"><%= distance_of_time_in_words(flag_created_at, Time.now)%></small>
+                  <% end %>
+                </div>
+              </div>
+              <div class="main-head">
+                <p class="para-txt">Saved this house</p>
+              </div>
+              <div
+                id="carouselExampleIndicators"
+                class="carousel slide"
+                data-ride="carousel"
+              >
+                <ol class="carousel-indicators">
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="0"
+                    class="active"
+                  ></li>
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="1"
+                  ></li>
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="2"
+                  ></li>
+                </ol>
+                <div class="carousel-inner">
+                  
+                  <% @flagged_properties.each do |prop| %>
+                  <div class="carousel-item active">
+                    <%= image_tag(sanitize_image(prop.dig("photos")[0])) %>
+                    <%#= link_to image_tag(sanitize_image(prop.dig("photos")[0])), alt: t('look_around.featured.alts.home'), property_path(item['listingId']) %>
+                  </div>
+                  <div class="carousel-item">
+                    <%= image_tag("myfriends/feed/house_image_1.png", class: 'd-block w-100', style:'display: inline-block;') %>
+                  </div>
+                  <div class="carousel-item">
+                    <%= image_tag("myfriends/feed/house_image_1.png", class: 'd-block w-100', style:'display: inline-block;') %>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+        <% end %>
+        <!-- <div class="feed-card">
+          <div class="card tp-card-sgm">
+            <div class="card-body d-flex pb-0">
+              <div class="profile-img">
+                <%#= image_tag("myfriends/feed/profile_image_2.png", style:'display: inline-block;') %>
+              </div>
+              <div class="profile-txt ml-2">
+                <p class="card-protxt mb-0 mt-2">Alice Cook</p>
+                <small class="text-muted mute-txt">4 mins ago</small>
+              </div>
+            </div>
+            <div class="main-head ml-3">
+              <p class="para-txt mb-0">Justin just saved this house</p>
+            </div>
+            <%#= image_tag("myfriends/feed/house_image_2.png", class: 'card-img-bottom p-3 pro-img2', style:'display: inline-block;') %>
+          </div>
+        </div> -->
+        <!-- <div class="feed-card">
+          <div class="card tp-card-sgm">
+            <div class="card-body d-flex pb-0">
+              <div class="profile-img">
+                <%#= image_tag("myfriends/feed/profile_image_3.png", style:'display: inline-block;') %>
+              </div>
+              <div class="profile-txt ml-2">
+                <p class="card-protxt mb-0 mt-2">Alice Cook</p>
+                <small class="text-muted mute-txt">4 mins ago</small>
+              </div>
+            </div>
+            <div class="main-head ml-3">
+              <p class="para-txt mb-0">Justin just saved this house</p>
+            </div>
+            <%#= image_tag("myfriends/feed/house_image_2.png", class: 'card-img-bottom p-3', style:'display: inline-block;') %>
+          </div>
+        </div> -->
+      </div>
+      <!-- main section ends
+
+
+      section in right top-->
+      <div class="col-md-3 feed-top-sgm">
+        <div class="end-topbar d-flex">
+          <div class="col-8">
+            <div class="p-2 head-txt">Requests</div>
+          </div>
+          <div class="col-4">
+            <div class="pt-2 head-txt text-right">
+              <a class="view-link" href="#">View All</a>
+            </div>
+          </div>
+        </div>
+        <% if @friend_requests.any? %>
+        <% @friend_requests.each do |friend_request| %>
+        <div class="card card-body end-cards">
+          <div class="card-contents">
+            <div class="cardprofile-img col-md-1">
+              <%= image_tag(friend_request.requester.profile_image, class: 'end-profile mt-1', style:'display: inline-block;') %>
+            </div>
+            <div class="end-cardtxt col-md-8">
+              <p class="top-cardpro pl-2 mb-0"><%= friend_request.requester.full_name %></p>
+              <span class="left-hrs pl-2"><%= distance_of_time_in_words(friend_request.created_at, Time.now) %></span>
+              <!-- <p class="right-cardtxt pl-2">You have 2 mutual friends</p> -->
+              <%= link_to 'Contact', friend_request_path(friend_request, friend_request: { status: :approved }), method: :put, class: 'btn btn-primary card-bttn mt-1 ml-1' %>
+            </div>
+            <div class="col-md-3">
+              <!-- <span class="left-hrs"><%#= distance_of_time_in_words(friend_request.created_at, Time.now) %></span> -->
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+        <div class="end-topbar d-flex suggpan_pnl">
+          <div class="col-8">
+            <div class="p-1 head-txt">Suggested Agents</div>
+          </div>
+          <div class="col-4 text-right pr-4">
+            <a class="view-link sugg-aggn-all sugg-viewal" href="#">View All</a>
+          </div>
+        </div>
+        <% if current_user.co_borrower? && @agents.any? %>
+        <% @agents.each do |agent| %>
+        <div class="card card-body end-cards">
+          <div class="card-contents">
+            <div class="cardprofile-img ">
+              <%#= image_tag("myfriends/feed/profile_image_2.png", class: 'end-profile1', style:'display: inline-block;') %>
+              <%= image_tag(agent.profile_image, class: 'end-profile mt-1', style:'display: inline-block;') %>
+            </div>
+            <div class="end-cardtxt">
+              <p class="right-cardpro mb-0"><%= agent.full_name %></p>
+              <p class="right-cardtxt">Cher Prime Agent</p>
+              <%#= link_to 'Contact', friend_requests_path(friend_request: { requester_id: current_user.id, requestee_id: agent.id, status: :pending }), method: :post, class: 'btn btn-primary card-bttn' %>
+              <% @friends = FriendRequest.find_by(requester_id: current_user.id, requestee_id: agent.id, status: :pending) %>
+              <% if @friends %>
+              <button type="button" class="btn btn-primary card-bttn mt-2" disabled>Contacted</button>
+              <% else %>
+              <%= link_to 'Contact', friend_requests_path(friend_request: { requester_id: current_user.id, requestee_id: agent.id, status: :pending }), method: :post, class: 'btn btn-primary card-bttn mt-2' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+        <!-- <div class="card card-body end-cards">
+          <div class="card-contents">
+            <div class="cardprofile-img">
+              <%#= image_tag("myfriends/feed/profile_image_5.png", class: 'end-profile1', style:'display: inline-block;') %>
+            </div>
+            <div class="end-cardtxt">
+              <p class="right-cardpro pl-2 mb-0">Robert Smith</p>
+              <p class="right-cardtxt pl-2">Cher Prime Agent</p>
+              <button class="btn btn-primary card-bttn" type="submit">
+                Contact
+              </button>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- right top section ends -->
+
+        <!-- right bottom section -->
+        <div class="right-bottom">
+          <p class="head-txt poplr-txt">Popular homes</p>
+          <!-- <div class="card m-2 popular-seg">
+            <div class="card-body right-botcard d-flex">
+              <div class="right-cardimg">
+                <%#= image_tag("myfriends/feed/card_house-image_1.png", style:'display: inline-block;') %>
+              </div>
+              <div class="right-cardtxt">
+                <div class="card-like-img d-flex">
+                  <div class="txt1 d-flex">
+                    <div class="txt">
+                      <p class="bot-head pl-0 mb-0">1/3 ownership</p>
+                      <p class="bot-price pl-0 mb-0">$53,890/share</p>
+                    </div>
+                    <div class="like-img justify-content-end pl-3">
+                      <%#= image_tag("myfriends/feed/like_image.png", style:'display: inline-block;') %>
+                    </div>
+                  </div>
+                </div>
+                <div class="txt card-list mt-2">
+                  <ul>
+                    <li>
+                      <%#= image_tag("myfriends/feed/bed_image.png", style:'display: inline-block;') %>
+                      <span class="bot-small mb-0">2 beds</span>
+                    </li>
+                    <li>
+                      <%#= image_tag("myfriends/feed/bath_image.png", style:'display: inline-block;') %>
+                      <span class="bot-small mb-0">2 baths</span>
+                    </li>
+                    <li>
+                      <%#= image_tag("myfriends/feed/sqft_image.png", style:'display: inline-block;') %>
+                      <span class="bot-small mb-0">3450 sqft</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="txt3 pt-1">
+                  <p class="bot-txt mb-0">4793 N Mayfield Avenue</p>
+                  <span class="bot-btm">San Bernadino, CA 92407</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <div class="card m-2 popular-seg">
+            <div class="card-body right-botcard d-flex">
+              <div class="right-cardimg">
+                <%#= image_tag("myfriends/feed/card_house-image_1.png", style:'display: inline-block;') %>
+              </div>
+              <div class="right-cardtxt">
+                <div class="card-like-img d-flex">
+                  <div class="txt1 d-flex">
+                    <div class="txt">
+                      <p class="bot-head pl-0 mb-0">1/3 ownership</p>
+                      <p class="bot-price pl-0 mb-0">$53,890/share</p>
+                    </div>
+                    <div class="like-img justify-content-end pl-3">
+                      <%#= image_tag("myfriends/feed/like_image.png", style:'display: inline-block;') %>
+                    </div>
+                  </div>
+                </div>
+                <div class="txt card-list mt-2">
+                  <ul>
+                    <li>
+                      <%#= image_tag("myfriends/feed/bed_image.png", style:'display: inline-block;') %>
+                      <span class="bot-small mb-0">2 beds</span>
+                    </li>
+                    <li>
+                      <%#= image_tag("myfriends/feed/bath_image.png", style:'display: inline-block;') %>
+                      <span class="bot-small mb-0">2 baths</span>
+                    </li>
+                    <li>
+                      <%#= image_tag("myfriends/feed/sqft_image.png", style:'display: inline-block;') %>
+                      <span class="bot-small mb-0">3450 sqft</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="txt3 pt-1">
+                  <p class="bot-txt mb-0">4793 N Mayfield Avenue</p>
+                  <span class="bot-btm">San Bernadino, CA 92407</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+  </div>

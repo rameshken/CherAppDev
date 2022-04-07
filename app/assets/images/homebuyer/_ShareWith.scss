@@ -1,0 +1,69 @@
+.input-box input {
+  border: none;
+}
+.search-img {
+  width: 18.71px;
+  height: 18.71px;
+}
+.list-name {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #080e2d;
+}
+.search-alpha-txt {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #080e2d;
+}
+.chat-head-txt {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #080e2d;
+}
+.chat-btns {
+  margin-top: 250px;
+}
+.done-btn {
+  background: #e1e7ff;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+.done-btn:hover {
+  background-color: #3154f5;
+}
+.done-btn a:hover {
+  color: #ffffff;
+}
+.done-btn a {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+
+  color: #afb1b9;
+}
+a:hover {
+  text-decoration: none;
+}
+.cancel-lnk a {
+  color: #3154f5;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+.dropdown-left {
+  background: #fafcfe;
+  border-radius: 12px 0px 0px 12px;
+  color: #080e2d;
+}

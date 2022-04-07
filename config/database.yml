@@ -1,0 +1,33 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  username: pavirami
+  password: root
+  port: 5432
+  host: localhost
+  
+  # username: weanctfeikqrkq
+  # password: ee40ab7673f5af4fa85e2226067ada5cae553f8de2691aa8bba120b7660a3afc
+  # port: 5432
+  # host: ec2-18-235-20-228.compute-1.amazonaws.com
+
+  # username: tabjdbktzwiimm
+  # password: a310a1ea234438e6376b8e4ea666a0935c761bf3f29f6e579900b0489a8b9ca9
+  # port: 5432
+  # host: ec2-174-129-33-13.compute-1.amazonaws.com
+
+development:
+  <<: *default
+  database: dev_cherapp
+
+  # database: d27nsi9dok2e8f 
+  # database: d8895o5dol6m3f
+
+# test:
+#   <<: *default
+#   database: test_cherapp
+
+# production:
+#   <<: *default
+#   database: production_cherapp

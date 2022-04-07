@@ -1,0 +1,687 @@
+<input id="currentPageInput" type="hidden" value="professionals landing page"></input>
+<div id="professional-landing-page">
+	<!-- /* navigation bar */ -->
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<a class="navbar-brand ml-8" href='/professionals'>
+			<%= image_tag("professional_landing/logo.svg", class: 'img-responsive') %>
+		</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto mr-10">
+			<%if user_signed_in? %>
+			<%= render('shared/profile_dropdown') %>
+			<% else %>
+			<li class="nav-item active ml-4">
+				<a class="nav-link nav-bar" href="/partner_with_us">Partner with Us <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item ml-4">
+				<%= link_to "Contact Us", "#contactUspro", class:"nav-link nav-bar" %>
+			</li>
+			<li class="nav-item ml-4">
+			<a class="nav-link nav-bar" href="/users/sign_in">Sign In</a>
+			</li>
+			<li class="nav-item ml-4" data-controller='modal'>
+				<%= link_to "Sign Up", new_user_registration_path(role: 'agent'), class:'nav-link nav-bar-btn  btn btn-primary' %>
+				<%= render 'shared/sign_up_modal' %>
+			</li>
+			<% end %>
+			</ul>
+		</div>
+	</nav>
+		<!-- /* end navigation bar */ -->
+
+		<!-- main banner -->
+	<section class="grey-bg extra-height py">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<h1 class="banner-text  pt80 mb-4">
+						Claim your <span class="color-violet">exclusive pre-qualified</span> leads in your market now!
+					</h1>
+					<h4 class="banner-subtext">Access exclusive pre-qualified leads in your area and reach out to them directly.</h4>
+					
+					<form action="users/sign_up" method="GET" class="mt-3 d-none d-md-block" style="margin-left: -11px;">
+            <div class="row">
+                <div class="col-md-8 m-0 flag-fix">
+                    <input type="text" class="form-control homeform" name="phone_number" id="phone" required="required" minlength="10" maxlength="13" data-target="calls.phoneNumber" size="19">
+                </div>
+                <div class="col-md-4">
+                   <input type="submit" class="form-control btn btn-primary" name="" value="Sign Up" id="">
+                </div>
+            </div>
+          </form>
+
+				</div>
+				<div class="col-md-6">
+					<%= image_tag("professional_landing/cher-agents-home.svg", class: 'img-responsive') %>
+				</div>
+
+				<div class="col-md-6 d-block d-md-none mt-3">
+          <form action="users/sign_up" method="GET" class="mt-3">
+              <div class="row">
+                  <div class="col-md-8 m-0">
+                    <input type="text" class="form-control homeform-mbl" name="phone_number" id="phone" required="required" minlength="10" maxlength="13" data-target="calls.phoneNumber" size="19" placeholder="Phone Number">
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <input type="submit" class="btn w-100 btn-primary" name="" value="Sign Up" id="">
+                  </div>
+              </div>
+          </form>
+      	</div>
+			</div>
+		</div>
+	</section>
+	<!-- end main banner -->
+
+
+
+	<!-- video -->
+	<section>
+		<div class="row">
+			<div class="col-12 bg1"></div>
+			<div class="col-12 bg2"></div>
+			<div class="col-md-4 d-none d-md-block"></div>
+			<div class="col-12 col-md-4 col-sm-12 bg1-vid">
+				  <iframe allow="autoplay" height="" src="https://drive.google.com/file/d/1of9ECEKUsuV_jeWGhGY98qtqqArbcmFM/preview" width="" class="img-responsive video-play" alt=""></iframe>
+			</div>
+		</div>
+	</section>
+
+	<!-- end video  -->
+
+
+	<!-- thropy section -->
+	<section>
+		<div class="container mt-site py">
+			<div class="row  ">
+				<!-- card -->
+				<div class="col-md-4 text-center">
+					<div class="img">
+						<%= image_tag("professional_landing/trophy2.png", class: 'icon-t') %>
+					</div>
+					<div class="content">
+						<h4 class="second-color"> A New Blue Ocean</h4>
+						<p class="bold-p">Access a unique pool of homebuyers that you can’t find anywhere else.</p>
+					</div>
+				</div>
+				<!-- card -->
+				<div class="col-md-4 text-center">
+					<div class="img">
+						<%= image_tag("professional_landing/trophy1.png", class: 'icon-t') %>
+					</div>
+					<div class="content">
+						<h4 class="second-color"> Pre-qualified Buyers </h4>
+						 <p class="bold-p"> With our in-house MLO’s, we pre-qualify buyers so you don’t have to.</p>
+					</div>
+				</div>
+				<!-- card -->
+				<div class="col-md-4 text-center">
+					<div class="img">
+						<%= image_tag("professional_landing/badge.png", class: 'icon-t') %>
+					</div>
+					<div class="content">
+						<h4 class="second-color"> Exclusive Leads </h4>
+						  <p class="bold-p"> If we send you a lead, it’s only being sent to YOU.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end thropy -->
+
+
+	<!-- Trusted By -->
+	<section class="py">
+		<div class="conatiner">
+			<div class="row text-center">
+				<div class="col-12">
+					<h4 class="theme-title mb-8">Trusted by </h4>
+				</div>
+				<div class="col-12">
+					<div class="container">
+						<div class="row text-center shift-left">
+							
+								 <span class="col-md-3 p-0 m-0 row">
+									<div class="col-6">
+									<%= image_tag("professional_landing/Vouched.svg", class: 'trusted-by') %>
+								</div>
+									<div class="col-6">
+									<%= image_tag("professional_landing/equifax-logo.svg", class: 'trusted-by') %>
+								</div>
+								 </span>
+								 <span class="col-md-3 p-0 m-0 row">
+								 	<div class="col-6">
+									 	<%= image_tag("professional_landing/UWM_logo.svg", class: 'trusted-by') %>
+									 </div>
+									 <div class="col-6">
+									 	<%= image_tag("professional_landing/Experian.svg", class: 'trusted-by') %>
+									</div>
+								 </span>
+								 <span class="col-md-3 p-0 m-0 row">
+									 <div class="col-6">
+									 	<%= image_tag("professional_landing/quicken-loans.svg", class: 'trusted-by') %>
+									 </div>
+									 <div class="col-6">
+									 	<%= image_tag("professional_landing/mucker-lab.svg", class: 'trusted-by') %>
+									 </div>
+								</span>
+								<span class="col-md-3 text-center p-0 m-0">
+									<%= image_tag("professional_landing/barada.svg", class: 'trusted-by') %>
+								</span>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end trusted by -->
+	<!-- lead gen -->
+	<section class="yellow-section py">
+		<div class="row text-center">
+			<div class="col-md-12">
+				<%= image_tag("professional_landing/support2.svg", style: 'display: inline-block;') %>
+			</div>
+			<div class="col-12">
+				<h4 class="yellow-text">Dont call us a lead-gen</h4>
+				<p class="yellow-subtext">This is a partnership. Cher Clique Agent was created by agents, for agents. We know your struggle and
+					desires because we've been there. Keep reading to see how we help agents succeed.    </p>
+			</div>
+			<div class="col-12">
+				<%= link_to "Get Started", new_user_registration_path(clique: "enabled", plan: "premium", role:"agent"), class:'btn yellow-btn white btn-primary' %>  
+			</div>
+		</div>
+	</section>
+	<!-- end lead gen -->
+
+	<!-- target section -->
+	<section class="pyxl">
+		<div class="container">
+			<div class="row flexible">
+				<div class="col-md-6">
+					<h4 class="target-heading">Only Pay For Leads You Want</h4>
+					<p class="target-subheading"> If we send you a lead that you don't want, dont pay for it. You're only charged  for using a message credit when you actually
+						reach  out to a homebuyer on our platform.
+					</p>
+
+				</div>
+				<div class="col-md-6 " >
+					<%= image_tag("professional_landing/leads.gif", class:'set-height') %>
+					<%= image_tag("professional_landing/target-1.svg", class:'target-icon') %>
+				
+				</div>
+
+				<div class="col-md-12 pysm"></div>
+
+				<!-- second level -->
+				<div class="col-md-6 d-none d-md-block">
+					<%= image_tag("professional_landing/feature-key.svg", class:'set-height') %>
+				</div>
+				<div class="col-md-6">
+					<h4 class="target-heading">Close More Deals With Less Effort</h4>
+					<p class="target-subheading">Manage your leads seamlessly help through the home buying process.</p>
+				</div>
+
+				<div class="col-md-6 d-sm-block d-md-none">
+          <%= image_tag("professional_landing/feature-key-mobile.svg", class:'set-height') %>
+      </div>
+
+				<div class="col-md-12 pysm"></div>
+				
+				<!-- third level -->
+				<div class="col-md-6">
+					<h4 class="target-heading">We're Only Successful If You Are</h4>
+					<p class="target-subheading">We make money when you close deals. Sure, we charge a monthly subscription to cover costs,
+						but we don't actually   turn a profit until you close a deal. So we do everything we can to make
+						that happen.
+					</p>
+				</div>
+				<div class="col-md-6">
+					<%= image_tag("professional_landing/lead-chat.svg", class:'set-height') %>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end target -->
+
+	<!-- pricing -->
+	<section class="blue-bg pyxl">
+		<div class="row h-flex text-center">
+			<div class="col-md-12">
+				<h4 class="pricing mb-5 is-bold"> Gain a competitive edge </h4>
+			</div>
+			<div class="col-md-6">
+				<div class="space">
+					<div class="card box1">
+						<div class="card-body">
+							<h4 class="pre">Clique Premium</h4>
+					   
+							<h5 class="pc is-bold">$199/Month</h5>
+							<%= link_to "Get Started", new_user_registration_path(clique: "enabled", plan: "premium", role:"agent"), class:'btn pc-btn is-bold' %>
+							<div class="spaned text-left">
+								<ul>
+									<li>
+										<div class="row">
+											<div class="col-2">
+												<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick.svg", class:'tick') %>
+											</div>
+											<div class="col-10">
+												Marketed as <strong>Preferred Agent</strong> to buyers
+											</div>
+										</div>
+										
+									</li>
+									<li>
+										<div class="row">
+											<div class="col-2">
+												<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick.svg", class:'tick') %>
+											</div>
+											<div class="col-10">
+												<strong>Exclusive leads</strong> sent straight to your inbox        
+											</div>
+										</div>
+										
+									</li>
+									<li>
+										<div class="row">
+											<div class="col-2">
+												<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick.svg", class:'tick') %>
+											</div>
+											<div class="col-10">
+												Reach <strong>directly</strong> to buyers you want (up to 5)            
+											</div>
+										</div>
+									
+									</li>
+									<li>
+										<div class="row">
+											<div class="col-2">
+												<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick.svg", class:'tick') %>
+											</div>
+											<div class="col-10">
+												Chat live <strong>in-app</strong> with buyers        
+											</div>
+										</div>
+										
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="space">
+					<div class="card box2">
+						<div class="card-header card-header-cst">
+							<h4 class="pricing-uptext is-bold">Limited Time Offer</h4>
+					   </div>
+						<div class="card-body" style="margin-top: 17px;">
+							<h6 class="pre">Clique Pro</h6>
+							<h5 class="cst-price is-bold">Custom Pricing</h5>
+							<%= link_to "Contact Sales", '#contactUspro', class:'btn cst-btn is-bold' %>
+							<div class="spaned text-left">
+								<div class="spaned text-left">
+									<ul>
+										<li>
+											<div class="row">
+												<div class="col-2">
+													<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick.svg", class:'star') %>
+												</div>
+												<div class="col-10">
+													<strong>Everything from Premium</strong>
+												</div>
+											</div>
+										   
+										</li>
+										<li>
+										   <div class="row"> 
+											   <div class="col-2">
+											<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick-blue.svg", class:'star') %> 
+										</div>
+										<div class="col-10" style="color: #3154F5;">
+											<strong style="color: #3154F5;">Guaranteed pre-qualified buyer letter</strong> in your first month
+										 </div></div>
+										  
+										</li>
+										<li>
+											<div class="row">
+												<div class="col-2">
+													<%= image_tag("professional_landing/cherapp-ownership-coborrowing-tick-blue.svg", class:'star') %>
+												</div>
+												<div class="col-10" style="color: #3154F5;">
+												<strong style="color: #3154F5;">Cheaper & Better ROI</strong> than Zillow Premier Agent
+												   </div> 
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- end pricing -->
+
+	<!-- featured in -->
+	<section class="pyxl">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-12">
+					<h4 class="theme-title mb-8">Featured In </h4>
+				</div>
+				<div class="col-12">
+					<div class="container">
+						<div class="row featured-cher">
+							<div class="col-md-2 col-4">
+								<%= image_tag("professional_landing/cherapp-ownership-coborrowing-cbs.svg", class:'img-responsive featured-icon') %>
+							</div> 
+							<div class="col-md-2 col-4">
+								<%= image_tag("professional_landing/muckerLab-removebg-preview.png", class:'img-responsive featured-icon-m') %>
+							</div>
+							<div class="col-md-2 col-4">
+								<%= image_tag("professional_landing/cherapp-ownership-coborrowing-pitchglobal.png", class:'img-responsive') %>
+							</div>
+							<div class="col-md-2 col-4">
+								<%= image_tag("professional_landing/cherapp-ownership-coborrowing-realton.png", class:'img-responsive') %>
+							</div>
+							<div class="col-md-2 col-4">
+								<%= image_tag("professional_landing/cherapp-ownership-coborrowing-svop.png", class:'img-responsive') %>
+							</div>
+							<div class="col-md-2 col-4">
+								<%= image_tag("professional_landing/cherapp-ownership-coborrowing-techday.png", class:'img-responsive') %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- featured end -->
+	<!-- testimonails  -->
+	<section>
+		<div class="container">
+			<div class="row text-center" >
+				<div class="col-12">
+					<h4 class="theme-title mb-8">Testimonials</h4>
+				</div>
+				
+		</div>	
+			<div class="row">
+								<!-- Swiper -->
+
+<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper-container mySwiper">
+	<div class="parallax-bg" data-swiper-parallax="-23%"></div>
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="card p-3">
+							<div class="" data-swiper-parallax="-300">
+								<%= image_tag("professional_landing/vector.png") %>
+								 <br>
+								<div class="pl-3 pt-0">
+									I was skeptical at first because I never heard of it, but once I was able to take a deeper look into their platform, I found that was a great opportunity to help build my business."
+								</div>
+							</div>
+							<div class="subtitle mt-4" data-swiper-parallax="-200">
+								<div class="row">
+									<div class="col-1">
+										<img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1568709978/BBBootstrap/2.jpg" alt="">
+									</div>
+									<div class="col-11">
+										<h5 class="t-name">Lucas S.</h5>
+										<span class="t-sec">Real Estate Agent ● Santa Monica, CA</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="card p-3">
+							<div class="" data-swiper-parallax="-300">
+								<%= image_tag("professional_landing/vector.png") %>
+								 <br>
+								<div class="pl-3 pt-0">
+									My experience with Cher has been great, from the beginning to closing a deal. Right after I bought my subscription, someone from the customer success team took me through their onboarding process which was quite easy to understand. Pleasantly surprised and strongly recommend this to other agents. I’ve been a member for 4 months now and have closed 2 deals!"
+								</div>
+							</div>
+							<div class="subtitle mt-4" data-swiper-parallax="-200">
+								<div class="row">
+									<div class="col-1">
+										<img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1561869127/BBBootstrap/img-3.jpg" alt="">
+									</div>
+									<div class="col-11">
+										<h5 class="t-name">Will R.</h5>
+										<p class="t-sec">Real Estate Agent ● San Francisco, CA</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>	
+					<div class="swiper-slide">
+						<div class="card p-3">
+							<div class="" data-swiper-parallax="-300">
+								<%= image_tag("professional_landing/vector.png") %>
+								 <br>
+								<div class="pl-3 pt-0">
+									They don’t leave you in the dark. They don’t oversell you. They were very transparent about what they offer and if it would be a good fit for me. It’s really nice - and rare - being able to reach out to a tech company and hear back on the same day."
+								</div>
+							</div>
+							<div class="subtitle mt-4" data-swiper-parallax="-200">
+								<div class="row">
+									<div class="col-1">
+										<%= image_tag("cherapp-ownership-coborrowing-testimonial-jordan.png") %>
+									</div>
+									<div class="col-11">
+										<h5 class="t-name">Mia T.</h5>
+										<p class="t-sec">Real Estate Agent ● San Diego, CA</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>	
+
+					<div class="swiper-slide">
+						<div class="card p-3">
+							<div class="" data-swiper-parallax="-300">
+								<%= image_tag("professional_landing/vector.png") %>
+								 <br>
+								<div class="pl-3 pt-0">
+									They’re vertically integrated - they do everything. For the homebuyer, for the agent - it’s pretty amazing and I was honestly very impressed."
+								</div>
+							</div>
+							<div class="subtitle mt-4" data-swiper-parallax="-200">
+								<div class="row">
+									<div class="col-1">
+										<%= image_tag("cherapp-ownership-coborrowing-testimonial-nicole.png") %>
+									</div>
+									<div class="col-11">
+										<h5 class="t-name">Sophia G.</h5>
+										<p class="t-sec">Real Estate Agent ● Brentwood, CA</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>	
+
+					<div class="swiper-slide">
+						<div class="card p-3">
+							<div class="" data-swiper-parallax="-300">
+								<%= image_tag("professional_landing/vector.png") %>
+								 <br>
+								<div class="pl-3 pt-0">
+									Yes, I would especially for agents. I also have clients in LA that would definitely benefit from this service to help with homes over asking or bidding wars."
+								</div>
+							</div>
+							<div class="subtitle mt-4" data-swiper-parallax="-200">
+								<div class="row">
+									<div class="col-1">
+										<%= image_tag("cherapp-ownership-coborrowing-testimonial-kalli.png") %>
+									</div>
+									<div class="col-11">
+										<h5 class="t-name">Amelia R.</h5>
+										<p class="t-sec">Real Estate Agent ● Beverly Hills, CA</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>									
+					
+					
+				</div>
+				<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end testimonials -->
+		<div class="extraspace" id="contactUspro"></div>
+		<!-- call to action -->
+		<section class="yellow-section pyxl h108">
+			<div class="row text-center">
+				<div class="col-6 m19">
+					<%= image_tag("professional_landing/pro-call.svg", class:'cta-ico') %>
+					<h4 class="cta"> Call Today</h4>
+					<p class="cta-no">(877) - 311 - 3491</p>
+				</div>
+				<div class="col-md-6">
+					<div class="card absbox">
+							<%= form_for(:contact_support, url: contact_supports_path ) do |f| %>
+							<div class="row label" data-controller="city-state-selecter">
+								<div class="col-md-12">
+									<h4 class="cta-title"> Find your next client</h4>
+								</div>
+								<div class="col-md-12">
+									<label for=""> I am</label>
+									<select name="" id="" class="form-control">
+										<option value="">An Agent/Broker</option>
+										<option value="">A Homebuyer</option>
+									</select>
+								</div>
+								<div class="col-md-12 mb-3" style='margin-top: 10px;'>
+									<%= f.label :name, t('Full Name') %>
+									<%= f.text_field :name, class: 'input form-control', required: true, minlength: 3, maxlength: 30, value: current_user&.full_name %>
+								</div>
+								<div class="col-md-12 mb-3">
+									<label for="">Email</label>
+									<%= f.text_field :email, type: 'email', class: 'input form-control', required: true, minlength: 10, maxlength: 50, value: current_user&.email %>
+								</div>
+								<div class="col-md-12 mb-3 flag-fix">
+									<label for="">Phone</label>
+									<%= f.text_field :phone, id: 'phone_pro', class: 'input form-control', required: true, minlength: 10, maxlength: 13, value: current_user&.phone_number, 'data-target': 'calls.phoneNumber' %>
+								</div>
+								<div class="col-md-12 mb-3">
+									<label for="">City</label>
+									<%= f.text_field :city, class: "input form-control field is-marginless", required: true, placeholder: " ", 'data-controller' => 'google-auto-complete-input', 'data-target' => 'google-auto-complete-input.searchInput city-state-selecter.searchInput', 'data-action' => 'keydown->city-state-selecter#setCity change->city-state-selecter#setCity', type: 'text', onDrag: "return false", onDrop: "return false", onPaste: "return false" %>
+        						<p class="help is-danger" data-target="city-state-selecter.errorMessage"></p>
+        						<div class="map m-b-lg is-relative" id="locationMapContainer"></div>
+								</div>
+								<div class="col-12 mb-3" style="margin-top: -10px;">
+									  <%= f.submit t('buttons.submit'), class: 'btn cta-btn white', id: 'successMessage', 'data-target' => 'city-state-selecter.submitButton process(event)'%>
+							    <!-- </div> -->
+								</div>
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end call to action -->
+		<div class="extraspace"></div>
+		<!-- footer -->
+	<footer>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row ftr">
+					<div class="col-md-4">
+						<h4> About Us</h4>
+						<ul class="ftul">
+							<li><%= link_to t("footer.who_we_are"), '/who_we_are', style: 'color:#080808'%></li>
+							<li><%= link_to t("footer.why_we_do_it"), '/know_more', style: 'color:#080808'%></li>
+							<li><%= link_to t("footer.partner"), '/partner_with_us', style: 'color:#080808'%></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4> Help Center</h4>
+						<ul class="ftul">
+							<li><%= link_to t("footer.contact_us"), "/#contactUs", style: 'color:#080808'%></li>
+							<li><%= link_to t("footer.faq"), faq_path, style: 'color:#080808'%></li>
+							<li><%= link_to t("footer.knowledge_hub"), knowledge_hub_path, style: 'color:#080808'%></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4> Legal</h4>
+						<ul class="ftul">
+							<li><%= link_to t("footer.terms_conditions"), '/terms', style: 'color:#080808'%></li>
+							<li><%= link_to t("footer.private_terms"), '/privacy', style: 'color:#080808'%></li>
+							<li>Cookie Policy</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="left-bottom">
+					<p class="adrs">NMLS Consumer Access #1898741 <br>
+
+						California Bureau of Real Estate #02094241 <br>
+						
+						Patent Pending - ©2021 Cher Inc. All Rights Reserved</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<%= render 'shared/phone_input' %>
+</div>
+		<!-- end footer -->
+
+	<script type="text/javascript">
+		var swiper = new Swiper(".mySwiper", {
+		speed: 600,
+		autoplay: true,
+		parallax: true,
+		pagination: {
+		el: ".swiper-pagination",
+		clickable: true,
+		},
+		navigation: {
+		nextEl: ".swiper-button-next",
+		prevEl: ".swiper-button-prev",
+		},
+	});
+	</script>
+
+<!-- Modal -->
+  <div class="modal fade" id="successMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+      <div class="modal-content modal-cst">
+        <div class="modal-body">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="container mt-50">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h4 class="modal-h4"> Thank you! Our sales will reach to you shortly.</h4>
+                        <a href="" class="btn btn-primary modal-btn mt-5"> Continue to site</a>
+                    </div>
+                </div>
+  
+              </div>
+
+         </div>
+       
+      </div>
+    </div>
+  </div>

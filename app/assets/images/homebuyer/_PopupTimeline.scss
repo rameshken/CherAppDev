@@ -1,0 +1,62 @@
+.progressbar {
+  width: 80%;
+  height: 8px;
+  background: rgba(49, 84, 245, 0.31);
+  border-radius: 100px;
+  margin-bottom: 50px;
+}
+.popup-container {
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  width: 983px;
+  height: 700px;
+  overflow-y: scroll;
+  position: absolute;
+  top: -9%;
+  left: -88%;
+}
+
+.progressbar div {
+  width: 33.3%;
+  height: 100%;
+  border-radius: 100px;
+  background: #3154f5;
+}
+.back-opt {
+  border: 1px solid #080e2d !important;
+  border-radius: 3px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold !important;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #080e2d;
+  padding: 5px 20px;
+  margin: 1rem;
+}
+.cont-opt {
+  background: #3154f5;
+  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2), 0px 1px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold !important;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin: 1rem;
+}
+.skip-opt {
+  border-radius: 3px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold !important;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #080e2d;
+  padding: 5px 20px;
+  margin: 1rem;
+}

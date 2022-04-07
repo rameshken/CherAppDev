@@ -1,0 +1,52 @@
+= form_tag(profile_verify_url, id: 'form_id') do
+  .h-screen.bg-blue-500.py-20.px-3
+    .container.mx-auto
+      .max-w-sm.mx-auto.md:max-w-lg
+        .w-full
+          .bg-white.h-64.py-3.rounded.text-center
+            %h1.text-2xl.font-bold OTP Verification
+            .flex.flex-col.mt-4
+              %span Enter the One Time Password you received
+              / %span.font-bold +91 ******876
+            #otp.flex.flex-row.justify-center.text-center.px-2.mt-5.field
+              %input#first.m-2.border.h-10.w-10.text-center.form-control.rounded{:maxlength => "1", :type => "tel", :name => 'one'}/
+              %input#second.m-2.border.h-10.w-10.text-center.form-control.rounded{:maxlength => "1", :type => "text", :name => 'two'}/
+              %input#third.m-2.border.h-10.w-10.text-center.form-control.rounded{:maxlength => "1", :type => "text", :name => 'three'}/
+              %input#fourth.m-2.border.h-10.w-10.text-center.form-control.rounded{:maxlength => "1", :type => "text", :name => 'four'}/
+              %input#fifth.m-2.border.h-10.w-10.text-center.form-control.rounded{:maxlength => "1", :type => "text", :name => 'five'}/
+              %input#sixth.m-2.border.h-10.w-10.text-center.form-control.rounded{:maxlength => "1", :type => "text", :name => 'six'}/
+            .actions
+              = submit_tag 'Validate', class: 'button is-coborrower-blue is-centered is-fullwidth btn btn-success', 'data-target': 'user-profile.submitButton city-map-selecter.changeLocationButton'
+:javascript
+  document.getElementById('first').focus();
+  document.getElementById('first').select();
+  if (document.getElementById('sixth').value != '') {
+    alert('hi');
+    document.getElementById('form_id').submit();
+    };
+  document.addEventListener("DOMContentLoaded", function(event) {
+  
+  function OTPInput() {
+  const inputs = document.querySelectorAll('#otp > *[id]');
+  for (let i = 0; i < inputs.length; i++) { 
+    inputs[i].addEventListener('keydown', function(event) { 
+      if (event.key==="Backspace" ) { 
+        inputs[i].value='' ; if (i !==0) inputs[i - 1].focus(); 
+      } else 
+      { if (i===inputs.length - 1 && inputs[i].value !=='' ) 
+      { return true; } 
+      else if (event.keyCode> 47 && event.keyCode < 58) { 
+        inputs[i].value=event.key; 
+        if (i !==inputs.length - 1) 
+          inputs[i + 1].focus(); event.preventDefault(); 
+      } 
+      else if (event.keyCode> 64 && event.keyCode < 91) { 
+        inputs[i].value=String.fromCharCode(event.keyCode); 
+        if (i !==inputs.length - 1) 
+          inputs[i + 1].focus(); event.preventDefault(); 
+      } } }); } } 
+
+    OTPInput(); 
+    });
+
+

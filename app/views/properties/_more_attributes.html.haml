@@ -1,0 +1,206 @@
+.container.custom-padding-mobile{'data-controller': 'collapsible'}
+  %button.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.image{'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'is-18x18 icon is-absolute to-right-2 arrow-up is-down m-t-sm', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+    %h3.has-text-primary= t('property_overview.more_details')
+  .is-clipped{'data-target': 'collapsible.container'}
+    .is-grey.m-t-md
+      %h4.p-sm.m-l-sm Facts and features
+    .my-lg.my-sm
+      .columns.has-text-left.d-flex-mobile
+        .column.is-5-widescreen.is-6-desktop.is-12-mobile.py-0
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm
+            %i.fas.fa-toolbox.mr-2
+            = "Year built: #{field_data(property_profile&.dig('structure', 'year_built'))}" 
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm
+            %i.fas.fa-calendar-alt.mr-2  
+            = "Effective year built: #{field_data(property_profile&.dig('structure', 'effective_year_built'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm
+            %i.fas.fa-building.mr-2  
+            = "Stories: #{field_data(property_profile&.dig('structure', 'stories'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm.m-b-sm
+            %i.fas.fa-layer-group.mr-2  
+            = "# of units: #{field_data(property_profile&.dig('structure', 'units_count'))}"
+        .column.is-5-widescreen.is-6-desktop.is-12-mobile.py-0
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            %i.fas.fa-parking.mr-2 
+            = "Parking: #{field_data(property_profile&.dig('structure', 'parking_type'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm
+            %i.fas.fa-swimming-pool.mr-2 
+            = "Pool type: #{field_data(property_profile&.dig('structure', 'pool_type'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm
+            %i.fas.fa-chart-area.mr-2  
+            = "Total area: #{field_data(property_profile&.dig('structure', 'total_area_sq_ft'))} sqft"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm.m-b-sm 
+            %i.fas.fa-plus-square.mr-2
+            Other areas: None
+    
+    .is-grey.m-t-md
+      %h4.p-sm.m-l-sm Interior Details
+    .my-lg.my-sm
+      .columns.has-text-left.d-flex-mobile
+        .column.is-5-widescreen.is-6-desktop.is-12-mobile.py-0
+          .is-size-6-destktop.has-text-weight-bold.m-t-sm 
+            Bedrooms and Bathrooms
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Bedrooms: #{field_data(property_profile&.dig('structure', 'beds_count'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Bathrooms: #{field_data(property_profile&.dig('structure', 'baths'))}"
+          .is-size-6-destktop.has-text-weight-bold.m-t-md
+            Basement
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Basement type: #{field_data(property_profile&.dig('structure', 'basement_type'))}"
+          .is-size-6-destktop.has-text-weight-bold.m-t-md
+            Heating
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Heating type: #{field_data(property_profile&.dig('structure', 'heating_type'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Heating fuel type: #{field_data(property_profile&.dig('structure', 'heating_fuel_type'))}"
+          .is-size-6-destktop.has-text-weight-bold.m-t-md
+            Amenities
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm.m-b-sm
+            = field_data_collection(property_profile&.dig('structure', 'amenities'))            
+        .column.is-5-desktop.is-6-mobile.is-12-mobile.py-0
+          .is-size-6-destktop.has-text-weight-bold.m-t-md
+            Appliances
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Air conditioning type: #{field_data(property_profile&.dig('structure', 'air_conditioning_type'))}"
+          .is-size-6-destktop.has-text-weight-bold.m-t-md
+            Interior features
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Fireplaces: #{field_data(property_profile&.dig('structure', 'fireplaces'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Flooring type: #{field_data_collection(property_profile&.dig('structure', 'flooring_types'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Water type: #{field_data(property_profile&.dig('structure', 'water_type'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm.m-b-sm 
+            = "Sewer type: #{field_data(property_profile&.dig('structure', 'sewer_type'))}"
+  
+    .is-grey.m-t-md
+      %h4.p-sm.m-l-sm Property Details
+    .my-lg.my-sm
+      .columns.has-text-left.d-flex-mobile
+        .column.is-5-widescreen.is-6-desktop.is-12-mobile.py-0
+          .is-size-6-destktop.has-text-weight-bold.m-t-sm 
+            Property
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Parcel #: #{field_data(property_profile&.dig('parcel', 'apn_original'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Depth: #{field_data(property_profile&.dig('parcel', 'depth_ft'))} ft"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Frontage: #{field_data(property_profile&.dig('parcel', 'frontage_ft'))} ft"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Area: #{field_data(property_profile&.dig('parcel', 'area_sq_ft'))} sqft"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Land category: #{field_data(property_profile&.dig('parcel', 'standardized_land_use_category'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Land type: #{field_data(property_profile&.dig('parcel', 'standardized_land_use_type'))}"
+          .is-size-6-destktop.has-text-weight-bold.m-t-md
+            Parking
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Parking type: #{field_data(property_profile&.dig('structure', 'parking_type'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "# of parking spaces: #{field_data(property_profile&.dig('structure', 'parking_spaces_count'))}"
+        .column.is-5-widescreen.is-6-desktop.is-12-mobile.py-0
+          .is-size-6-destktop.has-text-weight-bold.m-t-sm 
+            Lot
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Zoning: #{field_data(property_profile&.dig('parcel', 'zoning'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "# of buildings: #{field_data(property_profile&.dig('parcel', 'building_count'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Legal description: #{field_data(property_profile&.dig('parcel', 'legal_description'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Lot: #{field_data(property_profile&.dig('parcel', 'lot_code'))}"
+          .is-size-6-destktop.has-text-weight-medium.m-t-sm 
+            = "Lot number: #{field_data(property_profile&.dig('parcel', 'lot_number'))}"
+
+    - if property_profile.dig('taxes').present?
+      .is-grey.m-t-md
+        %h4.p-sm.m-l-sm Taxes
+      .my-lg.my-sm
+        .columns
+          .column.is-9
+            .table-wrapper
+              %table.has-no-style
+                %thead
+                  %th.has-text-weight-bold Year
+                  %th.has-text-weight-bold Amount
+                  %th.has-text-weight-bold Exemptions
+                  %th.has-text-weight-bold Rate code area
+                %tbody
+                  - property_profile&.dig('taxes').each do |tax|
+                    %tr
+                      %td= field_data(tax&.dig('year'))
+                      %td= number_to_currency(tax&.dig('amount'))
+                      %td= field_data_collection(tax&.dig('exemptions'))
+                      %td= field_data(tax&.dig('rate_code_area'))
+
+    - if property_profile.dig('market_assessments').present?
+      .is-grey.m-t-md
+        %h4.p-sm.m-l-sm Market Assessments
+      .my-lg.my-sm
+        .columns
+          .column.is-9
+            .table-wrapper
+              %table.has-no-style
+                %thead
+                  %th.has-text-weight-bold Year
+                  %th.has-text-weight-bold Land Value
+                  %th.has-text-weight-bold Improvement Value
+                  %th.has-text-weight-bold Total Value
+                %tbody
+                  - property_profile&.dig('market_assessments').each do |market_assessment|
+                    %tr
+                      %td= field_data(market_assessment&.dig('year'))
+                      %td= number_to_currency(market_assessment&.dig('land_value'))
+                      %td= number_to_currency(market_assessment&.dig('improvement_value'))
+                      %td= number_to_currency(market_assessment&.dig('total_value'))
+
+    .is-grey.m-t-md
+      %h4.p-sm.m-l-sm AVM
+    .my-lg.my-sm
+      .is-size-5.is-bold.m-b-md Cher Estimate
+      - if @property_frankeinstein[:property_profile]&.dig('valuation')
+        .columns
+          .column.is-6
+            .columns.custom-flex-mobile
+              .column.is-6
+                %p.is-size-6.is-marginless= t('property_overview.date')
+                %p.is-size-5.is-bold= format_date(@property_frankeinstein[:property_profile]&.dig('valuation', 'date'), "%b %Y")
+              .column.is-6
+                %p.is-size-6.is-marginless= t('property_overview.price_label')
+                %p.is-size-5.is-bold= number_to_currency(@property_frankeinstein[:property_profile]&.dig('valuation', 'value'))
+            = area_chart chart_data(@property_frankeinstein[:property_profile]&.dig('deeds')), prefix: "$ ", thousands: ","
+          .column.is-6
+            .card 
+              .card-content
+                .content
+                  %h4 Investment tips
+                  %p Learn how much money you can earn by building your investment equity with Cher.
+                  %p Use Cher to:
+                  %ul
+                    %li.is-bold Co-own another home
+                    %li.is-bold Invest in more homes
+                    %li.is-bold Sell co-ownership
+      - else
+        .columns
+          .column.is-6
+            .is-size-6.m-b-md We don't have enough information to calculate a Cher Estimate for this home. 
+
+    .is-grey.m-t-md
+      %h4.p-sm.m-l-sm Construction Details
+    .my-lg.my-sm
+      .is-size-6-destktop.has-text-weight-bold.m-t-sm 
+        Type and style
+      .is-size-6-destktop.has-text-weight-medium.m-t-sm
+        = "Architecture type: #{field_data(property_profile&.dig('structure', 'architecture_type'))}"
+      .is-size-6-destktop.has-text-weight-medium.m-t-sm
+        = "Construction type: #{field_data(property_profile&.dig('structure', 'construction_type'))}"
+      .is-size-6-destktop.has-text-weight-medium.m-t-sm
+        = "Exterior wall type: #{field_data(property_profile&.dig('structure', 'exterior_wall_type'))}"
+      .is-size-6-destktop.has-text-weight-medium.m-t-sm
+        = "Foundation type: #{field_data(property_profile&.dig('structure', 'foundation_type'))}"
+      .is-size-6-destktop.has-text-weight-medium.m-t-sm
+        = "Roof material type: #{field_data(property_profile&.dig('structure', 'roof_material_type'))}"
+      .is-size-6-destktop.has-text-weight-medium.m-t-sm.m-b-sm
+        = "Roof style type: #{field_data(property_profile&.dig('structure', 'roof_style_type'))}"

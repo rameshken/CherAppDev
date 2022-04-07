@@ -1,0 +1,38 @@
+:javascript
+  $(document).ready(function () {
+  const phoneInputField = document.querySelector("#phone");
+     const phoneInput = window.intlTelInput(phoneInputField, {
+       onlyCountries: ["us"],
+       separateDialCode: true,
+       utilsScript:
+         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+     });
+      
+    $("form").submit(function() {
+      $('#phone').val(phoneInput.getNumber());
+    });
+
+    
+      $('#phone').usPhoneFormat({
+        format: '(xxx) xxx-xxxx',
+      });
+    });
+
+  $(document).ready(function () {
+  const phoneInputFields = document.querySelector("#phone_pro");
+     const phoneInputs = window.intlTelInput(phoneInputFields, {
+       onlyCountries: ["us"],
+       separateDialCode: true,
+       utilsScript:
+         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+     });
+      
+    $("form").submit(function() {
+      $('#phone_pro').val(phoneInputs.getNumber());
+    });
+
+    
+      $('#phone_pro').usPhoneFormat({
+        format: '(xxx) xxx-xxxx',
+      });
+    });

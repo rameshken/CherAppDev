@@ -1,0 +1,77 @@
+#professional-landing-signup-page {
+        .row{
+            padding: 0;
+            margin: 0;
+        }
+
+        .ml-8{
+            margin-left: 7%;
+        }
+        .trusted-by{
+            width: 100px;
+        }
+        .py{
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .singup{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 32px;
+        }
+        .f-18{
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+        }
+        label{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            /* identical to box height */
+
+
+            color: #333333;
+        }
+        .form-control{
+            /* width: 182px; */
+            height: 52px;
+            border: 2px solid #D3D3D3;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+        .btn-primary{
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 21px;
+            padding: 15px;
+            /* identical to box height */
+
+            text-align: center;
+            border-radius: 3px;
+
+            color: #FFFFFF;
+        }
+        .links{
+            margin-top: 3%;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+            /* identical to box height */
+
+            text-align: center;
+
+            color: #000000;
+        }
+        .trusted-by{
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 130%;
+            /* or 23px */
+
+
+            color: #000000;
+        }
+      }

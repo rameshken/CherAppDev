@@ -1,0 +1,26 @@
+<div class="container has-addons">
+    <h5 class="is-size-5 is-bold m-b-md">
+  		<%= t('generic.search_people') %>
+		</h5>
+    <div class="row">
+        <div class="col-md-4">
+            	<%= form_tag("/social_networks", :method => "get") do %>
+                <div class="field has-addons">
+                    <input
+									     	type="text"
+									      name="user[identifier]"
+									      className="input has-icon is-search form-control"
+									      placeholder="input phone, email or name "
+									      required="required"
+									      autoComplete="off" 
+                        style="padding: 8px;"
+									  />
+									  <br>
+                    <span class="input-group-btn" style="margin-left: 6px;">
+                        <%= submit_tag("Search", class: 'btn btn-primary')  %>
+                     </span>
+                </div>
+              <% end %>
+        </div>
+    </div>
+</div>

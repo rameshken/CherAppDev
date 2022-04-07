@@ -1,0 +1,58 @@
+%header{ class: user_is_in_conversation? ? 'is-hidden-mobile' : ''}
+  %nav.navbar
+    .container
+      .is-multiline.is-mobile.is-marginless.has-items-centered.has-space-between.is-flex{style:'width: 100%;'}
+        .cher-brand.is-paddingless-desktop
+          - if user_signed_in? && current_user.agent?
+            = link_to professionals_path, {"data-turbolinks": "false"} do
+              = image_tag("cherapp-ownership-coborrowing-cher-icon-2.svg", alt: t('img_alts.app_logo'), class: 'cher-logo')
+          - else
+            = link_to root_path, {"data-turbolinks": "false"} do
+              = image_tag("cherapp-ownership-coborrowing-cher-icon-2.svg", alt: t('img_alts.app_logo'), class: 'cher-logo')
+        - if user_signed_in?
+          - if params[:controller] == 'social_networks' && !current_user.agent?
+            .column.is-narrow.is-paddingless.m-r-md{ 'data-controller': 'modal', style:'margin-right: 14rem;margin-top: 35px;position: relative;' }
+              / %button.button.is-coral.is-size-7-mobile{ 'data-action': 'modal#toggleModal' }
+              /   = t('generic.invite_friends')
+              = render 'shared/social_network_add_friend_modal'
+        - else
+          %ul.is-flex.column.is-6-mobile.is-justified-end
+            %li.has-separator
+              = link_to t("generic.log_in"), user_session_path, class: 'is-size-6 gtm-navbar-log-in has-text-black is-size-7-mobile'
+            %li.is-marginless
+              %div{ 'data-controller': 'modal' }
+                %buton.button.is-primary.gtm-navbar-sign-up.is-size-7-mobile{ 'data-action': 'click->modal#toggleModal', type: 'button' }
+                  = t("generic.sign_up")
+                = render 'shared/sign_up_modal'
+      - if user_signed_in?
+        .nav-menu
+          - if params[:controller] == 'users/conversations'
+            = link_to new_conversation_path, class: 'chat-button' do
+              = image_tag('cherapp-ownership-coborrowing-new-message.svg')
+          - else
+            / = react_component('chat/ChatConversationsIndicator')
+          %button.menu-button
+            = image_tag("cherapp-ownership-coborrowing-menu.svg", alt: t('img_alts.menu'))
+          %ul
+            - if current_user.agent? && !current_user.part_of_clique?
+              %li.is-hidden-mobile
+                / = link_to t('generic.access_buyers'), '/pricing', class: 'button is-primary m-r-md'
+            %li.is-marginless
+              = render('shared/profile_dropdown')
+      - if user_signed_in?
+        .nav-menu
+          - unless current_user.agent? || current_user.admin?
+            .column.is-paddingless.is-4-mobile.is-4-tablet.is-flex.has-items-centered.has-direction-row-reversed{style:'margin-top: -46px;margin-left: 505px;font-weight: 600;position: relative'}
+              / - if current_page?(controller: 'co-borrower/loans', action: 'get_loan')
+              / .col.header-top-txt-sg
+              /   %p Get Loan
+              / - else
+              / %a.button.is-primary.has-half-width.m-l-md{:href => "/co_borrower/loans/get_loan"} Get Loan
+              - if current_user.active_loan_request.blank? && params[:controller] == 'co_borrower/loans' || params[:controller] == 'co_borrower/loans'
+                .col.header-top-txt-sg{style:'font-size: 21px;'}
+                  %p Get Loan
+              - else
+                = link_to "Get Loan", new_co_borrower_loan_path, class:'button is-primary has-half-width m-l-md', type:'button'
+                = link_to "About", "/who_we_are", class: 'link has-text-primary is-bold m-l-md', style: 'color: black!important;'
+                = link_to "Community", "/social_networks", class: 'link has-text-primary is-bold m-l-md', style: 'color: black!important;'
+                = link_to "Listings", "/look-around", class: 'link has-text-primary is-bold m-l-md', style: 'color: black!important;'

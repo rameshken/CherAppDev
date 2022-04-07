@@ -1,0 +1,33 @@
+.plan-selected-modal{
+  overflow: hidden;
+  width: 700px;
+  .is-highlighted{
+    border: 2px solid #FDCE6A; 
+  }
+  .card-content{
+    padding: 1rem 2rem;
+  }
+}
+
+.main-card-padding{
+  margin-top: 1rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.offer-highlight{
+  header{
+    background: #FDCE6A;
+    padding: 0 !important;
+    .card-header-title{
+      color: #fff;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}
+#image-modal.modal{
+  .modal-close{
+    background: #fff;
+  }
+}
+

@@ -1,0 +1,8 @@
+yarn add react-router-dom
+yarn add react-select
+yarn add bootstrap
+yarn add react-bootstrap
+yarn add react-hook-form
+yarn add react-redux
+yarn add @reduxjs/toolkit
+yarn add react-search-autocomplete

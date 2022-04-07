@@ -1,0 +1,77 @@
+<input id="currentPageInput" type="hidden" value="sign up page"></input>
+<% title(t("meta.sign_up.title")) %>
+<div class="rebrand full-width-container" data-controller="registrations">
+  <div class="container is-family-secondary">
+    <div class="panel has-fixed-width is-centered">
+      <div class="columns is-centered is-multiline is-marginless">
+        <div class="column is-11">
+          <h3>
+            <%= t('labels.sign_up') %>
+          </h3>
+        </div>
+        <% if devise_mapping.omniauthable? %>
+          <div class="column is-11">
+            <div class="columns is-vcentered is-centered has-border-bottom is-marginless">
+              <div class="column is-4 has-text-right-desktop">
+                <span class="is-bold">
+                  <%= t('sign_in.connect_with') %>
+                </span>
+              </div>
+              <div class="column is-7">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="column is-11" data-controller="password">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { 'data-action': 'registrations#handleSubmit', 'data-target': 'registrations.form' }) do |f| %>
+            <%= f.hidden_field :role, value: params.dig(:user, :role), id: 'newUserRoleInput' %>
+            <%= f.hidden_field :professional_role, value: params.dig(:user, :professional_role), id: 'newUserProfessionalRoleInput' %>
+            <%= f.hidden_field :accept_referral_agreement, value: params.dig(:user, :accept_referral_agreement), id: 'newUserProfessionalAcceptReferralAgreement' %>
+            <div class="field">
+              <%= f.label :first_name, class: "label" %>
+              <%= f.txt_field :first_name, autofocus: true, autocomplete: "off", placeholder: t("placeholders.first_name"), type: 'text', class: 'email input field' %>
+            </div>
+            <div class="field">
+              <%= f.label :email, class: "label" %>
+              <%= f.email_field :email, autofocus: false, autocomplete: "off", placeholder: t("placeholders.email"), type: 'email', class: 'email input field', required: true, 'data-target': 'registrations.emailInput', value: resource.email.blank? ? params[:email] : resource.email %>
+              <p class="is-caption is-danger" data-target="registrations.emailErrorMessage"></p>
+            </div>
+            <div class="field">
+              <%= f.label :password, class: "label" %>
+              <div class="control has-icons-right">
+                <%= f.password_field :password, autocomplete: "off", placeholder: t("placeholders.password"), type: 'password', class: 'password input field',"data-target": "password.password registrations.passwordInput", required: true %>
+                <span class="icon is-right is-clickable" data-action="click->password#seePassword">
+                  <%= fa_icon('eye-slash') %>
+                </span>
+              </div>
+              <p class="is-caption is-danger" data-target="registrations.passwordErrorMessage"></p>
+            </div>
+            <div class="field">
+              <%= f.label :password_confirmation, class: "label" %>
+              <div class="control has-icons-right">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input field password", placeholder: t("placeholders.password_confirmation"),"data-target": "password.passwordConfirmation registrations.passwordConfirmationInput", required: true %>
+                <span class="icon is-right is-clickable" data-action="click->password#seePasswordConfirmation">
+                  <%= fa_icon('eye-slash') %>
+                </span>
+              </div>
+              <p class="is-caption is-danger" data-target="registrations.passwordConfirmationErrorMessage"></p>
+            </div>
+            <% if @referrer %>
+              <%= hidden_field_tag 'referral_code', @referrer.referral_code %>
+            <% end %>
+            <div class="field">
+              <%= f.submit t("buttons.sign_up"), class: "button is-primary is-fullwidth is-marginless", id: "signUpButton" %>
+              <span class="is-caption">
+                <%= t('generic.by_sign_up') %>
+                <%= link_to t('sell.terms_and_conditions'), "#{root_url}/docs/Terms_Of_Service.pdf", { target: '_blank', class: 'has-text-essential-blue'} %>
+              </span>
+            </div>
+            <%= link_to t('labels.already_have_an_account'), user_session_path, class: 'is-caption is-blockz' %>
+            <%= link_to t('labels.activate_account'), new_activation_path, class: 'is-caption is-block' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
