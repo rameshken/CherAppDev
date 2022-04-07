@@ -4,7 +4,7 @@ import icon from "../../../assets/images/homebuyer/icon/ico.jpg";
 
 import { HomebuyerTab } from "./homebuyerTab/HomebuyerTab";
 
-function HomeBuyerLeftSide(props) {
+function HomeBuyerLeftSide({ cardClicked, setCardClicked }) {
   return (
     <div className="col-md-6 pt5">
       <div className="row  pt-1">
@@ -36,7 +36,8 @@ function HomeBuyerLeftSide(props) {
               <HomeBuyerLeftSideCard />
             </div> */}
 
-            <HomebuyerTab />
+            <HomebuyerTab cardClicked={cardClicked}
+              setCardClicked={setCardClicked}/>
           </div>
         </div>
       </div>
