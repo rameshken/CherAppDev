@@ -12,7 +12,7 @@ function HomeBuyerRightSideMap({ cardClicked }) {
     <div className="col-md-6 pt5">
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyCSLSZ4uesQ-2Er85fECnQJ_5kuGteLrWY' }}
-        style={{ height: "80vh" }}
+        style={{ height: "90vh" }}
         defaultZoom={10}
         resetBoundsOnResize={true}
         defaultCenter={{ lat: 47.36667, lng: 8.55 }}

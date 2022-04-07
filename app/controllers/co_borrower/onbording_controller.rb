@@ -5,6 +5,7 @@ module CoBorrower
     def show; end
 
     def homebuyers_landing
+      puts"HI CHECK FOR DATABASE CHER APP PROJECT"
     redirect_to look_around_path if params[:search]
     respond_to do |format|
       format.html
