@@ -9,12 +9,12 @@
   background: #ffffff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
   border-radius: 12px;
-  width: 983px;
-  height: 700px;
+  width: auto;
+  height: auto;
   overflow-y: scroll;
-  position: absolute;
+  position: relative;
   top: -9%;
-  left: -88%;
+  left: 0%;
 }
 
 .progressbar div {
@@ -59,4 +59,10 @@
   color: #080e2d;
   padding: 5px 20px;
   margin: 1rem;
+}
+.modal-content{
+  width: 75% !important;
+  height: auto !important;
+  padding: 1rem 3rem !important;
+  top: 50% !important;
 }
