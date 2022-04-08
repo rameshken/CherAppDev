@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import image from "../../../assets/images/homebuyer/icon/img.jpg";
 import redHeart from ".../../../assets/images/homebuyer/images/red-heart.png";
-import "../../../assets/stylesheets/components/_homebuyer.scss";
 import "../../../assets/homebuyer/_modal.scss";
+import "../../../assets/stylesheets/components/_homebuyer.scss";
+
 // import Modal from "react-modal";
 import { SignupPopup } from "./SignupPopup";
-
 
 const cardInfo = {
   id: 1,
@@ -18,7 +18,7 @@ const cardInfo = {
   address: "Delhi",
 };
 
-function HomeBuyerLeftSideCard({cardClicked, setCardClicked}) {
+function HomeBuyerLeftSideCard({ cardClicked, setCardClicked }) {
   const [img, setImg] = useState(true);
   const [modal, setModal] = useState(false);
 
@@ -26,21 +26,29 @@ function HomeBuyerLeftSideCard({cardClicked, setCardClicked}) {
   //   setModal(!modal);
   // };
 
-
   // if (modal) {
   //   document.body.classList.add("active-modal");
   // }
 
   return (
-    <div className="col-12 buyerbox mt-3" onClick={() => {
-      setCardClicked(!cardClicked);}}>
+    <div className="col-12 buyerbox mt-3">
       <div className="row d-flex">
-        <div className="col-md-5 pm0">
+        <div
+          className="col-md-5 pm0"
+          onClick={() => {
+            setCardClicked(!cardClicked);
+          }}
+        >
           <img src={image} className="img-cards-homebuyer" alt=""></img>
         </div>
         <div className="col-md-7 pl2">
           <div className="col-12 pm0 row dflex">
-            <div className="col-10 pm0">
+            <div
+              className="col-10 pm0"
+              onClick={() => {
+                setCardClicked(!cardClicked);
+              }}
+            >
               <p className="pm0">{cardInfo.ownership} ownership</p>
               <h3 className="card-h3 mt-1">
                 <strong>{cardInfo.perShare}</strong>/share
@@ -70,7 +78,12 @@ function HomeBuyerLeftSideCard({cardClicked, setCardClicked}) {
           <hr className="wid-hr"></hr>
           <div className="col-12 pm0 bed-section row">
             <div className="col pm0">
-              <p className="pm0">
+              <p
+                className="pm0"
+                onClick={() => {
+                  setCardClicked(!cardClicked);
+                }}
+              >
                 <i class=" fa fa-bed"></i>&nbsp; {cardInfo.beds} beds
               </p>
             </div>
@@ -85,7 +98,12 @@ function HomeBuyerLeftSideCard({cardClicked, setCardClicked}) {
               </p>
             </div>
           </div>
-          <div className="col-12 mt-1 mb-4 pm0 bed-section row">
+          <div
+            className="col-12 mt-1 mb-4 pm0 bed-section row"
+            onClick={() => {
+              setCardClicked(!cardClicked);
+            }}
+          >
             <h5 class="pm0  bed-h5">4793 N Mayfield Avenue</h5>
             <p class="pm0 mt-1 bed-p">San Bernardino, CA 92407 </p>
           </div>

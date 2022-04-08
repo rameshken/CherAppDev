@@ -1,5 +1,5 @@
 import React from "react";
-// check
+
 import { useState } from "react";
 import { MonthlyRent } from "../popups/MonthlyRent";
 import { InterestedCities } from "../popups/InterestedCities";

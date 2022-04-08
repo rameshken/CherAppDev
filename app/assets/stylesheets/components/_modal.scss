@@ -82,4 +82,11 @@
     padding: 30px 15px 15px;
     position: relative;
   }
+  .modal-content {
+    max-width: 2000px !important;
+    min-width: 60% !important;
+    height: 610px !important;
+    padding: 1rem 3rem !important;
+    top: 50% !important;
+  }
 }
