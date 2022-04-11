@@ -21,6 +21,8 @@ const cardInfo = {
 function HomeBuyerLeftSideCard({ cardClicked, setCardClicked }) {
   const [img, setImg] = useState(true);
   const [modal, setModal] = useState(false);
+  const [isAddToGroup, setIsAddToGroup] = useState(false);
+  const [isMessage, setIsMessage] = useState(false);
 
   // const toggleModal = () => {
   //   setModal(!modal);
@@ -111,7 +113,10 @@ function HomeBuyerLeftSideCard({ cardClicked, setCardClicked }) {
             <div class="col-md-6 pm0">
               <button
                 className="btn btn-text-dark w-100 btn-primary"
-                onClick={() => setModal(true)}
+                onClick={() => {
+                  setModal(true);
+                  setIsAddToGroup(true);
+                }}
               >
                 Add to Groups
               </button>
@@ -119,11 +124,21 @@ function HomeBuyerLeftSideCard({ cardClicked, setCardClicked }) {
             <div class="col-md-6  pm0">
               <button
                 className="btn float-right btn-text-light  btn-outline-dark"
-                onClick={() => setModal(true)}
+                onClick={() => {
+                  setModal(true);
+                  setIsMessage(true);
+                }}
               >
                 Message
               </button>
-              <SignupPopup show={modal} setModal={setModal} />
+              <SignupPopup
+                show={modal}
+                setModal={setModal}
+                isAddToGroup={isAddToGroup}
+                setIsAddToGroup={setIsAddToGroup}
+                isMessage={isMessage}
+                setIsMessage={setIsMessage}
+              />
             </div>
           </div>
         </div>

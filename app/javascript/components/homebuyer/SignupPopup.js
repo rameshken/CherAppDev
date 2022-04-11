@@ -18,6 +18,8 @@ export const SignupPopup = (props) => {
     reset,
   } = useForm();
 
+  console.log(props.isAddToGroup);
+
   const onSubmit = (data) => {
     console.log(data);
     setTimeModal(true);
@@ -40,6 +42,7 @@ export const SignupPopup = (props) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        onHide={() => props.setModal(false)}
       >
         <div className="des-card">
           <h2>Sign Up</h2>
@@ -141,7 +144,14 @@ export const SignupPopup = (props) => {
           </p>
         </div>
       </Modal>
-      <PopupTimeline show={timeModal} setModal={setTimeModal} />
+      <PopupTimeline
+        show={timeModal}
+        setModal={setTimeModal}
+        isAddToGroup={props.isAddToGroup}
+        setIsAddToGroup={props.setIsAddToGroup}
+        isMessage={props.isMessage}
+        setIsMessage={props.setIsMessage}
+      />
     </div>
   );
 };

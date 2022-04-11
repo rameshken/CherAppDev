@@ -7,6 +7,8 @@ import { PhoneNumber } from "../popups/PhoneNumber";
 import { YourName } from "../popups/YourName";
 import { MoreAboutYourself } from "../popups/MoreAboutYourself";
 import { ChooseGroup } from "../popups/ChooseGroup";
+import { HowCanWeHelpYou } from "../popups/HowCanWeHelpYou";
+
 import { Modal } from "react-bootstrap";
 import "../../../../assets/homebuyer/_PopupTimeline.scss";
 
@@ -20,6 +22,9 @@ export const PopupTimeline = (props) => {
     lastName: "",
     moreInfo: "",
   });
+
+  const [groupModal, setGroupModal] = useState(false);
+  const [messageModal, setMessageModal] = useState(false);
 
   const pageDisplay = () => {
     if (page === 0) {
@@ -54,6 +59,7 @@ export const PopupTimeline = (props) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        onHide={() => props.setModal(false)}
       >
         <Modal.Body>
           <div className="popup-container">
@@ -92,6 +98,14 @@ export const PopupTimeline = (props) => {
                 <button
                   onClick={() => {
                     setPage((currPage) => currPage + 1);
+                    if (page === 4 && props.isAddToGroup) {
+                      setGroupModal(true);
+                      setIsAddToGroup(false);
+                    }
+                    if (page === 4 && props.isMessage) {
+                      setMessageModal(true);
+                      setIsAddToGroup(false);
+                    }
                   }}
                   type="button"
                   className="btn btn-primary cont-opt"
@@ -111,6 +125,8 @@ export const PopupTimeline = (props) => {
           </div>
         </Modal.Body>
       </Modal>
+      <ChooseGroup show={groupModal} setModal={setGroupModal} />
+      <HowCanWeHelpYou show={messageModal} setModal={setMessageModal} />
     </div>
   );
 };
