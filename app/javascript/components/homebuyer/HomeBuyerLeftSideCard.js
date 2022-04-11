@@ -34,7 +34,7 @@ function HomeBuyerLeftSideCard({ cardClicked, setCardClicked }) {
     <div className="col-12 buyerbox mt-3">
       <div className="row d-flex">
         <div
-          className="col-md-5 pm0"
+          className="col-md-5 pm0 buy-img"
           onClick={() => {
             setCardClicked(!cardClicked);
           }}
