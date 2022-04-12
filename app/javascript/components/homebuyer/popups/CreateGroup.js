@@ -17,12 +17,15 @@ export const CreateGroup = (props) => {
         centered
         onHide={() => props.setModal(false)}
       >
-        <div>
-          <h1 className="h1-head-txts" style={{ width: "100%" }}>
+        <div style={{ padding: "1rem 4rem" }}>
+          <h1
+            className="h1-head-txts"
+            style={{ width: "100%", textAlign: "left" }}
+          >
             Create a new group
           </h1>
           <form>
-            <div className="mb-3" style={{ padding: "0% 30%" }}>
+            <div className="mb-3">
               <label
                 htmlFor="exampleInputEmail1"
                 className="form-label ph1-label"
@@ -42,7 +45,7 @@ export const CreateGroup = (props) => {
                 }}
               />
             </div>
-            <div className="mb-3" style={{ padding: "0% 30%" }}>
+            <div className="mb-3">
               <label
                 htmlFor="exampleInputEmail1"
                 className="form-label ph1-label"
@@ -63,7 +66,7 @@ export const CreateGroup = (props) => {
               />
             </div>
           </form>
-          <div className="pad-area" style={{ padding: "0% 30%" }}>
+          <div className="pad-area">
             <div className="p-flex-area">
               <p className="ph1-label">Selected people</p>
               <div className="d-flex justify-content-between align-items-center">

@@ -1,7 +1,8 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { modalClose } from "../../../../assets/homebuyer/images/close-modal.png";
-import { completeImg } from "../../../../assets/homebuyer/images/round-tick.png";
+import modalClose from "../../../../assets/homebuyer/images/close-modal.png";
+import completeImg from "../../../../assets/homebuyer/images/round-tick.png";
+import "../../../../assets/homebuyer/_completed.scss";
 
 const Completed = (props) => {
   return (
@@ -17,8 +18,22 @@ const Completed = (props) => {
         }}
       >
         <div>
-          <img src={completeImg} alt />
-          <img src={modalClose} alt />
+          {/* <img src={modalClose} alt /> */}
+          <Modal.Header style={{ border: "none" }} closeButton></Modal.Header>
+
+          <div
+            style={{ width: "100%" }}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <img
+              src={completeImg}
+              style={{
+                width: "100px",
+                height: "100px",
+              }}
+              alt
+            />
+          </div>
         </div>
       </Modal>
     </div>

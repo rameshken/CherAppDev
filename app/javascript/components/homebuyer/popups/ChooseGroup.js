@@ -16,17 +16,17 @@ export const ChooseGroup = (props) => {
         centered
         onHide={() => props.setModal(false)}
       >
-        <div style={{ padding: "3% 30%" }}>
+        <div style={{ padding: "3% 13%" }}>
           <div>
             <h1
               className="h1-head-txts"
-              style={{ width: "80%", textAlign: "left" }}
+              style={{ width: "85%", textAlign: "left", marginBottom: "2rem" }}
             >
               Choose which group to add this house to
             </h1>
             <p
               className="loc-head-p-txt"
-              style={{ width: "80%", textAlign: "left" }}
+              style={{ width: "85%", textAlign: "left", marginBottom: "3rem" }}
             >
               You don’t have any groups yet. Groups are a great way to organzie
               which homes you and your co-buyers are interested in!
@@ -34,7 +34,7 @@ export const ChooseGroup = (props) => {
             <button
               type="button"
               className="btn btn-primary cont-opt"
-              style={{ width: "50%" }}
+              style={{ width: "50%", margin: "0rem" }}
               onClick={() => setChooseModal(true)}
             >
               Create a new group

@@ -36,6 +36,7 @@ export const SignupPopup = (props) => {
     <div
       className="d-flex justify-content-center align-items-center"
       style={{ height: "100vh" }}
+      id="signuppopupid"
     >
       <Modal
         {...props}
@@ -43,6 +44,7 @@ export const SignupPopup = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         onHide={() => props.setModal(false)}
+        className="signup-pop-up"
       >
         <div className="des-card">
           <h2>Sign Up</h2>

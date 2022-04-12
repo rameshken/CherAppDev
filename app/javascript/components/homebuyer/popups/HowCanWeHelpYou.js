@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import "../../../../assets/homebuyer/_completed.scss";
+
 import "../../../../assets/homebuyer/_barpopup.scss";
 import { Modal } from "react-bootstrap";
 import Completed from "./Completed";
@@ -16,6 +18,7 @@ export const HowCanWeHelpYou = (props) => {
         centered
         onHide={() => props.setModal(false)}
       >
+        <Modal.Header style={{ border: "none" }} closeButton></Modal.Header>
         <div>
           <h1
             className="h1-head-txts"
@@ -23,8 +26,8 @@ export const HowCanWeHelpYou = (props) => {
           >
             How can we help you?
           </h1>
-          <div className="d-flex" style={{ padding: "0% 29%" }}>
-            <div className="mb-3" style={{ padding: "0% 2%", width: "50%" }}>
+          <div className="d-flex">
+            <div className="mb-3" style={{ paddingRight: "1%", width: "50%" }}>
               <label
                 htmlFor="exampleInputEmail1"
                 className="form-label ph-label"
@@ -38,7 +41,7 @@ export const HowCanWeHelpYou = (props) => {
                 aria-describedby="emailHelp"
               />
             </div>
-            <div className="mb-3" style={{ padding: "0% 2%", width: "50%" }}>
+            <div className="mb-3" style={{ paddingLeft: "1%", width: "50%" }}>
               <label
                 htmlFor="exampleInputEmail1"
                 className="form-label ph-label"
@@ -53,7 +56,7 @@ export const HowCanWeHelpYou = (props) => {
               />
             </div>
           </div>
-          <div className="mb-3" style={{ padding: "0% 30%" }}>
+          <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label ph-label">
               phone *
             </label>
@@ -64,7 +67,7 @@ export const HowCanWeHelpYou = (props) => {
               aria-describedby="emailHelp"
             />
           </div>
-          <div style={{ padding: "0% 30%" }}>
+          <div>
             <label htmlFor="exampleInputEmail1" className="form-label ph-label">
               Text *
             </label>
