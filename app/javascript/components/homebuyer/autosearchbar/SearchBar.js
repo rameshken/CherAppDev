@@ -9,19 +9,23 @@ export const SearchBar = () => {
     },
     {
       id: 1,
-      name: "JavaScript",
+      name: "Los Angels",
     },
     {
       id: 2,
-      name: "Basic",
+      name: "San Fransisco",
     },
     {
       id: 3,
-      name: "PHP",
+      name: "New York",
     },
     {
       id: 4,
-      name: "Java",
+      name: "London",
+    },
+    {
+      id: 5,
+      name: "Delhi",
     },
   ];
   const handleOnSearch = (string, results) => {
@@ -51,7 +55,7 @@ export const SearchBar = () => {
     );
   };
   return (
-    <div className="search">
+    <div className="search" style={{ zIndex: "99" }}>
       <header className="App-header">
         <div style={{ width: 600 }}>
           <ReactSearchAutocomplete
