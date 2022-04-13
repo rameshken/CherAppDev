@@ -4,6 +4,7 @@ import image from "../../../assets/homebuyer/icon/img.jpg";
 import redHeart from ".../../../assets/homebuyer/images/red-heart.png";
 import "../../../assets/stylesheets/components/_homebuyer.scss";
 import "../../../assets/homebuyer/_modal.scss";
+import blackHeart from "../../../assets/homebuyer/images/heart-black.png";
 // import Modal from "react-modal";
 import { SignupPopup } from "./SignupPopup";
 
@@ -40,11 +41,17 @@ const MapCard = ({ cardClicked, setCardClicked }) => {
               style={{ cursor: "pointer" }}
               onClick={() => {
                 setImg(!img);
-                setFavModal(true);
               }}
             >
               {img ? (
-                <i className="fa fa-heart-o"></i>
+                <img
+                  style={{ width: "27px", height: "27px" }}
+                  src={blackHeart}
+                  alt=""
+                  onClick={() => {
+                    setFavModal(true);
+                  }}
+                />
               ) : (
                 <img
                   style={{ width: "27px", height: "27px" }}

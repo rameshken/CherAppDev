@@ -4,6 +4,7 @@ import image from "../../../assets/images/homebuyer/icon/img.jpg";
 import redHeart from ".../../../assets/images/homebuyer/images/red-heart.png";
 import "../../../assets/homebuyer/_modal.scss";
 import "../../../assets/stylesheets/components/_homebuyer.scss";
+import blackHeart from "../../../assets/homebuyer/images/heart-black.png";
 
 // import Modal from "react-modal";
 import { SignupPopup } from "./SignupPopup";
@@ -64,10 +65,12 @@ function HomeBuyerLeftSideCard({ cardClicked, setCardClicked }) {
               }}
             >
               {img ? (
-                <i
-                  className="fa fa-heart-o"
+                <img
+                  style={{ width: "27px", height: "27px" }}
+                  src={blackHeart}
+                  alt=""
                   onClick={() => dispatch(addFavourite(cardInfo))}
-                ></i>
+                />
               ) : (
                 <img
                   style={{ width: "27px", height: "27px" }}
