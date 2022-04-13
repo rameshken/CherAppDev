@@ -78,7 +78,7 @@ const MapCard = ({ cardClicked, setCardClicked }) => {
           </div>
         </div>
       </div>
-      <SignupPopup show={favModal} setFavModal={setFavModal} />
+      <SignupPopup show={favModal} setModal={setFavModal} />
     </div>
   );
 };

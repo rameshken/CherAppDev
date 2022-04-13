@@ -14,7 +14,6 @@ const Completed = (props) => {
         centered
         onHide={() => {
           props.setModal(false);
-          props.setCompleteModal(false);
         }}
       >
         <div>

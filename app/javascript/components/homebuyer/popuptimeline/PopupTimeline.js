@@ -100,11 +100,11 @@ export const PopupTimeline = (props) => {
                     setPage((currPage) => currPage + 1);
                     if (page === 4 && props.isAddToGroup) {
                       setGroupModal(true);
-                      setIsAddToGroup(false);
+                      props.setModal(false);
                     }
                     if (page === 4 && props.isMessage) {
                       setMessageModal(true);
-                      setIsAddToGroup(false);
+                      props.setModal(false);
                     }
                   }}
                   type="button"

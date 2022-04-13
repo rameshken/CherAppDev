@@ -24,6 +24,7 @@ export const SignupPopup = (props) => {
     console.log(data);
     setTimeModal(true);
     props.setModal(false);
+    // props.setFavModal(false);
     reset();
   };
 
@@ -43,7 +44,10 @@ export const SignupPopup = (props) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        onHide={() => props.setModal(false)}
+        onHide={() => {
+          props.setModal(false);
+          // props.setFavModal(false);
+        }}
         className="signup-pop-up"
       >
         <div className="des-card">

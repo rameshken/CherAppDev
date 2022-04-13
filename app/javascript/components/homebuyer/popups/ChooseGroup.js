@@ -35,7 +35,10 @@ export const ChooseGroup = (props) => {
               type="button"
               className="btn btn-primary cont-opt"
               style={{ width: "50%", margin: "0rem" }}
-              onClick={() => setChooseModal(true)}
+              onClick={() => {
+                setChooseModal(true);
+                props.setModal(false);
+              }}
             >
               Create a new group
             </button>

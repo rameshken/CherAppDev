@@ -84,7 +84,10 @@ export const HowCanWeHelpYou = (props) => {
           <div className="d-flex justify-content-center align-items-center">
             <button
               className="btn btn-primary cont-opt"
-              onClick={() => setCompleteModal(true)}
+              onClick={() => {
+                setCompleteModal(true);
+                props.setModal(false);
+              }}
             >
               Submit
             </button>
