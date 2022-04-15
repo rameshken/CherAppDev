@@ -18,7 +18,7 @@ const cardInfo = {
   address: "Delhi",
 };
 
-function HomeBuyerLeftSideCard(props) {
+function HomeBuyerLeftSideCard({cardClicked, setCardClicked}) {
   const [img, setImg] = useState(true);
   const [modal, setModal] = useState(false);
 
@@ -32,7 +32,8 @@ function HomeBuyerLeftSideCard(props) {
   // }
 
   return (
-    <div className="col-12 buyerbox mt-3">
+    <div className="col-12 buyerbox mt-3" onClick={() => {
+      setCardClicked(!cardClicked);}}>
       <div className="row d-flex">
         <div className="col-md-5 pm0">
           <img src={image} className="img-cards-homebuyer" alt=""></img>
