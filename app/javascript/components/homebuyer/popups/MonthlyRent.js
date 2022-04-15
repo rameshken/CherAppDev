@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 export const MonthlyRent = () => {
   return (
     <div>
-      <div style={{ marginBottom: "20rem" }}>
+      <div style={{ marginBottom: "10rem" }}>
         <div className="location-head-txt d-flex justify-content-center align-items-center">
           <h1 className="h1-head-txts">What is your monthly rent?</h1>
         </div>

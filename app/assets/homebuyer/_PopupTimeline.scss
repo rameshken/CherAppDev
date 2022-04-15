@@ -4,17 +4,18 @@
   background: rgba(49, 84, 245, 0.31);
   border-radius: 100px;
   margin-bottom: 50px;
+  margin-top: 50px !important;
 }
 .popup-container {
   background: #ffffff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: none !important;
   border-radius: 12px;
   width: 983px;
-  height: 700px;
-  overflow-y: scroll;
+  height: 870px;
+  overflow: none !important;
   position: absolute;
   top: -9%;
-  left: -88%;
+  
 }
 
 .progressbar div {

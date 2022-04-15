@@ -18,10 +18,13 @@ export const SignupPopup = (props) => {
     reset,
   } = useForm();
 
+  console.log(props.isAddToGroup);
+
   const onSubmit = (data) => {
     console.log(data);
     setTimeModal(true);
     props.setModal(false);
+    // props.setFavModal(false);
     reset();
   };
 
@@ -34,12 +37,18 @@ export const SignupPopup = (props) => {
     <div
       className="d-flex justify-content-center align-items-center"
       style={{ height: "100vh" }}
+      id="signuppopupid"
     >
       <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        onHide={() => {
+          props.setModal(false);
+          // props.setFavModal(false);
+        }}
+        className="signup-pop-up"
       >
         <div className="des-card">
           <h2>Sign Up</h2>
@@ -141,7 +150,14 @@ export const SignupPopup = (props) => {
           </p>
         </div>
       </Modal>
-      <PopupTimeline show={timeModal} setModal={setTimeModal} />
+      <PopupTimeline
+        show={timeModal}
+        setModal={setTimeModal}
+        isAddToGroup={props.isAddToGroup}
+        setIsAddToGroup={props.setIsAddToGroup}
+        isMessage={props.isMessage}
+        setIsMessage={props.setIsMessage}
+      />
     </div>
   );
 };

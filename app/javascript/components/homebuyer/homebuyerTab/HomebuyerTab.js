@@ -3,7 +3,7 @@ import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import HomeBuyerLeftSideCard from "../HomeBuyerLeftSideCard";
 import "../../../../assets/homebuyer/_HomebuyerTab.scss";
-export const HomebuyerTab = () => {
+export const HomebuyerTab = ({ cardClicked, setCardClicked }) => {
   return (
     <div>
       <Tabs
@@ -19,9 +19,12 @@ export const HomebuyerTab = () => {
           <h1>Tab2</h1>
         </Tab>
         <Tab eventKey="3 co-buyers" title="3 co-buyers">
-          <HomeBuyerLeftSideCard />
-          <HomeBuyerLeftSideCard />
-          <HomeBuyerLeftSideCard />
+          <HomeBuyerLeftSideCard cardClicked={cardClicked}
+              setCardClicked={setCardClicked} />
+          <HomeBuyerLeftSideCard cardClicked={cardClicked}
+              setCardClicked={setCardClicked} />
+          <HomeBuyerLeftSideCard cardClicked={cardClicked}
+              setCardClicked={setCardClicked} />
         </Tab>
         <Tab eventKey="4 co-buyers" title="4 co-buyers">
           <h1>Tab4</h1>

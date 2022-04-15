@@ -4,9 +4,9 @@ import image from "../../../assets/homebuyer/icon/img.jpg";
 import redHeart from ".../../../assets/homebuyer/images/red-heart.png";
 import "../../../assets/stylesheets/components/_homebuyer.scss";
 import "../../../assets/homebuyer/_modal.scss";
+import blackHeart from "../../../assets/homebuyer/images/heart-black.png";
 // import Modal from "react-modal";
-// import { SignupPopup } from "./SignupPopup";
-
+import { SignupPopup } from "./SignupPopup";
 
 const mapCardInfo = {
   id: 1,
@@ -18,14 +18,12 @@ const mapCardInfo = {
   address: "Delhi",
 };
 
-const MapCard = ({cardClicked, setCardClicked}) => {
+const MapCard = ({ cardClicked, setCardClicked }) => {
   const [img, setImg] = useState(true);
-  
-  
+  const [favModal, setFavModal] = useState(false);
 
   return (
     <div className="col-12 buyerbox1 mt-3 p-2">
-    
       <div className="row d-flex">
         <div className="col-md-3 pm0">
           <img src={image} className="img-cards-homebuyer1" alt=""></img>
@@ -33,7 +31,7 @@ const MapCard = ({cardClicked, setCardClicked}) => {
         <div className="col-md-9 pl2">
           <div className="col-12 pm0 row dflex">
             <div className="col-10 pm0">
-              <p className="pm0 m-btm" >{mapCardInfo.ownership}/ownership</p>
+              <p className="pm0 m-btm">{mapCardInfo.ownership}/ownership</p>
               <h3 className="card-h3 mt-1">
                 <strong>{mapCardInfo.perShare}</strong>/share
               </h3>
@@ -46,10 +44,14 @@ const MapCard = ({cardClicked, setCardClicked}) => {
               }}
             >
               {img ? (
-                <i
-                  className="fa fa-heart-o"
-                 
-                ></i>
+                <img
+                  style={{ width: "27px", height: "27px" }}
+                  src={blackHeart}
+                  alt=""
+                  onClick={() => {
+                    setFavModal(true);
+                  }}
+                />
               ) : (
                 <img
                   style={{ width: "27px", height: "27px" }}
@@ -81,12 +83,11 @@ const MapCard = ({cardClicked, setCardClicked}) => {
             <h5 className="pm0  bed-h5">4793 N Mayfield Avenue</h5>
             <p className="pm0 mt-1 bed-p">San Bernardino, CA 92407 </p>
           </div>
-          
         </div>
       </div>
-      
+      <SignupPopup show={favModal} setModal={setFavModal} />
     </div>
   );
-}
+};
 
 export default MapCard;

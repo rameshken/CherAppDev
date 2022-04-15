@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: pavirami
-  password: root
+  username: postgres
+  password: 123
   port: 5432
   host: localhost
   
@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: dev_cherapp
+  database: new_cherapp_dev
 
   # database: d27nsi9dok2e8f 
   # database: d8895o5dol6m3f
